@@ -1,0 +1,162 @@
+{
+  "Selected Certificate": {
+    "Certificates": [
+      {
+        "Browser": "Chrome",
+        "Login": "Teboho Bodibe",
+        "Bonds": "Law Test 1",
+        "Transfers": "Law Test 1",
+        "Credits": "Musa Ngwenya",
+        "African Bank Nadir": "Sphiwe Nkambule",
+        "African Bank AbTrace": "Musa Ngwenya"
+      },
+      {
+        "Browser": "Edge",
+        "Login": "",
+        "Bonds": "",
+        "Transfers": "",
+        "Credits": ""
+      }
+    ]
+  },
+  "Certificates To Select": [
+    {
+      "Section": "Login",
+      "Certificates": [
+        {
+          "Chrome": "Teboho Bodibe",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Musa Ngwenya",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Langelihle Shabangu",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Sphiwe Nkambule",
+          "Edge": ""
+        }
+      ]
+    },
+    {
+      "Section": "Bonds",
+      "Certificates": [
+        {
+          "Chrome": "3ac92d1c-cd4c-4d65-83d4-59c5d90fc9d2",
+          "Edge": ""
+        },
+        {
+          "Chrome": "6d87d0d8-e1e1-404b-85c0-cf8b486da95b",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Teboho Bodibe",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Musa Mgwenya",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Law Test 1",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Langelihle Shabangu",
+          "Edge": ""
+        }
+      ]
+    },
+    {
+      "Section": "Transfers",
+      "Certificates": [
+        {
+          "Chrome": "3ac92d1c-cd4c-4d65-83d4-59c5d90fc9d2",
+          "Edge": ""
+        },
+        {
+          "Chrome": "6d87d0d8-e1e1-404b-85c0-cf8b486da95b",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Teboho Bodibe",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Law Test 1",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Langelihle Shabangu",
+          "Edge": ""
+        }
+      ]
+    },
+    {
+      "Section": "Credits",
+      "Certificates": [
+        {
+          "Chrome": "Teboho Bodibe",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Musa Ngwenya",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Langelihle Shabangu",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Sphiwe Nkambule",
+          "Edge": ""
+        }
+      ]
+    },
+    {
+      "Section": "African Bank Nadir",
+      "Certificates": [
+        {
+          "Chrome": "Teboho Bodibe",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Musa Ngwenya",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Langelihle Shabangu",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Sphiwe Nkambule",
+          "Edge": ""
+        }
+      ]
+    },
+    {
+      "Section": "African Bank AbTrace",
+      "Certificates": [
+        {
+          "Chrome": "Teboho Bodibe",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Musa Ngwenya",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Langelihle Shabangu",
+          "Edge": ""
+        },
+        {
+          "Chrome": "Sphiwe Nkambule",
+          "Edge": ""
+        }
+      ]
+    }
+  ]
+}
