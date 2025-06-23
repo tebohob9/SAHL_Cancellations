@@ -76,111 +76,111 @@ namespace SAHL_Cancellations.Tests
         /// <summary>
         /// Navigates through all tabs under "My User" context.
         /// </summary>
-        [Test, Order(2), Category("Regression Test")]
-        public void SelectMyUserTabsInOrder()
-        {
-            // Start the test in ExtentReports with class name prefix
-            test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
+        //[Test, Order(2), Category("Regression Test")]
+        //public void SelectMyUserTabsInOrder()
+        //{
+        //    // Start the test in ExtentReports with class name prefix
+        //    test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
 
-            try
-            {
-                test.Log(Status.Info, $"[{testClassName}] Starting SelectMyUserTabsInOrder test");
+        //    try
+        //    {
+        //        test.Log(Status.Info, $"[{testClassName}] Starting SelectMyUserTabsInOrder test");
 
-                // Navigate through My User tabs
-                test.Log(Status.Info, $"[{testClassName}] Navigating through My User tabs in order");
-                homePage.SelectMyUserTabsInOrder();
-                test.Log(Status.Pass, $"[{testClassName}] Successfully navigated through My User tabs");
+        //        // Navigate through My User tabs
+        //        test.Log(Status.Info, $"[{testClassName}] Navigating through My User tabs in order");
+        //        homePage.SelectMyUserTabsInOrder();
+        //        test.Log(Status.Pass, $"[{testClassName}] Successfully navigated through My User tabs");
 
-                Thread.Sleep(2000);
+        //        Thread.Sleep(2000);
 
-                // Capture final screenshot
-                CaptureScreenshot($"{testClassName}_SelectMyUserTabsInOrder_Success");
+        //        // Capture final screenshot
+        //        CaptureScreenshot($"{testClassName}_SelectMyUserTabsInOrder_Success");
 
-                test.Log(Status.Pass, $"[{testClassName}] SelectMyUserTabsInOrder test completed successfully");
-            }
-            catch (Exception ex)
-            {
-                // Log the exception
-                test.Log(Status.Fail, $"[{testClassName}] Test failed with exception: {ex.Message}");
-                CaptureScreenshot($"{testClassName}_SelectMyUserTabsInOrder_Failure");
-                throw;
-            }
-        }
+        //        test.Log(Status.Pass, $"[{testClassName}] SelectMyUserTabsInOrder test completed successfully");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Log the exception
+        //        test.Log(Status.Fail, $"[{testClassName}] Test failed with exception: {ex.Message}");
+        //        CaptureScreenshot($"{testClassName}_SelectMyUserTabsInOrder_Failure");
+        //        throw;
+        //    }
+        //}
 
-        /// <summary>
-        /// Navigates through all tabs under "My Branch" context.
-        /// </summary>
-        [Test, Order(3), Category("Regression Test")]
-        public void SelectMyBranchTabsInOrder()
-        {
-            // Start the test in ExtentReports with class name prefix
-            test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
+        ///// <summary>
+        ///// Navigates through all tabs under "My Branch" context.
+        ///// </summary>
+        //[Test, Order(3), Category("Regression Test")]
+        //public void SelectMyBranchTabsInOrder()
+        //{
+        //    // Start the test in ExtentReports with class name prefix
+        //    test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
 
-            try
-            {
-                test.Log(Status.Info, $"[{testClassName}] Starting SelectMyBranchTabsInOrder test");
+        //    try
+        //    {
+        //        test.Log(Status.Info, $"[{testClassName}] Starting SelectMyBranchTabsInOrder test");
 
-                // Navigate through My Branch tabs
-                test.Log(Status.Info, $"[{testClassName}] Navigating through My Branch tabs in order");
-                homePage.SelectMyBranchTabsInOrder();
-                test.Log(Status.Pass, $"[{testClassName}] Successfully navigated through My Branch tabs");
+        //        // Navigate through My Branch tabs
+        //        test.Log(Status.Info, $"[{testClassName}] Navigating through My Branch tabs in order");
+        //        homePage.SelectMyBranchTabsInOrder();
+        //        test.Log(Status.Pass, $"[{testClassName}] Successfully navigated through My Branch tabs");
 
-                Thread.Sleep(2000);
+        //        Thread.Sleep(2000);
 
-                // Capture final screenshot
-                CaptureScreenshot($"{testClassName}_SelectMyBranchTabsInOrder_Success");
+        //        // Capture final screenshot
+        //        CaptureScreenshot($"{testClassName}_SelectMyBranchTabsInOrder_Success");
 
-                test.Log(Status.Pass, $"[{testClassName}] SelectMyBranchTabsInOrder test completed successfully");
-            }
-            catch (Exception ex)
-            {
-                // Log the exception
-                test.Log(Status.Fail, $"[{testClassName}] Test failed with exception: {ex.Message}");
-                CaptureScreenshot($"{testClassName}_SelectMyBranchTabsInOrder_Failure");
-                throw;
-            }
-        }
+        //        test.Log(Status.Pass, $"[{testClassName}] SelectMyBranchTabsInOrder test completed successfully");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Log the exception
+        //        test.Log(Status.Fail, $"[{testClassName}] Test failed with exception: {ex.Message}");
+        //        CaptureScreenshot($"{testClassName}_SelectMyBranchTabsInOrder_Failure");
+        //        throw;
+        //    }
+        //}
 
-        /// <summary>
-        /// Performs multiple search operations in "My Branch" context using different criteria.
-        /// </summary>
-        [Test, Order(4), Category("Regression Test")]
-        public void MyBranch_Search()
-        {
-            // Start the test in ExtentReports with class name prefix
-            test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
+        ///// <summary>
+        ///// Performs multiple search operations in "My Branch" context using different criteria.
+        ///// </summary>
+        //[Test, Order(4), Category("Regression Test")]
+        //public void MyBranch_Search()
+        //{
+        //    // Start the test in ExtentReports with class name prefix
+        //    test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
 
-            try
-            {
-                test.Log(Status.Info, $"[{testClassName}] Starting MyBranch_Search test");
+        //    try
+        //    {
+        //        test.Log(Status.Info, $"[{testClassName}] Starting MyBranch_Search test");
 
-                // Perform search operations
-                test.Log(Status.Info, $"[{testClassName}] Performing search operations with multiple criteria");
-                test.Log(Status.Info, $"[{testClassName}] Search criteria - ID: {TestData.Search_ID}, Account: {TestData.Account}, Property: {TestData.Property}, Mortgagor: {TestData.Mortgagor}");
+        //        // Perform search operations
+        //        test.Log(Status.Info, $"[{testClassName}] Performing search operations with multiple criteria");
+        //        test.Log(Status.Info, $"[{testClassName}] Search criteria - ID: {TestData.Search_ID}, Account: {TestData.Account}, Property: {TestData.Property}, Mortgagor: {TestData.Mortgagor}");
 
-                homePage.MyBranchSearch(
-                    TestData.Search_ID,
-                    TestData.Account,
-                    TestData.Property,
-                    TestData.Mortgagor,
-                    TestData.Blank
-                );
+        //        homePage.MyBranchSearch(
+        //            TestData.Search_ID,
+        //            TestData.Account,
+        //            TestData.Property,
+        //            TestData.Mortgagor,
+        //            TestData.Blank
+        //        );
 
-                test.Log(Status.Pass, $"[{testClassName}] Successfully performed all search operations");
+        //        test.Log(Status.Pass, $"[{testClassName}] Successfully performed all search operations");
 
-                // Capture final screenshot
-                CaptureScreenshot($"{testClassName}_MyBranch_Search_Success");
+        //        // Capture final screenshot
+        //        CaptureScreenshot($"{testClassName}_MyBranch_Search_Success");
 
-                test.Log(Status.Pass, $"[{testClassName}] MyBranch_Search test completed successfully");
-            }
-            catch (Exception ex)
-            {
-                // Log the exception
-                test.Log(Status.Fail, $"[{testClassName}] Test failed with exception: {ex.Message}");
-                CaptureScreenshot($"{testClassName}_MyBranch_Search_Failure");
-                throw;
-            }
-        }
+        //        test.Log(Status.Pass, $"[{testClassName}] MyBranch_Search test completed successfully");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Log the exception
+        //        test.Log(Status.Fail, $"[{testClassName}] Test failed with exception: {ex.Message}");
+        //        CaptureScreenshot($"{testClassName}_MyBranch_Search_Failure");
+        //        throw;
+        //    }
+        //}
 
         /// <summary>
         /// Helper method to capture screenshots

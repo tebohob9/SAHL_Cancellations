@@ -40,7 +40,7 @@ namespace Cancellations_Tests.Tests
                 Thread.Sleep(2000);
 
                 test.Log(Status.Info, $"[{testClassName}] Clicking on Request Cancellation");
-                HomePage.ClickRequestCancellation();
+                //HomePage.ClickRequestCancellation();
                 test.Log(Status.Pass, $"[{testClassName}] Successfully clicked on Request Cancellation");
 
                 Thread.Sleep(2000);

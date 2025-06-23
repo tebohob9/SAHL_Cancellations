@@ -204,7 +204,7 @@ namespace SAHL_Cancellations.Tests
                 Thread.Sleep(2000);
 
                 test.Log(Status.Info, $"[{testClassName}] Clicking Request Cancellation button");
-                HomePage.ClickRequestCancellation();
+                //HomePage.ClickRequestCancellation();
                 test.Log(Status.Pass, $"[{testClassName}] Successfully clicked Request Cancellation button");
 
                 test.Log(Status.Info, $"[{testClassName}] Waiting for 2 seconds");

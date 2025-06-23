@@ -43,14 +43,14 @@ namespace SAHL_Cancellations.Pages
         }
 
         #region UI Elements
-        public IWebElement RequestCancellationLink => driver.FindElement(By.XPath("//a[normalize-space()='Request Cancellation']"));
+        public IWebElement RequestFiguresLink => driver.FindElement(By.XPath("//a[normalize-space()='Request Figures']"));
         public IWebElement SetupLink => driver.FindElement(By.XPath("//a[normalize-space()='Setup']"));
         public IWebElement CloseSetup => driver.FindElement(By.XPath("//i[@class='fa fa-times fa-2x']"));
-        public IWebElement AssistanceLink => driver.FindElement(By.XPath("//a[normalize-space()='Assistance']"));
+        public IWebElement ContactUsLink => driver.FindElement(By.XPath("//a[normalize-space()='Contact Us']"));
         public IWebElement ReportsLink => driver.FindElement(By.XPath("//a[normalize-space()='Reports']"));
         public IWebElement CloseReports => driver.FindElement(By.XPath("//i[@class='fa fa-times fa-2x']"));
         public IWebElement LogoutButton => driver.FindElement(By.XPath("//a[normalize-space()='Log Out']"));
-        public IWebElement MainCancellationsTab => driver.FindElement(By.XPath("//div[normalize-space()='Cancellations']"));
+        public IWebElement MattersTab => driver.FindElement(By.XPath("//ul[@class='nav nav-tabs nav-tabs-collapse hidden-xs']//li[1]//a[1]"));
         public IWebElement MyUserRadioButton => driver.FindElement(By.XPath("//input[@id='rblMetric_0']"));
         public IWebElement MyBranchRadioButton => driver.FindElement(By.XPath("//input[@id='rblMetric_1']"));
         public IWebElement AllStagesDropdown => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_C_StageFilter_ddlMyStage']"));
@@ -66,12 +66,12 @@ namespace SAHL_Cancellations.Pages
         #endregion
 
         #region Navigation Methods
-        public void ClickRequestCancellation()
+        public void ClickRequestFigures()
         {
             try
             {
-                LogInfo("Clicking Request Cancellation link");
-                RequestCancellationLink.Click();
+                LogInfo("Clicking Request Figures link");
+				RequestFiguresLink.Click();
                 LogSuccess("Clicked Request Cancellation link");
             }
             catch (Exception ex)
@@ -101,7 +101,7 @@ namespace SAHL_Cancellations.Pages
             try
             {
                 LogInfo("Clicking Assistance link");
-                AssistanceLink.Click();
+				ContactUsLink.Click();
                 LogSuccess("Clicked Assistance link");
             }
             catch (Exception ex)
@@ -146,7 +146,7 @@ namespace SAHL_Cancellations.Pages
             try
             {
                 LogInfo("Clicking Main Cancellations tab");
-                MainCancellationsTab.Click();
+				MattersTab.Click();
                 LogSuccess("Clicked Main Cancellations tab");
             }
             catch (Exception ex)
@@ -364,16 +364,16 @@ namespace SAHL_Cancellations.Pages
             {
                 LogInfo("Starting to open and close navigation links");
 
-                LogInfo("Clicking Request Cancellation link");
-                RequestCancellationLink.Click();
-                LogSuccess("Clicked Request Cancellation link");
+                LogInfo("Clicking Request Figures link");
+				RequestFiguresLink.Click();
+                LogSuccess("Clicked Request Figures link");
 
                 LogInfo("Waiting for Main Cancellations tab to be displayed");
-                wait.Until(_ => MainCancellationsTab.Displayed);
+                wait.Until(_ => MattersTab.Displayed);
                 LogSuccess("Main Cancellations tab is displayed");
 
                 LogInfo("Clicking Main Cancellations tab");
-                MainCancellationsTab.Click();
+				MattersTab.Click();
                 LogSuccess("Clicked Main Cancellations tab");
 
                 LogInfo("Clicking Setup link");
@@ -389,15 +389,15 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess("Clicked Close Setup button");
 
                 LogInfo("Clicking Assistance link");
-                AssistanceLink.Click();
+				ContactUsLink.Click();
                 LogSuccess("Clicked Assistance link");
 
                 LogInfo("Waiting for Main Cancellations tab to be displayed");
-                wait.Until(_ => MainCancellationsTab.Displayed);
+                wait.Until(_ => MattersTab.Displayed);
                 LogSuccess("Main Cancellations tab is displayed");
 
                 LogInfo("Clicking Main Cancellations tab");
-                MainCancellationsTab.Click();
+				MattersTab.Click();
                 LogSuccess("Clicked Main Cancellations tab");
 
                 LogInfo("Clicking Reports link");
