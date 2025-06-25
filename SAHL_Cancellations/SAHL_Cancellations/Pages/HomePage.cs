@@ -57,7 +57,7 @@ namespace SAHL_Cancellations.Pages
         public IWebElement SearchTextBox => driver.FindElement(By.XPath("//input[@id='txtSearch']"));
         public IWebElement GoButton => driver.FindElement(By.XPath("//input[@id='btnSearch']"));
         public IWebElement CancellationsTab => driver.FindElement(By.XPath("(//div[contains(@class,'ABSACancellation')])[1]"));
-        public IWebElement NewInstructionsTab => driver.FindElement(By.XPath("(//div[contains(@class,'ABSACancellation')])[2]"));
+        public IWebElement NewInstructionsTab => driver.FindElement(By.XPath("//div[normalize-space()='Mr Arno du Toit']"));
         public IWebElement AwaitingResponseTab => driver.FindElement(By.XPath("(//div[contains(@class,'ABSACancellation')])[3]"));
         public IWebElement DiaryTab => driver.FindElement(By.XPath("(//div[contains(@class,'ABSACancellation')])[4]"));
         public IWebElement InboxTab => driver.FindElement(By.XPath("(//div[contains(@class,'ABSACancellation')])[5]"));

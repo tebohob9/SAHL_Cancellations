@@ -24,23 +24,25 @@ namespace SAHL_Cancellations.Pages
         }
 
         #region Main Link Elements
-        private IWebElement MortgageeLink => wait.Until(d => d.FindElement(By.XPath("//a[normalize-space()='ABSA Bank South Africa']")));
-        private IWebElement MortgagorLink => wait.Until(d => d.FindElement(By.XPath("//a[normalize-space()='Teboho Bodibe']")));
-        private IWebElement PropertyLink => wait.Until(d => d.FindElement(By.XPath("//a[normalize-space()='ERF 1420 ZWARTKOP EXT 18']")));
+        private IWebElement MortgageeLink => wait.Until(d => d.FindElement(By.XPath("//a[normalize-space()='Discovery Home Loan Security Trust']")));
+        private IWebElement MortgagorLink => wait.Until(d => d.FindElement(By.XPath("//a[normalize-space()='Mr Arno du Toit']")));
+        private IWebElement PropertyLink => wait.Until(d => d.FindElement(By.XPath("//a[normalize-space()='Unit 2, Ss Amcrest 1590, Gauteng']")));
         #endregion
 
         #region File Note Elements
-        private IWebElement FileNoteEditPen => wait.Until(d => d.FindElement(By.XPath("//img[@title='Edit File Note']")));
+        private IWebElement FileNoteEditPen => wait.Until(d => d.FindElement(By.XPath("//img[@alt='File Note']")));
         private IWebElement FileNoteClickHere => wait.Until(d => d.FindElement(By.XPath("//span[normalize-space()='Click here to add']")));
-        private IWebElement FileNoteComment => wait.Until(d => d.FindElement(By.XPath("//textarea[@id='txtGeneralComment']")));
+        private IWebElement FileNoteComment => wait.Until(d => d.FindElement(By.XPath("//div[@id='generalCommentSpan']")));
         private IWebElement FileNoteSaveBtn => wait.Until(d => d.FindElement(By.XPath("//button[@id='saveGeneralComment']")));
         private IWebElement FileNoteCancelBtn => wait.Until(d => d.FindElement(By.XPath("//button[@id='reloadDataBttn']")));
         #endregion
 
         #region Tab Elements
-        private IWebElement CommunicationsTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Communications')]")));
+        private IWebElement CommunicationsTab => wait.Until(d => d.FindElement(By.XPath("(//a[@id='div_menu_communications'])[1]")));
         private IWebElement MilestonesTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Milestones')]")));
-        private IWebElement DiaryTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Diary')]")));
+        private IWebElement NotesTab => wait.Until(d => d.FindElement(By.XPath("(//a[@id='div_menu_notes'])[1]")));
+		private IWebElement DiaryTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Diary')]")));
+		private IWebElement EmailTab => wait.Until(d => d.FindElement(By.XPath("(//a[@id='div_menu_email'])[1]"))); 
         private IWebElement CorrespondentsTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Correspondents')]")));
         private IWebElement InfoSheetTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Info Sheet')]")));
         private IWebElement InboxTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Inbox')]")));
@@ -53,6 +55,7 @@ namespace SAHL_Cancellations.Pages
         private IWebElement ConveyancerTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Conveyancer')]")));
         private IWebElement PrintListTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Print List')]")));
         private IWebElement AuditTrailTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Audit Trail')]")));
+
         #endregion
 
         #region Actions
