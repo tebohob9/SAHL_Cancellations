@@ -42,27 +42,29 @@ namespace SAHL_Cancellations.Pages
         private IWebElement MilestonesTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Milestones')]")));
         private IWebElement NotesTab => wait.Until(d => d.FindElement(By.XPath("(//a[@id='div_menu_notes'])[1]")));
 		private IWebElement DiaryTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Diary')]")));
-		private IWebElement EmailTab => wait.Until(d => d.FindElement(By.XPath("(//a[@id='div_menu_email'])[1]"))); 
+		private IWebElement EmailTab => wait.Until(d => d.FindElement(By.XPath("(//a[@id='div_menu_email'])[1]")));
+		private IWebElement SMSTab => wait.Until(d => d.FindElement(By.XPath("(//a[@id='div_menu_sms'])[1]"))); 
         private IWebElement CorrespondentsTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Correspondents')]")));
         private IWebElement InfoSheetTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Info Sheet')]")));
         private IWebElement InboxTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Inbox')]")));
         private IWebElement DeedSearchTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Deed Search')]")));
         private IWebElement InstructionDetailsTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Instruction Details')]")));
-        private IWebElement PropertyTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Property')]")));
+		private IWebElement PropertyTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Property')]"))); 
+        private IWebElement AccountsTab => wait.Until(d => d.FindElement(By.XPath("(//a[@id='div_menu_accounts'])[1]")));
         private IWebElement PartiesTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Parties')]")));
         private IWebElement RefundDetailsTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Refund Details')]")));
-        private IWebElement AccountsTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Accounts')]")));
+        private IWebElement FiguresTab => wait.Until(d => d.FindElement(By.XPath("(//a[@id='div_menu_figures'])[1]")));
         private IWebElement ConveyancerTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Conveyancer')]")));
         private IWebElement PrintListTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Print List')]")));
         private IWebElement AuditTrailTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Audit Trail')]")));
+		private IWebElement CommunicationCostsTab => wait.Until(d => d.FindElement(By.XPath("(//a[@id='div_menu_communicationcosts'])[1]")));
+		#endregion
 
-        #endregion
-
-        #region Actions
-        /// <summary>
-        /// Clicks the Mortgagee, Mortgagor, and Property links in order.
-        /// </summary>
-        public void Select_Mortgagee_Mortgagor_Property()
+		#region Actions
+		/// <summary>
+		/// Clicks the Mortgagee, Mortgagor, and Property links in order.
+		/// </summary>
+		public void Select_Mortgagee_Mortgagor_Property()
         {
             LogAction("Clicking Mortgagee link");
             ClickWhenClickable(MortgageeLink);

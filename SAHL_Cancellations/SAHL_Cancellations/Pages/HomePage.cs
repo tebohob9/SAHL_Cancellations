@@ -51,17 +51,22 @@ namespace SAHL_Cancellations.Pages
         public IWebElement CloseReports => driver.FindElement(By.XPath("//i[@class='fa fa-times fa-2x']"));
         public IWebElement LogoutButton => driver.FindElement(By.XPath("//a[normalize-space()='Log Out']"));
         public IWebElement MattersTab => driver.FindElement(By.XPath("//ul[@class='nav nav-tabs nav-tabs-collapse hidden-xs']//li[1]//a[1]"));
-        public IWebElement MyUserRadioButton => driver.FindElement(By.XPath("//input[@id='rblMetric_0']"));
-        public IWebElement MyBranchRadioButton => driver.FindElement(By.XPath("//input[@id='rblMetric_1']"));
-        public IWebElement AllStagesDropdown => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_C_StageFilter_ddlMyStage']"));
+        public IWebElement UserTab => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_lnkButMyUser']"));
+        public IWebElement BranchTab => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_lnkButMyBranch']"));
+		public IWebElement CompanyTab => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_lnkButMyCompany']"));
+		public IWebElement AllStagesDropdown => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_C_StageFilter_ddlMyStage']"));
         public IWebElement SearchTextBox => driver.FindElement(By.XPath("//input[@id='txtSearch']"));
-        public IWebElement GoButton => driver.FindElement(By.XPath("//input[@id='btnSearch']"));
-        public IWebElement CancellationsTab => driver.FindElement(By.XPath("(//div[contains(@class,'ABSACancellation')])[1]"));
-        public IWebElement NewInstructionsTab => driver.FindElement(By.XPath("//div[normalize-space()='Mr Arno du Toit']"));
-        public IWebElement AwaitingResponseTab => driver.FindElement(By.XPath("(//div[contains(@class,'ABSACancellation')])[3]"));
-        public IWebElement DiaryTab => driver.FindElement(By.XPath("(//div[contains(@class,'ABSACancellation')])[4]"));
-        public IWebElement InboxTab => driver.FindElement(By.XPath("(//div[contains(@class,'ABSACancellation')])[5]"));
-        public IWebElement ArchivedTab => driver.FindElement(By.XPath("(//div[contains(@class,'ABSACancellation')])[6]"));
+        public IWebElement SearchBtn => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_btnGo']"));
+        public IWebElement CancellationsTab => driver.FindElement(By.XPath("(//a[@href='/SAHL.Cancellations.Attorney.UI/Views/Cancellations/Grids/AttorneyCancellations.aspx'])[1]"));
+        public IWebElement InstructionsTab => driver.FindElement(By.XPath("(//a[@href='/SAHL.Cancellations.Attorney.UI/Views/Cancellations/Grids/CancellingInstructions.aspx'])[1]"));
+        public IWebElement AwaitingResponseTab => driver.FindElement(By.XPath("(//a[@href='/SAHL.Cancellations.Attorney.UI/Views/Cancellations/Grids/CancellationDraftsTa.aspx'])[1]"));
+		public IWebElement StarredTab => driver.FindElement(By.XPath("(//a[@href='/SAHL.Cancellations.Attorney.UI/Views/Cancellations/Grids/StarredCancellations.aspx'])[1]")); 
+        public IWebElement DiaryTab => driver.FindElement(By.XPath("(//a[@href='/SAHL.Cancellations.Attorney.UI/Views/Cancellations/Grids/CancellationDiary.aspx'])[1]"));
+		public IWebElement LodgeTab => driver.FindElement(By.XPath("(//a[@href='/SAHL.Cancellations.Attorney.UI/Views/Cancellations/Grids/LodgedCancellations.aspx'])[1]"));
+		public IWebElement PrepTab => driver.FindElement(By.XPath("//ul[@class='nav nav-tabs nav-tabs-collapse hidden-xs']//li[@role='presentation']//a[@href='/SAHL.Cancellations.Attorney.UI/Views/Cancellations/Grids/PreppedCancellations.aspx']"));
+		public IWebElement RegisteredTab => driver.FindElement(By.XPath("//ul[@class='nav nav-tabs nav-tabs-collapse hidden-xs']//li[@role='presentation']//a[@href='/SAHL.Cancellations.Attorney.UI/Views/Cancellations/Grids/RegisteredCancellations.aspx']")); 
+        public IWebElement InboxTab => driver.FindElement(By.XPath("(//a[@href='/SAHL.Cancellations.Attorney.UI/Views/Cancellations/Grids/CancellationInboxMessages.aspx'])[1]"));
+        public IWebElement ArchivedTab => driver.FindElement(By.XPath("(//a[@href='/SAHL.Cancellations.Attorney.UI/Views/Cancellations/Grids/ArchivedCancellations.aspx'])[1]"));
         public IWebElement SelectAccount => driver.FindElement(By.XPath("//td[normalize-space()='9045098005']"));
         #endregion
 
@@ -161,7 +166,7 @@ namespace SAHL_Cancellations.Pages
             try
             {
                 LogInfo("Selecting My User radio button");
-                MyUserRadioButton.Click();
+				UserTab.Click();
                 LogSuccess("Selected My User radio button");
             }
             catch (Exception ex)
@@ -176,7 +181,7 @@ namespace SAHL_Cancellations.Pages
             try
             {
                 LogInfo("Selecting My Branch radio button");
-                MyBranchRadioButton.Click();
+                BranchTab.Click();
                 LogSuccess("Selected My Branch radio button");
             }
             catch (Exception ex)
@@ -191,7 +196,7 @@ namespace SAHL_Cancellations.Pages
             try
             {
                 LogInfo("Clicking Go button");
-                GoButton.Click();
+                SearchBtn.Click();
                 LogSuccess("Clicked Go button");
             }
             catch (Exception ex)
@@ -273,11 +278,11 @@ namespace SAHL_Cancellations.Pages
                 LogInfo("Starting to navigate through My User tabs in order");
 
                 LogInfo("Selecting My User radio button");
-                MyUserRadioButton.Click();
+                UserTab.Click();
                 LogSuccess("Selected My User radio button");
 
                 LogInfo("Clicking New Instructions tab");
-                NewInstructionsTab.Click();
+                RequestFiguresLink.Click();
                 LogSuccess("Clicked New Instructions tab");
 
                 LogInfo("Clicking Awaiting Response tab");
@@ -319,11 +324,11 @@ namespace SAHL_Cancellations.Pages
                 LogInfo("Starting to navigate through My Branch tabs in order");
 
                 LogInfo("Selecting My Branch radio button");
-                MyBranchRadioButton.Click();
+                BranchTab.Click();
                 LogSuccess("Selected My Branch radio button");
 
                 LogInfo("Clicking New Instructions tab");
-                NewInstructionsTab.Click();
+                //NewInstructionsTab.Click();
                 LogSuccess("Clicked New Instructions tab");
 
                 LogInfo("Clicking Awaiting Response tab");
@@ -431,7 +436,7 @@ namespace SAHL_Cancellations.Pages
                 LogInfo("Starting My Branch search operations");
 
                 LogInfo("Selecting My Branch radio button");
-                MyBranchRadioButton.Click();
+                BranchTab.Click();
                 LogSuccess("Selected My Branch radio button");
 
                 Thread.Sleep(2000);
@@ -492,11 +497,11 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess($"Entered search text: {text}");
 
                 LogInfo("Clicking Go button");
-                GoButton.Click();
+                SearchBtn.Click();
                 LogSuccess("Clicked Go button");
 
                 LogInfo("Waiting for search results");
-                wait.Until(_ => GoButton.Enabled); // Adjust wait condition as needed
+                wait.Until(_ => SearchBtn.Enabled); // Adjust wait condition as needed
                 LogSuccess("Search completed");
             }
             catch (Exception ex)
@@ -524,7 +529,7 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess("Clicked Awaiting Response tab");
 
                 LogInfo("Clicking New Instructions tab");
-                NewInstructionsTab.Click();
+                //NewInstructionsTab.Click();
                 LogSuccess("Clicked New Instructions tab");
 
                 LogInfo("Clicking Diary tab");
