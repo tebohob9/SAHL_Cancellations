@@ -32,7 +32,7 @@ namespace SAHL_Cancellations.Pages
         #region File Note Elements
         private IWebElement FileNoteEditPen => wait.Until(d => d.FindElement(By.XPath("//img[@alt='File Note']")));
         private IWebElement FileNoteClickHere => wait.Until(d => d.FindElement(By.XPath("//span[normalize-space()='Click here to add']")));
-        private IWebElement FileNoteComment => wait.Until(d => d.FindElement(By.XPath("//div[@id='generalCommentSpan']")));
+        private IWebElement FileNoteComment => wait.Until(d => d.FindElement(By.XPath("(//div[@id='generalCommentSpan'])[1]")));
         private IWebElement FileNoteSaveBtn => wait.Until(d => d.FindElement(By.XPath("//button[@id='saveGeneralComment']")));
         private IWebElement FileNoteCancelBtn => wait.Until(d => d.FindElement(By.XPath("//button[@id='reloadDataBttn']")));
         #endregion
@@ -58,6 +58,7 @@ namespace SAHL_Cancellations.Pages
         private IWebElement PrintListTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Print List')]")));
         private IWebElement AuditTrailTab => wait.Until(d => d.FindElement(By.XPath("//div[contains(text(),'Audit Trail')]")));
 		private IWebElement CommunicationCostsTab => wait.Until(d => d.FindElement(By.XPath("(//a[@id='div_menu_communicationcosts'])[1]")));
+		private IWebElement OpenAndCloseTab => wait.Until(d => d.FindElement(By.XPath("//div[@class='panel-title bold']")));
 		#endregion
 
 		#region Actions
@@ -66,17 +67,20 @@ namespace SAHL_Cancellations.Pages
 		/// </summary>
 		public void Select_Mortgagee_Mortgagor_Property()
         {
+			LogAction("Clicking Mortgagee link");
+			ClickWhenClickable(OpenAndCloseTab); 
+            
             LogAction("Clicking Mortgagee link");
             ClickWhenClickable(MortgageeLink);
 
             LogAction("Clicking Mortgagor link");
             ClickWhenClickable(MortgagorLink);
 
-            LogAction("Clicking Property link");
-            ClickWhenClickable(PropertyLink);
+            //LogAction("Clicking Property link");
+            //ClickWhenClickable(PropertyLink);
 
-            LogAction("Clicking Communications tab");
-            ClickWhenClickable(CommunicationsTab);
+            //LogAction("Clicking Communications tab");
+            //ClickWhenClickable(CommunicationsTab);
 
             LogSuccess("Successfully selected Mortgagee, Mortgagor, and Property links");
         }

@@ -67,7 +67,7 @@ namespace SAHL_Cancellations.Pages
 		public IWebElement RegisteredTab => driver.FindElement(By.XPath("//ul[@class='nav nav-tabs nav-tabs-collapse hidden-xs']//li[@role='presentation']//a[@href='/SAHL.Cancellations.Attorney.UI/Views/Cancellations/Grids/RegisteredCancellations.aspx']")); 
         public IWebElement InboxTab => driver.FindElement(By.XPath("(//a[@href='/SAHL.Cancellations.Attorney.UI/Views/Cancellations/Grids/CancellationInboxMessages.aspx'])[1]"));
         public IWebElement ArchivedTab => driver.FindElement(By.XPath("(//a[@href='/SAHL.Cancellations.Attorney.UI/Views/Cancellations/Grids/ArchivedCancellations.aspx'])[1]"));
-        public IWebElement SelectAccount => driver.FindElement(By.XPath("//td[normalize-space()='9045098005']"));
+        public IWebElement SelectAccount => driver.FindElement(By.XPath("//div[normalize-space()='04007820631']"));
         #endregion
 
         #region Navigation Methods
