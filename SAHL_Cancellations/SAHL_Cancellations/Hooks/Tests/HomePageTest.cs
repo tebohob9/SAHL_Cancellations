@@ -88,7 +88,7 @@ namespace SAHL_Cancellations.Tests
 
                 // Navigate through My User tabs
                 test.Log(Status.Info, $"[{testClassName}] Navigating through My User tabs in order");
-                homePage.SelectMyUserTabsInOrder();
+                homePage.SelectUserTabsInOrder();
                 test.Log(Status.Pass, $"[{testClassName}] Successfully navigated through My User tabs");
 
                 Thread.Sleep(2000);
@@ -122,7 +122,7 @@ namespace SAHL_Cancellations.Tests
 
                 // Navigate through My Branch tabs
                 test.Log(Status.Info, $"[{testClassName}] Navigating through My Branch tabs in order");
-                homePage.SelectMyBranchTabsInOrder();
+                homePage.SelectBranchTabsInOrder();
                 test.Log(Status.Pass, $"[{testClassName}] Successfully navigated through My Branch tabs");
 
                 Thread.Sleep(2000);
@@ -156,13 +156,13 @@ namespace SAHL_Cancellations.Tests
 
                 // Perform search operations
                 test.Log(Status.Info, $"[{testClassName}] Performing search operations with multiple criteria");
-                test.Log(Status.Info, $"[{testClassName}] Search criteria - ID: {TestData.Search_ID}, Account: {TestData.Account}, Property: {TestData.Property}, Mortgagor: {TestData.Mortgagor}");
+                test.Log(Status.Info, $"[{testClassName}] Search criteria - ID: {TestData.Search_ID}, Account: {TestData.Account}, Property: {TestData.Property}, Mortgagor: {TestData.Parties}");
 
                 homePage.MyBranchSearch(
                     TestData.Search_ID,
                     TestData.Account,
                     TestData.Property,
-                    TestData.Mortgagor,
+                    TestData.Parties,
                     TestData.Blank
                 );
 

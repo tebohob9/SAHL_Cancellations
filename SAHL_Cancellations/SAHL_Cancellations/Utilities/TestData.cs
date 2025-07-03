@@ -18,10 +18,10 @@ namespace SAHL_Cancellations.Utilities
 
         // Home page All stages drop down menu and Search ID
         public static readonly string Awaiting_Guarantees = "Awaiting Guarantees";
-        public static readonly string Search_ID = "47923";
-        public static readonly string Account = "9045098006";
-        public static readonly string Mortgagor = "Yvonne";
-        public static readonly string Property = "ERF 184 NORTHCLIFF";
+        public static readonly string Search_ID = "124455";
+        public static readonly string Account = "6450116";
+        public static readonly string Parties = "Mr Arno du Toit";
+        public static readonly string Property = "Unit 2, Ss Amcrest 1590, Gauteng";
         public static readonly string Blank = "";
 
 

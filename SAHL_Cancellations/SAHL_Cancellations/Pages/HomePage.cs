@@ -68,6 +68,7 @@ namespace SAHL_Cancellations.Pages
 		public IWebElement InboxTab => driver.FindElement(By.XPath("(//a[@href='/SAHL.Cancellations.Attorney.UI/Views/Cancellations/Grids/CancellationInboxMessages.aspx'])[1]"));
 		public IWebElement ArchivedTab => driver.FindElement(By.XPath("(//a[@href='/SAHL.Cancellations.Attorney.UI/Views/Cancellations/Grids/ArchivedCancellations.aspx'])[1]"));
 		public IWebElement SelectAccount => driver.FindElement(By.XPath("//div[normalize-space()='04007820631']"));
+		public IWebElement CloseSearchBtn => driver.FindElement(By.XPath("//i[@class='fa fa-times-circle fa-lg lightGreyIcon']"));
 		#endregion
 
 		#region Navigation Methods
@@ -268,10 +269,25 @@ namespace SAHL_Cancellations.Pages
 			}
 		}
 
+		public void ClickCloseSearch()
+		{
+			try
+			{
+				LogInfo("Clicking Request Figures link");
+				CloseSearchBtn.Click();
+				LogSuccess("Clicked Request Cancellation link");
+			}
+			catch (Exception ex)
+			{
+				LogFailure("Failed to click Request Cancellation link", ex);
+				throw;
+			}
+		}
+
 		/// <summary>
 		/// Navigates through all user tabs in a specific order.
 		/// </summary>
-		public void SelectMyUserTabsInOrder()
+		public void SelectUserTabsInOrder()
 		{
 			try
 			{
@@ -346,7 +362,7 @@ namespace SAHL_Cancellations.Pages
 		/// <summary>
 		/// Navigates through all branch tabs in a specific order.
 		/// </summary>
-		public void SelectMyBranchTabsInOrder()
+		public void SelectBranchTabsInOrder()
 		{
 			try
 			{
@@ -355,6 +371,85 @@ namespace SAHL_Cancellations.Pages
 				// Make sure we're on the Branch tab
 				LogInfo("Selecting My Branch radio button");
 				ClickWithRetry(BranchTab, "My Branch radio button");
+				LogSuccess("Selected My Branch radio button");
+
+				// Wait for page to update after selecting My Branch
+				LogInfo("Waiting for page to update after selecting My Branch");
+				Thread.Sleep(3000); // Increased wait time to ensure page loads
+				LogSuccess("Page updated after selecting My Branch");
+
+				// Refresh element references after page update
+				RefreshElementReferences();
+
+				LogInfo("Clicking Awaiting Response tab");
+				ClickWithRetry(AwaitingResponseTab, "Awaiting Response tab");
+				LogSuccess("Clicked Awaiting Response tab");
+
+				Thread.Sleep(1000);
+				LogInfo("Clicking Instructions tab");
+				ClickWithRetry(InstructionsTab, "Instructions tab");
+				LogSuccess("Clicked Instructions tab");
+
+				Thread.Sleep(1000);
+				LogInfo("Clicking Inbox tab");
+				ClickWithRetry(InboxTab, "Inbox tab");
+				LogSuccess("Clicked Inbox tab");
+
+				Thread.Sleep(1000);
+				LogInfo("Clicking Starred tab");
+				ClickWithRetry(StarredTab, "Starred tab");
+				LogSuccess("Clicked Starred tab");
+
+				Thread.Sleep(1000);
+				LogInfo("Clicking Diary tab");
+				ClickWithRetry(DiaryTab, "Diary tab");
+				LogSuccess("Clicked Diary tab");
+
+				Thread.Sleep(1000);
+				LogInfo("Clicking Lodge tab");
+				ClickWithRetry(LodgeTab, "Lodge tab");
+				LogSuccess("Clicked Lodge tab");
+
+				Thread.Sleep(1000);
+				LogInfo("Clicking Prep tab");
+				ClickWithRetry(PrepTab, "Prep tab");
+				LogSuccess("Clicked Prep tab");
+
+				Thread.Sleep(1000);
+				LogInfo("Clicking Registered tab");
+				ClickWithRetry(RegisteredTab, "Registered tab");
+				LogSuccess("Clicked Registered tab");
+
+				Thread.Sleep(1000);
+				LogInfo("Clicking Archived tab");
+				ClickWithRetry(ArchivedTab, "Archived tab");
+				LogSuccess("Clicked Archived tab");
+
+				Thread.Sleep(1000);
+				LogInfo("Clicking Cancellations tab");
+				ClickWithRetry(CancellationsTab, "Cancellations tab");
+				LogSuccess("Clicked Cancellations tab");
+
+				LogSuccess("Successfully navigated through all My Branch tabs in order");
+			}
+			catch (Exception ex)
+			{
+				LogFailure("Failed to navigate through My Branch tabs in order", ex);
+				// Take screenshot at the point of failure
+				CaptureScreenshot("MyBranchTabsFailure");
+				throw;
+			}
+		}
+
+		public void SelectCompanyTabsInOrder()
+		{
+			try
+			{
+				LogInfo("Starting to navigate through My Branch tabs in order");
+
+				// Make sure we're on the Branch tab
+				LogInfo("Selecting My Branch radio button");
+				ClickWithRetry(CompanyTab, "Company radio button");
 				LogSuccess("Selected My Branch radio button");
 
 				// Wait for page to update after selecting My Branch
@@ -442,15 +537,15 @@ namespace SAHL_Cancellations.Pages
 				LogInfo("Clicking Main Cancellations tab");
 				MattersTab.Click();
 				LogSuccess("Clicked Main Cancellations tab");
-				//LogInfo("Clicking Setup link");
-				//SetupLink.Click();
-				//LogSuccess("Clicked Setup link");
-				//LogInfo("Waiting for Close Setup button to be displayed");
-				//wait.Until(_ => CloseSetup.Displayed);
-				//LogSuccess("Close Setup button is displayed");
-				//LogInfo("Clicking Close Setup button");
-				//CloseSetup.Click();
-				//LogSuccess("Clicked Close Setup button");
+				LogInfo("Clicking Setup link");
+				SetupLink.Click();
+				LogSuccess("Clicked Setup link");
+				LogInfo("Waiting for Close Setup button to be displayed");
+				wait.Until(_ => CloseSetup.Displayed);
+				LogSuccess("Close Setup button is displayed");
+				LogInfo("Clicking Close Setup button");
+				CloseSetup.Click();
+				LogSuccess("Clicked Close Setup button");
 				LogInfo("Clicking Assistance link");
 				ContactUsLink.Click();
 				LogSuccess("Clicked Assistance link");
@@ -460,15 +555,15 @@ namespace SAHL_Cancellations.Pages
 				LogInfo("Clicking Main Cancellations tab");
 				MattersTab.Click();
 				LogSuccess("Clicked Main Cancellations tab");
-				//LogInfo("Clicking Reports link");
-				//ReportsLink.Click();
-				//LogSuccess("Clicked Reports link");
-				//LogInfo("Waiting for Close Reports button to be displayed");
-				//wait.Until(_ => CloseReports.Displayed);
-				//LogSuccess("Close Reports button is displayed");
-				//LogInfo("Clicking Close Reports button");
-				//CloseReports.Click();
-				//LogSuccess("Clicked Close Reports button");
+				LogInfo("Clicking Reports link");
+				ReportsLink.Click();
+				LogSuccess("Clicked Reports link");
+				LogInfo("Waiting for Close Reports button to be displayed");
+				wait.Until(_ => CloseReports.Displayed);
+				LogSuccess("Close Reports button is displayed");
+				LogInfo("Clicking Close Reports button");
+				CloseReports.Click();
+				LogSuccess("Clicked Close Reports button");
 				LogSuccess("Successfully opened and closed all navigation links");
 			}
 			catch (Exception ex)
@@ -481,17 +576,17 @@ namespace SAHL_Cancellations.Pages
 		/// <summary>
 		/// Performs sequential searches in the "My Branch" context by multiple fields.
 		/// </summary>
-		public void MyBranchSearch(string id, string account, string property, string mortgagor, string blank)
+		public void MyBranchSearch(string id, string account, string property, string parties, string blank)
 		{
 			try
 			{
 				LogInfo("Starting My Branch search operations");
 				LogInfo("Waiting for Main Cancellations tab to be displayed");
-				wait.Until(_ => BranchTab.Displayed);
+				wait.Until(_ => CompanyTab.Displayed);
 				LogSuccess("Main Cancellations tab is displayed");
 				LogInfo("Selecting My Branch radio button");
-				BranchTab.Click();
-				LogSuccess("Selected My Branch radio button");
+				//BranchTab.Click();
+				//LogSuccess("Selected My Branch radio button");
 
 				// Wait for page to update after selecting My Branch
 				Thread.Sleep(3000);
@@ -508,13 +603,13 @@ namespace SAHL_Cancellations.Pages
 				PerformSearch(property);
 				LogSuccess($"Completed search with Property: {property}");
 				Thread.Sleep(2000);
-				LogInfo($"Performing search with Mortgagor: {mortgagor}");
-				PerformSearch(mortgagor);
-				LogSuccess($"Completed search with Mortgagor: {mortgagor}");
+				LogInfo($"Performing search with Mortgagor: {parties}");
+				PerformSearch(parties);
+				LogSuccess($"Completed search with Mortgagor: {parties}");
 				Thread.Sleep(2000);
-				LogInfo($"Performing search with Blank: {blank}");
-				PerformSearch(blank);
-				LogSuccess($"Completed search with Blank: {blank}");
+				LogInfo($"Click Close search button");
+				CloseSearchBtn.Click();
+				LogSuccess($"Clicked Close search button");
 				Thread.Sleep(2000);
 				LogSuccess("Successfully completed all My Branch search operations");
 			}
