@@ -192,7 +192,7 @@ namespace SAHL_Cancellations.Tests
                 test.Log(Status.Info, $"[{testClassName}] Performing search operations with multiple criteria");
                 test.Log(Status.Info, $"[{testClassName}] Search criteria - ID: {TestData.Search_ID}, Account: {TestData.Account}, Property: {TestData.Property}, Mortgagor: {TestData.Parties}");
 
-                homePage.MyBranchSearch(
+                homePage.ComapnySearch(
                     TestData.Search_ID,
                     TestData.Account,
                     TestData.Property,

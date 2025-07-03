@@ -170,7 +170,7 @@ namespace SAHL_Cancellations.Tests
                 test.Log(Status.Info, $"[{testClassName}] Starting MyBranchSearch test");
 
                 test.Log(Status.Info, $"[{testClassName}] Performing My Branch search with criteria");
-                HomePage.MyBranchSearch(TestData.Search_ID, TestData.Account, TestData.Property,
+                HomePage.ComapnySearch(TestData.Search_ID, TestData.Account, TestData.Property,
                     TestData.Parties, TestData.Blank);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully performed My Branch search");
 

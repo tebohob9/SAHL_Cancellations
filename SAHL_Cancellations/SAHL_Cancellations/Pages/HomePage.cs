@@ -576,7 +576,7 @@ namespace SAHL_Cancellations.Pages
 		/// <summary>
 		/// Performs sequential searches in the "My Branch" context by multiple fields.
 		/// </summary>
-		public void MyBranchSearch(string id, string account, string property, string parties, string blank)
+		public void ComapnySearch(string id, string account, string property, string parties, string blank)
 		{
 			try
 			{

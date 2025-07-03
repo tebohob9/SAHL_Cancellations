@@ -19,6 +19,7 @@ namespace SAHL_Cancellations.Pages
 		private readonly IWebDriver driver;
 		private readonly WebDriverWait wait;
 		private readonly IJavaScriptExecutor js;
+		private readonly string pageName = "New Instruction Page"; // Page name for reporting
 
 		public New_InstructionPage(IWebDriver driver)
 		{
@@ -73,18 +74,23 @@ namespace SAHL_Cancellations.Pages
 		{
 			LogAction("Clicking Open and Close tab");
 			ClickWhenClickable(OpenAndCloseTab);
+			LogSuccess("Clicked Open and Close tab");
 
 			LogAction("Clicking Mortgagee link");
 			ClickWhenClickable(MortgageeLink);
+			LogSuccess("Clicked Mortgagee link");
 
 			LogAction("Clicking Mortgagor link");
 			ClickWhenClickable(MortgagorLink);
+			LogSuccess("Clicked Mortgagor link");
 
 			//LogAction("Clicking Property link");
 			//ClickWhenClickable(PropertyLink);
+			//LogSuccess("Clicked Property link");
 
 			//LogAction("Clicking Communications tab");
 			//ClickWhenClickable(CommunicationsTab);
+			//LogSuccess("Clicked Communications tab");
 
 			LogSuccess("Successfully selected Mortgagee, Mortgagor, and Property links");
 		}
@@ -96,11 +102,15 @@ namespace SAHL_Cancellations.Pages
 		{
 			try
 			{
+				Thread.Sleep(3000);
+				LogAction($"Adding file note: {fileNote}");
+
 				LogAction("Clicking File Note edit pen");
 				ClickWhenClickable(FileNoteEditPen);
+				LogSuccess("Clicked File Note edit pen");
 
 				// Wait for any animations or transitions to complete
-				Thread.Sleep(1000);
+				Thread.Sleep(3000);
 
 				// Try to click the "Click here to add" if it's visible
 				try
@@ -110,6 +120,7 @@ namespace SAHL_Cancellations.Pages
 					{
 						LogAction("Clicking 'Click here to add'");
 						ClickWhenClickable(FileNoteClickHere);
+						LogSuccess("Clicked 'Click here to add'");
 						Thread.Sleep(1000);
 					}
 				}
@@ -118,67 +129,68 @@ namespace SAHL_Cancellations.Pages
 					LogAction($"'Click here to add' not found or not needed: {ex.Message}");
 				}
 
-				LogAction("Waiting for File Note comment field to be visible and interactable");
+				LogAction("Waiting for File Note comment field to be visible");
 				WaitForElementToBeVisible(FileNoteComment);
+				LogSuccess("File Note comment field is visible");
+				Thread.Sleep(3000);
 
-				// Try multiple approaches to enter text
-				try
-				{
-					// Approach 1: Standard clear and sendKeys
-					LogAction("Clearing File Note comment field");
-					FileNoteComment.Clear();
-					LogAction($"Entering file note (approach 1): {fileNote}");
-					FileNoteComment.SendKeys(fileNote);
-				}
-				catch (Exception ex)
-				{
-					LogAction($"Standard text entry failed: {ex.Message}. Trying alternative approaches.");
+				LogAction("Clearing File Note comment field");
+				FileNoteComment.Clear();
+				LogSuccess("Cleared File Note comment field");
+				Thread.Sleep(3000);
 
-					try
-					{
-						// Approach 2: JavaScript executor
-						LogAction($"Entering file note using JavaScript (approach 2): {fileNote}");
-						js.ExecuteScript("arguments[0].innerHTML = arguments[1]", FileNoteComment, fileNote);
-					}
-					catch (Exception jsEx)
-					{
-						LogAction($"JavaScript text entry failed: {jsEx.Message}. Trying next approach.");
-
-						try
-						{
-							// Approach 3: Actions class
-							LogAction($"Entering file note using Actions (approach 3): {fileNote}");
-							Actions actions = new Actions(driver);
-							actions.MoveToElement(FileNoteComment).Click().SendKeys(Keys.Control + "a").SendKeys(fileNote).Perform();
-						}
-						catch (Exception actionsEx)
-						{
-							LogError($"All text entry approaches failed. Last error: {actionsEx.Message}");
-							throw;
-						}
-					}
-				}
-
-				// Take a screenshot to verify text was entered
-				if (ExtentReport._scenario != null)
-				{
-					LogAction("Taking screenshot to verify text entry");
-					((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("FileNoteTextEntry.png");
-					ExtentReport._scenario.AddScreenCaptureFromPath("FileNoteTextEntry.png");
-				}
+				LogAction($"Entering file note: {fileNote}");
+				FileNoteComment.SendKeys(fileNote);
+				LogSuccess($"Entered file note: {fileNote}");
+				Thread.Sleep(3000);
 
 				LogAction("Clicking Save button");
 				ClickWhenClickable(FileNoteSaveBtn);
+				LogSuccess("Clicked Save button");
 
 				// Wait for save operation to complete
 				Thread.Sleep(2000);
 
-				LogSuccess("Successfully entered file note");
+				LogSuccess($"Successfully added file note: {fileNote}");
 			}
 			catch (Exception ex)
 			{
-				LogError($"Failed to enter file note: {ex.Message}");
-				throw;
+				LogError($"Failed to add file note: {fileNote}", ex);
+
+				// Try alternative approaches if the standard approach fails
+				try
+				{
+					LogAction("Standard approach failed, trying JavaScript approach");
+					js.ExecuteScript("arguments[0].innerHTML = arguments[1]", FileNoteComment, fileNote);
+
+					LogAction("Clicking Save button (JavaScript approach)");
+					js.ExecuteScript("arguments[0].click();", FileNoteSaveBtn);
+
+					LogSuccess($"Successfully added file note using JavaScript approach: {fileNote}");
+				}
+				catch (Exception jsEx)
+				{
+					LogError($"JavaScript approach also failed: {jsEx.Message}", jsEx);
+
+					try
+					{
+						LogAction("Trying Actions approach");
+						Actions actions = new Actions(driver);
+						actions.MoveToElement(FileNoteComment).Click().SendKeys(Keys.Control + "a").SendKeys(fileNote).Perform();
+
+						LogAction("Clicking Save button (Actions approach)");
+						actions.MoveToElement(FileNoteSaveBtn).Click().Perform();
+
+						LogSuccess($"Successfully added file note using Actions approach: {fileNote}");
+					}
+					catch (Exception actionsEx)
+					{
+						LogError($"All approaches failed. Cannot add file note: {fileNote}", actionsEx);
+						// Take screenshot at the point of failure
+						CaptureScreenshot("FileNoteFailure");
+						throw;
+					}
+				}
 			}
 		}
 
@@ -187,33 +199,82 @@ namespace SAHL_Cancellations.Pages
 		/// </summary>
 		public void SelectTabsInOrder()
 		{
-			LogAction("Clicking Correspondents tab");
-			ClickWhenClickable(CorrespondentsTab);
-			LogAction("Clicking Info Sheet tab");
-			ClickWhenClickable(InfoSheetTab);
-			LogAction("Clicking Inbox tab");
-			ClickWhenClickable(InboxTab);
-			LogAction("Clicking Deed Search tab");
-			ClickWhenClickable(DeedSearchTab);
-			LogAction("Clicking Instruction Details tab");
-			ClickWhenClickable(InstructionDetailsTab);
-			LogAction("Clicking Property tab");
-			ClickWhenClickable(PropertyTab);
-			LogAction("Clicking Parties tab");
-			ClickWhenClickable(PartiesTab);
-			LogAction("Clicking Refund Details tab");
-			ClickWhenClickable(RefundDetailsTab);
-			LogAction("Clicking Accounts tab");
-			ClickWhenClickable(AccountsTab);
-			LogAction("Clicking Conveyancer tab");
-			ClickWhenClickable(ConveyancerTab);
-			LogAction("Clicking Print List tab");
-			ClickWhenClickable(PrintListTab);
-			LogAction("Clicking Audit Trail tab");
-			ClickWhenClickable(AuditTrailTab);
-			LogAction("Clicking Communications tab");
-			ClickWhenClickable(CommunicationsTab); // Returning to the first tab for consistency
-			LogSuccess("Successfully clicked through all tabs in order");
+			try
+			{
+				LogAction("Starting to navigate through tabs in order");
+
+				LogAction("Clicking Correspondents tab");
+				ClickWhenClickable(CorrespondentsTab);
+				LogSuccess("Clicked Correspondents tab");
+
+				Thread.Sleep(1000);
+				LogAction("Clicking Info Sheet tab");
+				ClickWhenClickable(InfoSheetTab);
+				LogSuccess("Clicked Info Sheet tab");
+
+				Thread.Sleep(1000);
+				LogAction("Clicking Inbox tab");
+				ClickWhenClickable(InboxTab);
+				LogSuccess("Clicked Inbox tab");
+
+				Thread.Sleep(1000);
+				LogAction("Clicking Deed Search tab");
+				ClickWhenClickable(DeedSearchTab);
+				LogSuccess("Clicked Deed Search tab");
+
+				Thread.Sleep(1000);
+				LogAction("Clicking Instruction Details tab");
+				ClickWhenClickable(InstructionDetailsTab);
+				LogSuccess("Clicked Instruction Details tab");
+
+				Thread.Sleep(1000);
+				LogAction("Clicking Property tab");
+				ClickWhenClickable(PropertyTab);
+				LogSuccess("Clicked Property tab");
+
+				Thread.Sleep(1000);
+				LogAction("Clicking Parties tab");
+				ClickWhenClickable(PartiesTab);
+				LogSuccess("Clicked Parties tab");
+
+				Thread.Sleep(1000);
+				LogAction("Clicking Refund Details tab");
+				ClickWhenClickable(RefundDetailsTab);
+				LogSuccess("Clicked Refund Details tab");
+
+				Thread.Sleep(1000);
+				LogAction("Clicking Accounts tab");
+				ClickWhenClickable(AccountsTab);
+				LogSuccess("Clicked Accounts tab");
+
+				Thread.Sleep(1000);
+				LogAction("Clicking Conveyancer tab");
+				ClickWhenClickable(ConveyancerTab);
+				LogSuccess("Clicked Conveyancer tab");
+
+				Thread.Sleep(1000);
+				LogAction("Clicking Print List tab");
+				ClickWhenClickable(PrintListTab);
+				LogSuccess("Clicked Print List tab");
+
+				Thread.Sleep(1000);
+				LogAction("Clicking Audit Trail tab");
+				ClickWhenClickable(AuditTrailTab);
+				LogSuccess("Clicked Audit Trail tab");
+
+				Thread.Sleep(1000);
+				LogAction("Clicking Communications tab");
+				ClickWhenClickable(CommunicationsTab);
+				LogSuccess("Clicked Communications tab"); // Returning to the first tab for consistency
+
+				LogSuccess("Successfully clicked through all tabs in order");
+			}
+			catch (Exception ex)
+			{
+				LogError("Failed to navigate through tabs in order", ex);
+				CaptureScreenshot("TabNavigationFailure");
+				throw;
+			}
 		}
 		#endregion
 
@@ -221,28 +282,52 @@ namespace SAHL_Cancellations.Pages
 		/// <summary>
 		/// Waits for an element to be clickable and clicks it.
 		/// </summary>
-		private void ClickWhenClickable(IWebElement element)
+		private void ClickWhenClickable(IWebElement element, int maxRetries = 3)
 		{
-			try
+			int attempts = 0;
+			while (attempts < maxRetries)
 			{
-				wait.Until(d => element.Enabled && element.Displayed);
-
-				// Try standard click first
 				try
 				{
+					LogAction($"Attempting to click element (Attempt {attempts + 1})");
+					wait.Until(d => element.Enabled && element.Displayed);
 					element.Click();
+					LogAction("Element clicked successfully");
+					return;
+				}
+				catch (StaleElementReferenceException)
+				{
+					attempts++;
+					LogAction($"Element is stale, refreshing reference (Attempt {attempts})");
+					if (attempts >= maxRetries)
+					{
+						LogError("Failed to click element due to stale reference", new Exception("Stale Element Reference"));
+						throw;
+					}
+					Thread.Sleep(1000); // Wait before retry
 				}
 				catch (Exception ex)
 				{
+					attempts++;
 					LogAction($"Standard click failed: {ex.Message}. Trying JavaScript click.");
-					// Try JavaScript click as fallback
-					js.ExecuteScript("arguments[0].click();", element);
+					try
+					{
+						// Try JavaScript click as fallback
+						js.ExecuteScript("arguments[0].click();", element);
+						LogAction("JavaScript click successful");
+						return;
+					}
+					catch (Exception jsEx)
+					{
+						if (attempts >= maxRetries)
+						{
+							LogError($"Failed to click element after {maxRetries} attempts", jsEx);
+							throw;
+						}
+						LogAction($"JavaScript click also failed: {jsEx.Message}. Retrying...");
+						Thread.Sleep(1000); // Wait before retry
+					}
 				}
-			}
-			catch (Exception ex)
-			{
-				LogError($"Failed to click element: {ex.Message}");
-				throw;
 			}
 		}
 
@@ -253,11 +338,13 @@ namespace SAHL_Cancellations.Pages
 		{
 			try
 			{
+				LogAction("Waiting for element to be visible");
 				wait.Until(d => element.Displayed);
+				LogAction("Element is now visible");
 			}
 			catch (Exception ex)
 			{
-				LogError($"Element not visible: {ex.Message}");
+				LogError("Element not visible within timeout period", ex);
 				throw;
 			}
 		}
@@ -269,10 +356,14 @@ namespace SAHL_Cancellations.Pages
 		{
 			try
 			{
-				return driver.FindElement(locator).Displayed;
+				LogAction($"Checking if element is visible: {locator}");
+				bool isVisible = driver.FindElement(locator).Displayed;
+				LogAction($"Element visibility check result: {isVisible}");
+				return isVisible;
 			}
 			catch
 			{
+				LogAction($"Element not found or not visible: {locator}");
 				return false;
 			}
 		}
@@ -282,9 +373,11 @@ namespace SAHL_Cancellations.Pages
 		/// </summary>
 		private void LogAction(string message)
 		{
+			string logMessage = $"[{pageName}] {message}";
+			Console.WriteLine(logMessage);
 			if (ExtentReport._scenario != null)
 			{
-				ExtentReport._scenario.Log(Status.Info, $"[New_InstructionPage] {message}");
+				ExtentReport._scenario.Log(Status.Info, logMessage);
 			}
 		}
 
@@ -293,20 +386,53 @@ namespace SAHL_Cancellations.Pages
 		/// </summary>
 		private void LogSuccess(string message)
 		{
+			string logMessage = $"[{pageName}] {message}";
+			Console.WriteLine(logMessage);
 			if (ExtentReport._scenario != null)
 			{
-				ExtentReport._scenario.Log(Status.Pass, $"[New_InstructionPage] {message}");
+				ExtentReport._scenario.Log(Status.Pass, logMessage);
 			}
 		}
 
 		/// <summary>
 		/// Logs an error message to the ExtentReport
 		/// </summary>
-		private void LogError(string message)
+		private void LogError(string message, Exception ex)
 		{
+			string errorMessage = $"[{pageName}] {message}: {ex.Message}";
+			Console.WriteLine(errorMessage);
 			if (ExtentReport._scenario != null)
 			{
-				ExtentReport._scenario.Log(Status.Fail, $"[New_InstructionPage] {message}");
+				ExtentReport._scenario.Log(Status.Fail, errorMessage);
+			}
+		}
+
+		/// <summary>
+		/// Captures a screenshot and adds it to the ExtentReport
+		/// </summary>
+		private void CaptureScreenshot(string screenshotName)
+		{
+			try
+			{
+				if (driver != null)
+				{
+					ITakesScreenshot takesScreenshot = (ITakesScreenshot)driver;
+					Screenshot screenshot = takesScreenshot.GetScreenshot();
+					string screenshotPath = System.IO.Path.Combine(ExtentReport.testResultPath, screenshotName + ".png");
+					screenshot.SaveAsFile(screenshotPath);
+					if (ExtentReport._scenario != null)
+					{
+						ExtentReport._scenario.AddScreenCaptureFromPath(screenshotPath);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Failed to capture screenshot: {ex.Message}");
+				if (ExtentReport._scenario != null)
+				{
+					ExtentReport._scenario.Log(Status.Warning, $"Failed to capture screenshot: {ex.Message}");
+				}
 			}
 		}
 		#endregion
