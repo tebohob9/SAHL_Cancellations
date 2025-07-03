@@ -275,29 +275,49 @@ namespace SAHL_Cancellations.Pages
         {
             try
             {
-                LogInfo("Starting to navigate through My User tabs in order");
+                //LogInfo("Starting to navigate through My User tabs in order");
 
-                LogInfo("Selecting My User radio button");
-                UserTab.Click();
-                LogSuccess("Selected My User radio button");
+                //LogInfo("Selecting My User radio button");
+                //UserTab.Click();
+                //LogSuccess("Selected My User radio button");
 
-                LogInfo("Clicking New Instructions tab");
-                RequestFiguresLink.Click();
-                LogSuccess("Clicked New Instructions tab");
+                //LogInfo("Clicking New Instructions tab");
+                //RequestFiguresLink.Click();
+                //LogSuccess("Clicked New Instructions tab");
 
                 LogInfo("Clicking Awaiting Response tab");
                 AwaitingResponseTab.Click();
                 LogSuccess("Clicked Awaiting Response tab");
 
                 LogInfo("Clicking Diary tab");
-                DiaryTab.Click();
+                InstructionsTab.Click();
                 LogSuccess("Clicked Diary tab");
 
                 LogInfo("Clicking Inbox tab");
                 InboxTab.Click();
                 LogSuccess("Clicked Inbox tab");
 
-                LogInfo("Clicking Archived tab");
+				LogInfo("Clicking Diary tab");
+				StarredTab.Click();
+				LogSuccess("Clicked Diary tab");
+
+				LogInfo("Clicking Diary tab");
+				DiaryTab.Click();
+				LogSuccess("Clicked Diary tab");
+
+				LogInfo("Clicking Diary tab");
+				LodgeTab.Click();
+				LogSuccess("Clicked Diary tab");
+
+				LogInfo("Clicking Diary tab");
+				PrepTab.Click();
+				LogSuccess("Clicked Diary tab");
+
+				LogInfo("Clicking Diary tab");
+				RegisteredTab.Click();
+				LogSuccess("Clicked Diary tab");
+
+				LogInfo("Clicking Archived tab");
                 ArchivedTab.Click();
                 LogSuccess("Clicked Archived tab");
 
@@ -323,36 +343,54 @@ namespace SAHL_Cancellations.Pages
             {
                 LogInfo("Starting to navigate through My Branch tabs in order");
 
+                
+
                 LogInfo("Selecting My Branch radio button");
                 BranchTab.Click();
                 LogSuccess("Selected My Branch radio button");
 
-                LogInfo("Clicking New Instructions tab");
-                //NewInstructionsTab.Click();
-                LogSuccess("Clicked New Instructions tab");
+				LogInfo("Clicking Awaiting Response tab");
+				AwaitingResponseTab.Click();
+				LogSuccess("Clicked Awaiting Response tab");
 
-                LogInfo("Clicking Awaiting Response tab");
-                AwaitingResponseTab.Click();
-                LogSuccess("Clicked Awaiting Response tab");
+				LogInfo("Clicking Diary tab");
+				InstructionsTab.Click();
+				LogSuccess("Clicked Diary tab");
 
-                LogInfo("Clicking Diary tab");
-                DiaryTab.Click();
-                LogSuccess("Clicked Diary tab");
+				LogInfo("Clicking Inbox tab");
+				InboxTab.Click();
+				LogSuccess("Clicked Inbox tab");
 
-                LogInfo("Clicking Inbox tab");
-                InboxTab.Click();
-                LogSuccess("Clicked Inbox tab");
+				LogInfo("Clicking Diary tab");
+				StarredTab.Click();
+				LogSuccess("Clicked Diary tab");
 
-                LogInfo("Clicking Archived tab");
-                ArchivedTab.Click();
-                LogSuccess("Clicked Archived tab");
+				LogInfo("Clicking Diary tab");
+				DiaryTab.Click();
+				LogSuccess("Clicked Diary tab");
 
-                LogInfo("Clicking Cancellations tab");
-                CancellationsTab.Click();
-                LogSuccess("Clicked Cancellations tab");
+				LogInfo("Clicking Diary tab");
+				LodgeTab.Click();
+				LogSuccess("Clicked Diary tab");
 
-                LogSuccess("Successfully navigated through all My Branch tabs in order");
-            }
+				LogInfo("Clicking Diary tab");
+				PrepTab.Click();
+				LogSuccess("Clicked Diary tab");
+
+				LogInfo("Clicking Diary tab");
+				RegisteredTab.Click();
+				LogSuccess("Clicked Diary tab");
+
+				LogInfo("Clicking Archived tab");
+				ArchivedTab.Click();
+				LogSuccess("Clicked Archived tab");
+
+				LogInfo("Clicking Cancellations tab");
+				CancellationsTab.Click();
+				LogSuccess("Clicked Cancellations tab");
+
+				LogSuccess("Successfully navigated through all My User tabs in order");
+			}
             catch (Exception ex)
             {
                 LogFailure("Failed to navigate through My Branch tabs in order", ex);
@@ -378,20 +416,20 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess("Main Cancellations tab is displayed");
 
                 LogInfo("Clicking Main Cancellations tab");
-				MattersTab.Click();
+                MattersTab.Click();
                 LogSuccess("Clicked Main Cancellations tab");
 
-                LogInfo("Clicking Setup link");
-                SetupLink.Click();
-                LogSuccess("Clicked Setup link");
+                //LogInfo("Clicking Setup link");
+                //SetupLink.Click();
+                //LogSuccess("Clicked Setup link");
 
-                LogInfo("Waiting for Close Setup button to be displayed");
-                wait.Until(_ => CloseSetup.Displayed);
-                LogSuccess("Close Setup button is displayed");
+                //LogInfo("Waiting for Close Setup button to be displayed");
+                //wait.Until(_ => CloseSetup.Displayed);
+                //LogSuccess("Close Setup button is displayed");
 
-                LogInfo("Clicking Close Setup button");
-                CloseSetup.Click();
-                LogSuccess("Clicked Close Setup button");
+                //LogInfo("Clicking Close Setup button");
+                //CloseSetup.Click();
+                //LogSuccess("Clicked Close Setup button");
 
                 LogInfo("Clicking Assistance link");
 				ContactUsLink.Click();
@@ -402,20 +440,20 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess("Main Cancellations tab is displayed");
 
                 LogInfo("Clicking Main Cancellations tab");
-				MattersTab.Click();
+                MattersTab.Click();
                 LogSuccess("Clicked Main Cancellations tab");
 
-                LogInfo("Clicking Reports link");
-                ReportsLink.Click();
-                LogSuccess("Clicked Reports link");
+                //LogInfo("Clicking Reports link");
+                //ReportsLink.Click();
+                //LogSuccess("Clicked Reports link");
 
-                LogInfo("Waiting for Close Reports button to be displayed");
-                wait.Until(_ => CloseReports.Displayed);
-                LogSuccess("Close Reports button is displayed");
+                //LogInfo("Waiting for Close Reports button to be displayed");
+                //wait.Until(_ => CloseReports.Displayed);
+                //LogSuccess("Close Reports button is displayed");
 
-                LogInfo("Clicking Close Reports button");
-                CloseReports.Click();
-                LogSuccess("Clicked Close Reports button");
+                //LogInfo("Clicking Close Reports button");
+                //CloseReports.Click();
+                //LogSuccess("Clicked Close Reports button");
 
                 LogSuccess("Successfully opened and closed all navigation links");
             }
@@ -435,7 +473,11 @@ namespace SAHL_Cancellations.Pages
             {
                 LogInfo("Starting My Branch search operations");
 
-                LogInfo("Selecting My Branch radio button");
+				LogInfo("Waiting for Main Cancellations tab to be displayed");
+				wait.Until(_ => BranchTab.Displayed);
+				LogSuccess("Main Cancellations tab is displayed");
+
+				LogInfo("Selecting My Branch radio button");
                 BranchTab.Click();
                 LogSuccess("Selected My Branch radio button");
 
