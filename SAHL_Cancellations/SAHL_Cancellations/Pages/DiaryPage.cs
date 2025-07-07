@@ -41,30 +41,31 @@ namespace SAHL_Cancellations.Pages
         }
 
         // UI Elements - All elements on the Diary Page
-        public IWebElement DiaryTab => driver.FindElement(By.XPath("//div[contains(text(),'Diary')]"));
+        public IWebElement DiaryTab => driver.FindElement(By.XPath("(//a[@id='div_menu_diary'])[1]"));
         public IWebElement IncludeCompletdDiaries_Checkbox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_chkComlete']"));
-        public IWebElement DiaryEntry => driver.FindElement(By.XPath("(//td[@align='left'][normalize-space()='Shopping Complex'])[1]"));
-        public IWebElement AddCustomDiaryItem_Btn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_btnInsertSprint']"));
-        public IWebElement DescriptionTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_txtMilestone']"));
-        public IWebElement DueDate => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_txtInsertDueDate']"));
+        public IWebElement DiaryEntry => driver.FindElement(By.XPath("//td[normalize-space()='Shopping Complex']"));
+        public IWebElement AddDiaryItem_Btn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_btnAddNote'])[1]"));
+        public IWebElement DescriptionTxtBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_DetailsView1_txtMilestone'])[1]"));
+        public IWebElement DueDate => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_DetailsView1_txtInsertDueDate'])[1]"));
         public IWebElement ReminderDate => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_txtInsertReminderDate']"));
-        public IWebElement AddNoteTxtBox => driver.FindElement(By.XPath("//textarea[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_txtNote']"));
-        public IWebElement SaveBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_Button1']"));
+        public IWebElement AddNoteTxtBox => driver.FindElement(By.XPath("(//textarea[@id='ctl00_ctl00_C_C_txtNote'])[1]"));
+        public IWebElement SaveBtn => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_C_DetailsView1_Button1']"));
         public IWebElement CancelBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_btnCancel']"));
-        public IWebElement EditBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_Button1']"));
+        public IWebElement EditBtn => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_C_DetailsView1_Button1']"));
         public IWebElement EditSaveBtn => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_Button1'])[1]"));
         public IWebElement ArchiveBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_btnArchive']"));
         public IWebElement BackBtn => driver.FindElement(By.XPath("//div[contains(text(),'Diary')]"));
         public IWebElement DownloadICalenderLink => driver.FindElement(By.XPath("(//a[normalize-space()='Download iCalender for Outlook'])[1]"));
-        public IWebElement SaveNoteBtn => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_ctl00_C_C_C_btnAddNote'])[1]"));
-        public IWebElement AddNotesTxtBox => driver.FindElement(By.XPath("//textarea[@id='ctl00_ctl00_ctl00_C_C_C_txtNote']"));
+        public IWebElement AddNoteBtn => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_C_btnAddNote']"));
+        public IWebElement AddNotesTxtBox => driver.FindElement(By.XPath("(//textarea[@id='ctl00_ctl00_C_C_DetailsView1_txtNote'])[1]"));
+		public IWebElement EditNotesTxtBox => driver.FindElement(By.XPath("//textarea[@id='ctl00_ctl00_C_C_txtNote']"));
 
-        // Date Range Elements
-        public IWebElement DeleteNoteBtn => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_ctl00_C_C_C_Repeater1_ctl02_imgRemove'])[1]"));
+		// Date Range Elements
+		public IWebElement DeleteNoteBtn => driver.FindElement(By.XPath("(//span[@class='pointer fa fa-trash-o fa-lg'])[1]"));
         public IWebElement DateCapturedBetweenCheckbox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_txtInsertDueDate']"));
-        public IWebElement DueDateTextbox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_txtStartDate']"));
+        public IWebElement DueDateTextbox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_DetailsView1_txtInsertDueDate'])[1]"));
         public IWebElement EndDateTextbox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_txtEndDate']"));
-        public IWebElement TodayBtn => driver.FindElement(By.XPath("//button[normalize-space()='Today']"));
+        public IWebElement TodayBtn => driver.FindElement(By.XPath("(//button[@onclick='TodayClicked();'])[1]"));
         public IWebElement MilestonesTab => driver.FindElement(By.XPath("//div[contains(text(),'Milestones')]"));
         public IWebElement MilestonesDiaryFlag => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_ctl00_C_C_C_dlMilestones_ctl00_lnkDiary']"));
         public IWebElement MilestonesAddNotesTxtBox => driver.FindElement(By.XPath("(//textarea[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_txtNote'])[1]"));
@@ -105,7 +106,7 @@ namespace SAHL_Cancellations.Pages
             try
             {
                 LogInfo("Clicking Add Custom Diary Item button");
-                AddCustomDiaryItem_Btn.Click();
+                AddDiaryItem_Btn.Click();
                 LogSuccess("Clicked Add Custom Diary Item button");
             }
             catch (Exception ex)
@@ -128,28 +129,28 @@ namespace SAHL_Cancellations.Pages
                 DiaryTab.Click();
                 LogSuccess("Clicked on Diary tab");
 
-                // Optionally, click to include completed diaries
-                LogInfo("Checking if Include Completed Diaries checkbox is selected");
-                if (!IncludeCompletdDiaries_Checkbox.Selected)
-                {
-                    LogInfo("Clicking Include Completed Diaries checkbox");
-                    IncludeCompletdDiaries_Checkbox.Click();
-                    LogSuccess("Clicked Include Completed Diaries checkbox");
-                }
-                else
-                {
-                    LogInfo("Include Completed Diaries checkbox is already selected");
-                }
+                //// Optionally, click to include completed diaries
+                //LogInfo("Checking if Include Completed Diaries checkbox is selected");
+                //if (!IncludeCompletdDiaries_Checkbox.Selected)
+                //{
+                //    LogInfo("Clicking Include Completed Diaries checkbox");
+                //    IncludeCompletdDiaries_Checkbox.Click();
+                //    LogSuccess("Clicked Include Completed Diaries checkbox");
+                //}
+                //else
+                //{
+                //    LogInfo("Include Completed Diaries checkbox is already selected");
+                //}
 
                 // Click the "Add Custom Diary Item" button
                 LogInfo("Clicking Add Custom Diary Item button");
-                AddCustomDiaryItem_Btn.Click();
+                AddDiaryItem_Btn.Click();
                 LogSuccess("Clicked Add Custom Diary Item button");
 
                 // Wait for the page elements to load using WebDriverWait instead of Thread.Sleep
-                LogInfo("Waiting for Description textbox to be visible");
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_txtMilestone']")));
-                LogSuccess("Description textbox is visible");
+                //LogInfo("Waiting for Description textbox to be visible");
+                //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_txtMilestone']")));
+                //LogSuccess("Description textbox is visible");
 
                 // Enter the description of the diary item
                 LogInfo($"Entering description: {Description}");
@@ -157,16 +158,21 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess($"Entered description: {Description}");
 
                 // Set Due Date (using the dynamically passed date)
-                LogInfo($"Entering due date: {dueDate}");
-                DueDate.EnterText(dueDate);
-                LogSuccess($"Entered due date: {dueDate}");
+                LogInfo($"Entering due date");
+                DueDate.Click();
+                LogSuccess($"Entered due date");
 
                 LogInfo("Clicking Today button");
                 TodayBtn.Click();
                 LogSuccess("Clicked Today button");
 
-                // Enter the notes for the diary item
-                LogInfo($"Entering notes: {Notes}");
+				// Wait for the page elements to load using WebDriverWait instead of Thread.Sleep
+				LogInfo("Waiting for Description textbox to be visible");
+				wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_txtMilestone']")));
+				LogSuccess("Description textbox is visible");
+
+				// Enter the notes for the diary item
+				LogInfo($"Entering notes: {Notes}");
                 AddNoteTxtBox.EnterText(Notes);
                 LogSuccess($"Entered notes: {Notes}");
 
@@ -201,13 +207,13 @@ namespace SAHL_Cancellations.Pages
 
                 // Click the "Add Custom Diary Item" button
                 LogInfo("Clicking Add Custom Diary Item button");
-                AddCustomDiaryItem_Btn.Click();
+                AddDiaryItem_Btn.Click();
                 LogSuccess("Clicked Add Custom Diary Item button");
 
-                // Wait for the page elements to load using WebDriverWait instead of Thread.Sleep
-                LogInfo("Waiting for Description textbox to be visible");
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_txtMilestone']")));
-                LogSuccess("Description textbox is visible");
+                //// Wait for the page elements to load using WebDriverWait instead of Thread.Sleep
+                //LogInfo("Waiting for Description textbox to be visible");
+                //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_txtMilestone']")));
+                //LogSuccess("Description textbox is visible");
 
                 // Click the "Save" button to save the new diary item
                 LogInfo("Clicking Save button without entering required fields");
@@ -286,8 +292,13 @@ namespace SAHL_Cancellations.Pages
                 EditBtn.Click();
                 LogSuccess("Clicked Edit button");
 
-                // Enter the description of the diary item
-                LogInfo($"Entering description: {Description}");
+				// Wait for the page elements to load using WebDriverWait instead of Thread.Sleep
+				LogInfo("Waiting for Description textbox to be visible");
+				wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_txtMilestone']")));
+				LogSuccess("Description textbox is visible");
+
+				// Enter the description of the diary item
+				LogInfo($"Entering description: {Description}");
                 DescriptionTxtBox.EnterText(Description);
                 LogSuccess($"Entered description: {Description}");
 
@@ -347,13 +358,13 @@ namespace SAHL_Cancellations.Pages
                 // Click on the Diary Tab
                 LogInfo("Entering notes");
                 Thread.Sleep(2000);
-                AddNotesTxtBox.EnterText(Notes);
+                EditNotesTxtBox.EnterText(Notes);
                 LogSuccess($"Entered notes: {Notes}");
 
                 Thread.Sleep(2000);
 
                 LogInfo("Clicking Save Note button");
-                SaveNoteBtn.Click();
+                AddNoteBtn.Click();
                 LogSuccess("Clicked Save Note button");
 
                 Thread.Sleep(2000);
