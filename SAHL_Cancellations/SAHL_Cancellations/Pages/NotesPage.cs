@@ -44,14 +44,14 @@ namespace SAHL_Cancellations.Pages
 		public IWebElement NotesTab => driver.FindElement(By.XPath("(//a[@id='div_menu_notes'])[1]"));
 		public IWebElement EnterCommentTxtBox=> driver.FindElement(By.XPath("//textarea[@id='txtAuditTrailComment']"));
 		public IWebElement AddNoteBtn => driver.FindElement(By.XPath("//button[@data-bind='click: $root.SaveAuditTrailComment']"));
-		public IWebElement AddDiaryItem_Btn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_btnAddNote'])[1]"));
+		public IWebElement AddComment_Btn => driver.FindElement(By.XPath("//button[@data-bind='click: $root.SaveAuditTrailComment']"));
 		public IWebElement DescriptionTxtBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_DetailsView1_txtMilestone'])[1]"));
 		
 		// Methods to interact with elements on the Diary Page
 		
 
 		// Add Custom Diary Item Method
-		public void AddCustomDiaryItem(string Description, string dueDate, string Notes)
+		public void AddComment(string Notes)
 		{
 			try
 			{
@@ -88,7 +88,7 @@ namespace SAHL_Cancellations.Pages
 
 				// Click the "Save" button to save the new diary item
 				LogInfo("Clicking Save button");
-				AddDiaryItem_Btn.Click();
+				AddComment_Btn.Click();
 				LogSuccess("Clicked Save button");
 				Thread.Sleep(2000);
 

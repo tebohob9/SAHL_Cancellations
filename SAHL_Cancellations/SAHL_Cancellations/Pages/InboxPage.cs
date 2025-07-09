@@ -40,8 +40,8 @@ namespace SAHL_Cancellations.Pages
         }
 
         // UI Elements - All elements on the Inbox Page
-        public IWebElement InboxTab => driver.FindElement(By.XPath("//div[contains(text(),'Inbox')]"));
-        public IWebElement Message => driver.FindElement(By.XPath("(//div[contains(text(),'2534 - CANCELLATION FIGURES NOT YET ISSUED')])[1]"));
+        public IWebElement InboxTab => driver.FindElement(By.XPath("(//a[@id='div_menu_inbox'])[1]"));
+        public IWebElement Message => driver.FindElement(By.XPath("(//div[@class='ellipsis'][normalize-space()='Amended Figures Sent'])[1]"));
         public IWebElement MarkAsReadChckBx => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_chkMarkAsRead']"));
         public IWebElement CloseMessageBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_BtnClose']"));
 
@@ -69,7 +69,7 @@ namespace SAHL_Cancellations.Pages
                     Thread.Sleep(2000);
 
                     LogInfo("Marking message as read");
-                    MarkAsReadChckBx.Click();
+                    //MarkAsReadChckBx.Click();
                     LogSuccess("Marked message as read");
 
                     Thread.Sleep(2000);

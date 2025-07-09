@@ -65,7 +65,7 @@ namespace SAHL_Cancellations.Tests
 
 				// Call the AddCustomDiaryItem method with dynamic due date
 				test.Log(Status.Info, $"[{testClassName}] Adding custom diary item");
-				NotesPage.AddCustomDiaryItem(TestData.Description, dueDate, TestData.DiaryNotes);
+				NotesPage.AddComment(TestData.DiaryNotes);
 				test.Log(Status.Pass, $"[{testClassName}] Successfully added custom diary item");
 
 				// Capture final screenshot
