@@ -66,12 +66,17 @@ namespace SAHL_Cancellations.Utilities
         // New Instructions 
         public static readonly string FileNote = "Entering a note to make sure this field works correctly";
 
+		// Diary
+		public static readonly string Description = "Shopping Complex";
+		public static readonly string DescriptionEdit = "Apartment";
+		public static readonly string DiaryNotes = "Entering a note to make sure this field works correctly";
+		public static readonly string Duedate = "2025-03-15";
 
-        // Diary
-        public static readonly string Description = "Shopping Complex";
-        public static readonly string DescriptionEdit = "Apartment";
-        public static readonly string DiaryNotes = "Entering a note to make sure this field works correctly";
-        public static readonly string Duedate = "2025-03-15";
+
+		// SMS
+		public static readonly string ToCell = "0726063879";
+        public static readonly string Message = "Sending an SMS to make sure this field works correctly";
+        
 
 
         // Correspondents
@@ -104,7 +109,7 @@ namespace SAHL_Cancellations.Utilities
 
 
         // InfoSheet
-        public static readonly string EditFileRef = "Teboho Bodibe";
+        public static readonly string FileRef = "Deed Search - ABSA";
 
         // Deed Search
         public static readonly string DeedSearch = "ERF";

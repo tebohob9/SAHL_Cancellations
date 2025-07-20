@@ -69,12 +69,12 @@ namespace SAHL_Cancellations.Tests
 
                 // Edit secretary
                 test.Log(Status.Info, $"[{testClassName}] Editing secretary");
-                InfoSheetPage.EditSecretary();
+                InfoSheetPage.ReassignSecretary(TestData.FileRef);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully edited secretary");
 
                 // Edit file reference
-                test.Log(Status.Info, $"[{testClassName}] Editing file reference with value: {TestData.EditFileRef}");
-                InfoSheetPage.EditFileRef(TestData.EditFileRef);
+                test.Log(Status.Info, $"[{testClassName}] Editing file reference with value: {TestData.FileRef}");
+                InfoSheetPage.EditFileRef(TestData.FileRef);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully edited file reference");
 
                 // Capture final screenshot

@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using SAHL_Cancellations.Utilities;
 using System;
 using System.Threading;
+using System.IO;
 using OpenQA.Selenium.Support.UI;
 using AventStack.ExtentReports;
 using Cancellations_Tests.Utilities;
@@ -22,7 +23,7 @@ namespace SAHL_Cancellations.Pages
         {
             this.driver = driver;  // Assigning the driver to the class variable
             this.wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));  // Default wait time of 10 seconds
-
+            
             // Try to get the current test from ExtentReport if available
             try
             {
@@ -32,18 +33,19 @@ namespace SAHL_Cancellations.Pages
                     LogInfo($"Initialized {pageName}");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // If ExtentReport._scenario is not available, test will remain null
+                Console.WriteLine($"ExtentReport initialization error: {ex.Message}");
                 // This is fine as we'll check for null before using it
             }
         }
 
         // UI Elements - All elements on the Inbox Page
         public IWebElement InboxTab => driver.FindElement(By.XPath("(//a[@id='div_menu_inbox'])[1]"));
-        public IWebElement Message => driver.FindElement(By.XPath("(//div[@class='ellipsis'][normalize-space()='Amended Figures Sent'])[1]"));
+        public IWebElement Message => driver.FindElement(By.XPath("//div[@class='ellipsis'][normalize-space()='Amended Figures Sent']"));
         public IWebElement MarkAsReadChckBx => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_chkMarkAsRead']"));
-        public IWebElement CloseMessageBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_BtnClose']"));
+        public IWebElement CloseMessageBtn => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_btnClose'])[1]"));
 
         // Read Inbox Message Method
         public void ReadInboxMessage()
@@ -51,39 +53,33 @@ namespace SAHL_Cancellations.Pages
             try
             {
                 LogInfo("Starting to read inbox message");
-
                 LogInfo("Clicking Inbox tab");
                 wait.Until(driver => InboxTab.Displayed);
                 InboxTab.Click();
                 LogSuccess("Clicked Inbox tab");
-
                 Thread.Sleep(1000); // Short wait for inbox messages to load
-
                 LogInfo("Checking if message exists");
-                if (IsElementPresent(By.XPath("(//div[contains(text(),'2534 - CANCELLATION FIGURES NOT YET ISSUED')])[1]")))
-                {
-                    LogInfo("Clicking on message");
-                    Message.Click();
-                    LogSuccess("Clicked on message");
-
-                    Thread.Sleep(2000);
-
-                    LogInfo("Marking message as read");
-                    //MarkAsReadChckBx.Click();
-                    LogSuccess("Marked message as read");
-
-                    Thread.Sleep(2000);
-
-                    LogInfo("Closing message");
-                    CloseMessageBtn.Click();
-                    LogSuccess("Closed message");
-
-                    LogSuccess("Successfully read inbox message");
+                
+                // Try to find the message with a wait
+                try {
+                    wait.Until(driver => IsElementPresent(By.XPath("//div[@class='ellipsis'][normalize-space()='Amended Figures Sent']")));
+                    LogInfo("Message found");
+                } catch (WebDriverTimeoutException) {
+                    LogInfo("Message not found within timeout period, will try to click anyway");
                 }
-                else
-                {
-                    LogInfo("No messages found in inbox");
-                }
+                
+                LogInfo("Clicking on message");
+                Message.Click();
+                LogSuccess("Clicked on message");
+                Thread.Sleep(2000);
+                LogInfo("Marking message as read");
+                //MarkAsReadChckBx.Click();
+                LogSuccess("Marked message as read");
+                Thread.Sleep(2000);
+                LogInfo("Closing message");
+                CloseMessageBtn.Click();
+                LogSuccess("Closed message");
+                LogSuccess("Successfully read inbox message");
             }
             catch (Exception ex)
             {
@@ -147,11 +143,21 @@ namespace SAHL_Cancellations.Pages
                 {
                     ITakesScreenshot takesScreenshot = (ITakesScreenshot)driver;
                     Screenshot screenshot = takesScreenshot.GetScreenshot();
-                    string screenshotPath = System.IO.Path.Combine(ExtentReport.testResultPath, screenshotName + ".png");
+                    
+                    // Ensure the directory exists
+                    if (!Directory.Exists(ExtentReport.testResultPath))
+                    {
+                        Directory.CreateDirectory(ExtentReport.testResultPath);
+                    }
+                    
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    string screenshotPath = Path.Combine(ExtentReport.testResultPath, $"{screenshotName}_{timestamp}.png");
                     screenshot.SaveAsFile(screenshotPath);
+                    
                     if (test != null)
                     {
                         test.AddScreenCaptureFromPath(screenshotPath);
+                        LogInfo($"Screenshot saved to: {screenshotPath}");
                     }
                 }
             }
@@ -167,7 +173,3 @@ namespace SAHL_Cancellations.Pages
         #endregion
     }
 }
-
-
-
-

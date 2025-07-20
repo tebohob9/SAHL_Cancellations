@@ -47,7 +47,7 @@ namespace SAHL_Cancellations.Pages
 		public IWebElement SendBtn => driver.FindElement(By.XPath("//a[@id='btnsend']"));
 		
 		// Complete Contact Details form
-		public void SendEmail(string ToEmail, string Subject)
+		public void SendSMS(string ToCell, string Message)
 		{
 			try
 			{
@@ -55,15 +55,15 @@ namespace SAHL_Cancellations.Pages
 				SMSTab.Click();
 				LogSuccess("Clicked on Correspondents tab");
 
-				LogInfo($"Entering Contact Person: {ToEmail}");
-				TelCell.EnterText(ToEmail);
+				LogInfo($"Entering Contact Person: {ToCell}");
+				TelCell.EnterText(ToCell);
 				//ToEmailField.SendKeys(Keys.Enter); // Add this line to press Enter after entering text
-				LogSuccess($"Entered Contact Person: {ToEmail}");
+				LogSuccess($"Entered Contact Person: {ToCell}");
 
 
-				LogInfo($"Entering Contact Person: {Subject}");
-				MessageTxtBox.EnterText(Subject);
-				LogSuccess($"Entered Contact Person: {Subject}");
+				LogInfo($"Entering Contact Person: {Message}");
+				MessageTxtBox.EnterText(Message);
+				LogSuccess($"Entered Contact Person: {Message}");
 
 
 				Thread.Sleep(5000);

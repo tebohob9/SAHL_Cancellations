@@ -40,14 +40,15 @@ namespace SAHL_Cancellations.Pages
         }
 
         // UI Elements - All elements on the Info Sheet Page
-        public IWebElement InfoSheetTab => driver.FindElement(By.XPath("//div[contains(text(),'Info Sheet')]"));
-        public IWebElement EditSecretaryBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_btnEditCa']"));
+        public IWebElement InfoSheetTab => driver.FindElement(By.XPath("(//a[@id='div_menu_infosheet'])[1]"));
+		public IWebElement FileRefTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_txtCancellingFileRef'])[1]"));
+		public IWebElement EditSecretaryBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_btnEditCa']"));
         public IWebElement EditFileRefBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_btnEditCaFileRef']"));
         public IWebElement CloseResignMatter => driver.FindElement(By.XPath("//img[@id='ctl00_ctl00_ctl00_C_C_C_PopupPanel_close']"));
         public IWebElement ReassignMatterToDrpdwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_ctl00_C_C_C_ddlDestination']"));
-        public IWebElement OnlyThisMatterRadioBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_rbOption_0']"));
+        public IWebElement ReassignBtn => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_C_lnkReassign']"));
         public IWebElement AllMattersRadioBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_rbOption_1']"));
-        public IWebElement SaveBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_btnSave']"));
+        public IWebElement SaveBtn => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_C_lnkBtnCancelling']"));
         public IWebElement CancelBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_btnCancel']"));
         public IWebElement EditFileRefTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_TextBoxFileRef']"));
         public IWebElement CloseEditFileRef => driver.FindElement(By.XPath("//img[@id='ctl00_ctl00_ctl00_C_C_C_PanelBoxFileRef_close']"));
@@ -55,7 +56,7 @@ namespace SAHL_Cancellations.Pages
         public IWebElement EditFFileRefCancelBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_ButtonCancelFileRef']"));
 
         // Edit Secretary Method
-        public void EditSecretary()
+        public void EditFileRef(string FileRef)
         {
             try
             {
@@ -66,17 +67,11 @@ namespace SAHL_Cancellations.Pages
                 InfoSheetTab.Click();
                 LogSuccess("Clicked Info Sheet tab");
 
-                LogInfo("Clicking Edit Secretary button");
-                wait.Until(driver => EditSecretaryBtn.Displayed);
-                EditSecretaryBtn.Click();
-                LogSuccess("Clicked Edit Secretary button");
-
-                LogInfo("Selecting All Matters radio button");
-                wait.Until(driver => AllMattersRadioBtn.Displayed);
-                AllMattersRadioBtn.Click();
-                LogSuccess("Selected All Matters radio button");
-
-                Thread.Sleep(2000);
+				LogInfo($"Entering file reference: {FileRefTextBox}");
+				wait.Until(driver => EditFileRefTxtBox.Displayed);
+				FileRefTextBox.Clear();
+				FileRefTextBox.SendKeys(FileRef);
+				LogSuccess($"Entered file reference: {FileRefTextBox}");
 
                 LogInfo("Clicking Save button");
                 SaveBtn.Click();
@@ -95,7 +90,7 @@ namespace SAHL_Cancellations.Pages
         }
 
         // Method to edit file reference
-        public void EditFileRef(string editFileRef)
+        public void ReassignSecretary(string editFileRef)
         {
             try
             {
@@ -103,7 +98,7 @@ namespace SAHL_Cancellations.Pages
 
                 LogInfo("Clicking Edit File Reference button");
                 wait.Until(driver => EditFileRefBtn.Displayed);
-                EditFileRefBtn.Click();
+                ReassignBtn.Click();
                 LogSuccess("Clicked Edit File Reference button");
 
                 LogInfo($"Entering file reference: {editFileRef}");

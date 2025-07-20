@@ -1,4 +1,3 @@
-using Cancellations_Tests.BasePage;
 using BoDi;
 using Cancellations_Tests.Utilities;
 using OpenQA.Selenium;
@@ -7,37 +6,55 @@ using TechTalk.SpecFlow;
 
 namespace Cancellations_Tests.Hooks
 {
-    [Binding]
-    public class WebDriverHooks
-    {
-        private readonly IObjectContainer _container;
-        private IWebDriver _driver;
+	[Binding]
+	public class WebDriverHooks
+	{
+		private readonly IObjectContainer container;
+		private IWebDriver driver;
 
-        public WebDriverHooks(IObjectContainer container)
-        {
-            _container = container;
-        }
+		public WebDriverHooks(IObjectContainer container)
+		{
+			this.container = container;
+		}
 
-        [BeforeScenario]
-        public void BeforeScenario()
-        {
-            Console.WriteLine("Initializing WebDriver...");
-            _driver = DriverSetup.InitializeDriver();
-            _container.RegisterInstanceAs<IWebDriver>(_driver);
-            Console.WriteLine("WebDriver initialized successfully.");
-        }
+		[BeforeScenario(Order = 0)] // Order ensures this runs before other BeforeScenario methods
+		public void BeforeScenario()
+		{
+			Console.WriteLine("Initializing WebDriver...");
+			try
+			{
+				driver = DriverSetup.InitializeDriver();
+				container.RegisterInstanceAs<IWebDriver>(driver);
+				Console.WriteLine("WebDriver initialized successfully.");
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error initializing WebDriver: {ex.Message}");
+				throw;
+			}
+		}
 
-        [AfterScenario]
-        public void AfterScenario()
-        {
-            Console.WriteLine("Disposing WebDriver...");
-            if (_driver != null)
-            {
-                _driver.Quit();
-                _driver.Dispose();
-            }
-            Console.WriteLine("WebDriver disposed successfully.");
-        }
-    }
+		[AfterScenario]
+		public void AfterScenario()
+		{
+			Console.WriteLine("Disposing WebDriver...");
+			try
+			{
+				if (driver != null)
+				{
+					driver.Quit();
+					driver.Dispose();
+					Console.WriteLine("WebDriver disposed successfully.");
+				}
+				else
+				{
+					Console.WriteLine("WebDriver was null, nothing to dispose.");
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error disposing WebDriver: {ex.Message}");
+			}
+		}
+	}
 }
-
