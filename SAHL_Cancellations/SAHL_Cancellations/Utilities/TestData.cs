@@ -115,11 +115,11 @@ namespace SAHL_Cancellations.Utilities
         public static readonly string DeedSearch = "ERF";
 
         // Instruction Details
-        public static readonly string TitleDeedNumber = "5489";
-        public static readonly string TypeOfReason = "ABSA";
-        public static readonly string DeedsOffice2 = "Durban";
-        public static readonly string Party = "Teboho Bodibe";
-        public static readonly string Property2 = "Erf";  
+        public static readonly string TitleDeedNumber = "T1280/2010";
+        public static readonly string TypeOfReason = "Paid Up";
+        public static readonly string DeedsOffice2 = "Johannesburg";
+        public static readonly string Party = "Mr Arno du Toit";
+        public static readonly string Property2 = "Unit 2, Ss Amcrest 1590, Gauteng";  
         
 
         // Property
@@ -149,9 +149,10 @@ namespace SAHL_Cancellations.Utilities
         public static readonly string AccountNumber = "6523101022255";
         public static readonly string AccountType = "Transmission";
         public static readonly string AccountHolder = "Teboho Bodibe";
+		public static readonly string BeneficiaryName = "Teboho Bodibe";
 
-        // Conveyencer
-        public static readonly string DateOfSignature = "2025/03/26";
+		// Conveyencer
+		public static readonly string DateOfSignature = "2025/03/26";
         public static readonly string PlaceOfSignature = "Sandton";
         public static readonly string Preparer = "CONVEYENCER ONE";
         public static readonly string CommisionerOfOaths = "CHANTAL BRUMMER";

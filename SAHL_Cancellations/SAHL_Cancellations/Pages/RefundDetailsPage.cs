@@ -40,18 +40,22 @@ namespace SAHL_Cancellations.Pages
         }
 
         // UI Elements - All elements on the Refund Details page
-        public IWebElement RefundDetailsTab => driver.FindElement(By.XPath("//div[contains(text(),'Refund Details')]"));
+        public IWebElement RefundDetailsTab => driver.FindElement(By.XPath("(//a[@id='div_menu_refunddetails'])[1]"));
+		public IWebElement BeneficiaryTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtBeneficiaryAccount']")); 
         public IWebElement BankTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_TxtBank']"));
-        public IWebElement BranchNameTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_TxtBranchName_TxtBranchNameTextBox']"));
-        public IWebElement BranchCodeTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_TxtBranchCode']"));
-        public IWebElement AccountNumberTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_TxtAccountNumber_TxtAccountNumberTextBox']"));
+        public IWebElement BranchNameTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtBranchName']"));
+        public IWebElement BranchCodeTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtBranchCode']"));
+		public IWebElement TelephoneTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtTelephone']"));
+		public IWebElement AccountHolderTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_TxtAccountHolder_TxtAccountHolderTextBox']")); 
+        public IWebElement AccountNumberTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtAccountNumber']"));
         public IWebElement AccountTypeDrpDwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_C_C_ddlVAR_AccountType']"));
-        public IWebElement AccountHolderTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_TxtAccountHolder_TxtAccountHolderTextBox']"));
+        public IWebElement EmailTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtEmail']"));
         public IWebElement SaveBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_btnSave']"));
 
         // Complete the refund details form with provided values
-        public void CompleteRefundDetailsForm(string bank, string branchName, string branchCode, string accountNumber,
-            string accountType, string accountHolder)
+        public void CompleteRefundDetailsForm(string Beneficiary, string bank, string accountNumber, 
+            string branchName, string branchCode, string Telephone,
+            string email)
         {
             try
             {
@@ -62,13 +66,24 @@ namespace SAHL_Cancellations.Pages
                 RefundDetailsTab.Click();
                 LogSuccess("Clicked Refund Details tab");
 
-                LogInfo($"Entering Bank: {bank}");
+				LogInfo($"Entering Beneficiary: {Beneficiary}");
+				wait.Until(driver => BeneficiaryTxtBox.Displayed);
+				BeneficiaryTxtBox.Clear();
+				BeneficiaryTxtBox.SendKeys(Beneficiary);
+				LogSuccess($"Entered Beneficiary: {Beneficiary}");
+
+				LogInfo($"Entering Bank: {bank}");
                 wait.Until(driver => BankTextBox.Displayed);
                 BankTextBox.Clear();
                 BankTextBox.SendKeys(bank);
                 LogSuccess($"Entered Bank: {bank}");
 
-                LogInfo($"Entering Branch Name: {branchName}");
+				LogInfo($"Entering Account Number: {accountNumber}");
+				AccountNumberTxtBox.Clear();
+				AccountNumberTxtBox.SendKeys(accountNumber);
+				LogSuccess($"Entered Account Number: {accountNumber}");
+
+				LogInfo($"Entering Branch Name: {branchName}");
                 BranchNameTextBox.Clear();
                 BranchNameTextBox.SendKeys(branchName);
                 LogSuccess($"Entered Branch Name: {branchName}");
@@ -78,20 +93,15 @@ namespace SAHL_Cancellations.Pages
                 BranchCodeTxtBox.SendKeys(branchCode);
                 LogSuccess($"Entered Branch Code: {branchCode}");
 
-                LogInfo($"Entering Account Number: {accountNumber}");
-                AccountNumberTxtBox.Clear();
-                AccountNumberTxtBox.SendKeys(accountNumber);
-                LogSuccess($"Entered Account Number: {accountNumber}");
+				LogInfo($"Entering Telephone: {Telephone}");
+				TelephoneTxtBox.Clear();
+				TelephoneTxtBox.SendKeys(Telephone);
+				LogSuccess($"Entered Telephone: {Telephone}");
 
-                LogInfo($"Selecting Account Type: {accountType}");
-                var selectElement = new SelectElement(AccountTypeDrpDwn);
-                selectElement.SelectByText(accountType);
-                LogSuccess($"Selected Account Type: {accountType}");
-
-                LogInfo($"Entering Account Holder: {accountHolder}");
-                AccountHolderTextBox.Clear();
-                AccountHolderTextBox.SendKeys(accountHolder);
-                LogSuccess($"Entered Account Holder: {accountHolder}");
+                LogInfo($"Entering Email: {email}");
+                EmailTxtBox.Clear();
+                EmailTxtBox.SendKeys(email);
+                LogSuccess($"Entered Email: {email}");
 
                 Thread.Sleep(2000);
 

@@ -72,13 +72,13 @@ namespace SAHL_Cancellations.Tests
                 test.Log(Status.Info, $"[{testClassName}] Using Account Number: {TestData.AccountNumber}, Account Type: {TestData.AccountType}, Account Holder: {TestData.AccountHolder}");
 
                 RefundDetailsPage.CompleteRefundDetailsForm(
+					TestData.BeneficiaryName, 
                     TestData.Bank,
-                    TestData.BranchName,
-                    TestData.BranchCode,
                     TestData.AccountNumber,
-                    TestData.AccountType,
-                    TestData.AccountHolder
-                );
+					TestData.BranchName,
+					TestData.BranchCode,
+                    TestData.Telephone,
+                    TestData.Email);
 
                 test.Log(Status.Pass, $"[{testClassName}] Successfully completed refund details form");
 

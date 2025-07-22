@@ -1,13 +1,13 @@
+using AventStack.ExtentReports;
 using Cancellations_Tests.BasePage;
-
+using Cancellations_Tests.Utilities;
+using NUnit.Framework;
+using OpenQA.Selenium;
 using SAHL_Cancellations.Pages;
 using SAHL_Cancellations.Utilities;
-using NUnit.Framework;
 using System;
 using System.Threading;
-using AventStack.ExtentReports;
-using Cancellations_Tests.Utilities;
-using OpenQA.Selenium;
+using System.Xml.Linq;
 
 
 namespace SAHL_Cancellations.Tests
@@ -72,13 +72,13 @@ namespace SAHL_Cancellations.Tests
                 test.Log(Status.Info, $"[{testClassName}] Using Account Number: {TestData.AccountNumber}, Account Type: {TestData.AccountType}, Account Holder: {TestData.AccountHolder}");
 
                 RefundDetailsPage.CompleteRefundDetailsForm(
+					TestData.BeneficiaryName,
                     TestData.Bank,
-                    TestData.BranchName,
+					TestData.AccountNumber,
+					TestData.BranchName,
                     TestData.BranchCode,
-                    TestData.AccountNumber,
-                    TestData.AccountType,
-                    TestData.AccountHolder
-                );
+                    TestData.Telephone,
+                    TestData.Email2);
 
                 test.Log(Status.Pass, $"[{testClassName}] Successfully completed refund details form");
 
