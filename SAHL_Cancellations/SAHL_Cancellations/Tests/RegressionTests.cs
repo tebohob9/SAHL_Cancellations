@@ -575,13 +575,11 @@ namespace SAHL_Cancellations.Tests
 
                 test.Log(Status.Info, $"[{testClassName}] Completing instruction details");
                 InstructionDetailsPage.CompleteInstructionDetails(
-                    TestData.TitleDeedNumber,
-                    TestData.LegalBankDescription,
-                    TestData.PANumber,
-                    TestData.Signatories,
-                    TestData.BondNumber,
-                    TestData.BondAmount
-                );
+					TestData.TitleDeedNumber,
+					TestData.TypeOfReason,
+					TestData.DeedsOffice2,
+					TestData.Party,
+					TestData.Property2);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully completed instruction details");
 
                 // Capture screenshot after completing the form

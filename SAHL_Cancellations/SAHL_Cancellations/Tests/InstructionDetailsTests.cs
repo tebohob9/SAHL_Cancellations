@@ -66,19 +66,12 @@ namespace SAHL_Cancellations.Tests
 
                 Thread.Sleep(2000);  // Wait for the page to load
 
-                // Complete instruction details
-                test.Log(Status.Info, $"[{testClassName}] Completing instruction details");
-                test.Log(Status.Info, $"[{testClassName}] Using Title Deed Number: {TestData.TitleDeedNumber}, Legal Bank Description: {TestData.LegalBankDescription}, PA Number: {TestData.PANumber}");
-                test.Log(Status.Info, $"[{testClassName}] Using Signatories: {TestData.Signatories}, Bond Number: {TestData.BondNumber}, Bond Amount: {TestData.BondAmount}");
-
                 InstructionDetailsPage.CompleteInstructionDetails(
                     TestData.TitleDeedNumber,
-                    TestData.LegalBankDescription,
-                    TestData.PANumber,
-                    TestData.Signatories,
-                    TestData.BondNumber,
-                    TestData.BondAmount
-                );
+                    TestData.TypeOfReason,
+                    TestData.DeedsOffice2,
+                    TestData.Party,
+                    TestData.Property2);
 
                 test.Log(Status.Pass, $"[{testClassName}] Successfully completed instruction details");
 

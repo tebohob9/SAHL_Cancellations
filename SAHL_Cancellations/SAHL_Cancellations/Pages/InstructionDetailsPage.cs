@@ -40,13 +40,13 @@ namespace SAHL_Cancellations.Pages
         }
 
         // UI Elements - All elements on the Instruction Details Page
-        public IWebElement InstructionDetailsTab => driver.FindElement(By.XPath("//div[contains(text(),'Instruction Details')]"));
+        public IWebElement InstructionDetailsTab => driver.FindElement(By.XPath("(//a[@id='div_menu_instructiondetails'])[1]"));
         public IWebElement TitleDeedNumberTxtBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_txtDeedOfTransfer_txtDeedOfTransferTextBox'])[1]"));
         public IWebElement DeedsOfficeDropdwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_C_C_ddlDeedsOffice']"));
         public IWebElement SaveBtn => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_C_btnSave']"));
-        public IWebElement AddBtn => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_C_BtnAddMortgageBondDetails']"));
-        public IWebElement CancellationAttorneyRadioBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_rdlSignatoryType_0']"));
-        public IWebElement BankRadioBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_rdlSignatoryType_1']"));
+        public IWebElement TypeOfReasonDrpDwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_C_C_ddlReasonType']"));
+        public IWebElement PartyTxtBox => driver.FindElement(By.XPath("//textarea[@id='ctl00_ctl00_C_C_txtParty']"));
+        public IWebElement PropertyTxtBox => driver.FindElement(By.XPath("//textarea[@id='ctl00_ctl00_C_C_txtProperty']"));
         public IWebElement LegalBankDescriptionTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtLegalBank_txtbox']"));
         public IWebElement PANumberTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtPaNumber_txtbox']"));
         public IWebElement SignatoriesTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_dtListSignatories_ctl00_txtFooterSignatoryName']"));
@@ -57,8 +57,8 @@ namespace SAHL_Cancellations.Pages
         public IWebElement CancelBtn => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_C_btnCancelMortgageBond']"));
 
         // Complete Instruction Details Method
-        public void CompleteInstructionDetails(string titleDeedNumber, string legalBankDescription, string paNumber,
-            string signatories, string bondNumber, string bondAmount)
+        public void CompleteInstructionDetails(string titleDeedNumber, string TypeOfReason, string DeedsOffice,
+            string Party, string Property)
         {
             try
             {
@@ -77,29 +77,31 @@ namespace SAHL_Cancellations.Pages
 
                 Thread.Sleep(2000);
 
-                LogInfo("Clicking Add button");
-                AddBtn.Click();
-                LogSuccess("Clicked Add button");
+				LogInfo($"Selecting Type of Reason: {TypeOfReason}");
+				TypeOfReasonDrpDwn.SelectDropDownText(TypeOfReason);
+				LogSuccess($"Selected Type of Reason: {TypeOfReason}");
 
-                Thread.Sleep(2000);
+				Thread.Sleep(2000);
 
-                LogInfo($"Entering Legal Bank Description: {legalBankDescription}");
-                wait.Until(driver => LegalBankDescriptionTxtBox.Displayed);
-                LegalBankDescriptionTxtBox.Clear();
-                LegalBankDescriptionTxtBox.SendKeys(legalBankDescription);
-                LogSuccess($"Entered Legal Bank Description: {legalBankDescription}");
+				LogInfo($"Selecting Type of Reason: {DeedsOffice}");
+				DeedsOfficeDropdwn.SelectDropDownText(DeedsOffice);
+				LogSuccess($"Selected Type of Reason: {DeedsOffice}");
 
-                LogInfo($"Entering PA Number: {paNumber}");
-                PANumberTextBox.Clear();
-                PANumberTextBox.SendKeys(paNumber);
-                LogSuccess($"Entered PA Number: {paNumber}");
+				LogInfo($"Entering Party: {Party}");
+				wait.Until(driver => PartyTxtBox.Displayed);
+				PartyTxtBox.Clear();
+				PartyTxtBox.SendKeys(Party);
+				LogSuccess($"Entered Party: {Party}");
 
-                LogInfo($"Entering Signatories: {signatories}");
-                SignatoriesTxtBox.Clear();
-                SignatoriesTxtBox.SendKeys(signatories);
-                LogSuccess($"Entered Signatories: {signatories}");
+				Thread.Sleep(2000);
 
-                Thread.Sleep(2000);
+                LogInfo($"Entering Legal Bank Description: {Property}");
+                wait.Until(driver => PropertyTxtBox.Displayed);
+                PropertyTxtBox.Clear();
+                PropertyTxtBox.SendKeys(Property);
+                LogSuccess($"Entered Legal Bank Description: {Property}");
+
+                
 
                 LogInfo("Clicking Add Signatories button");
                 AddSignatoriesBtn.Click();
@@ -107,19 +109,6 @@ namespace SAHL_Cancellations.Pages
 
                 Thread.Sleep(2000);
 
-                LogInfo($"Entering Bond Number: {bondNumber}");
-                BondNumberTxtBox.Clear();
-                BondNumberTxtBox.SendKeys(bondNumber);
-                LogSuccess($"Entered Bond Number: {bondNumber}");
-
-                LogInfo($"Entering Bond Amount: {bondAmount}");
-                BondAmountTxtBox.Clear();
-                BondAmountTxtBox.SendKeys(bondAmount);
-                LogSuccess($"Entered Bond Amount: {bondAmount}");
-
-                LogInfo("Clicking Save Signatories button");
-                SaveSignatoriesBtn.Click();
-                LogSuccess("Clicked Save Signatories button");
 
                 Thread.Sleep(2000);
 

@@ -40,15 +40,15 @@ namespace SAHL_Cancellations.Pages
         }
 
         // UI Elements - All elements on the Deed Search Page
-        public IWebElement DeadSearchTab => driver.FindElement(By.XPath("//div[contains(text(),'Deed Search')]"));
-        public IWebElement NewSearchBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_SearchWorksUserControl_cmdNewSearch']"));
-        public IWebElement ShowOnlyImportableResultsCheckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_SearchWorksUserControl_cbUserResultsOnly']"));
-        public IWebElement OnlyMyResultsCheckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_btnInsertSprint']"));
-        public IWebElement SearchTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_SearchWorksUserControl_txtFilter']"));
+        public IWebElement DeadSearchTab => driver.FindElement(By.XPath("(//a[@id='div_menu_deedsearch'])[1]"));
+        public IWebElement NewSearchBtn => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_C_SearchWorksUserControl_cmdNewSearch']"));
+        public IWebElement ShowOnlyImportableResultsCheckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_SearchWorksUserControl_cbFilter']"));
+        public IWebElement OnlyMyResultsCheckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_SearchWorksUserControl_cbUserResultsOnly']"));
+        public IWebElement FindTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_SearchWorksUserControl_txtFilter']"));
         public IWebElement FirstCalender => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_SearchWorksUserControl_txtDateFrom']"));
         public IWebElement SecondCalender => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_DetailsView1_txtInsertReminderDate']"));
-        public IWebElement FindBtn => driver.FindElement(By.XPath("//input[@id='cmdSearchHistory']"));
-        public IWebElement DownloadPdf => driver.FindElement(By.XPath("(//input[@id='btnExportSWPDF'])[1]"));
+        public IWebElement SearchBtn => driver.FindElement(By.XPath("//a[@id='cmdSearchHistory']"));
+        public IWebElement DownloadPdf => driver.FindElement(By.XPath("//tbody/tr[2]/td[5]/a[2]/span[1]"));
         public IWebElement PageOne => driver.FindElement(By.XPath("(//span[contains(text(),'1')])[9]"));
         public IWebElement PageTwo => driver.FindElement(By.XPath("//a[normalize-space()='2']"));
         public IWebElement ClearBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_SearchWorksUserControl_cmdClear']"));
@@ -66,20 +66,15 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess("Clicked on Deed Search tab");
 
                 LogInfo($"Entering search text: {Search}");
-                SearchTxtBox.EnterText(Search);
+                FindTxtBox.EnterText(Search);
                 LogSuccess($"Entered search text: {Search}");
 
                 Thread.Sleep(2000);
 
                 LogInfo("Clicking Find button");
-                FindBtn.Click();
+                SearchBtn.Click();
                 LogSuccess("Clicked Find button");
 
-                Thread.Sleep(2000);
-
-                LogInfo("Clicking Download PDF button");
-                DownloadPdf.Click();
-                LogSuccess("Clicked Download PDF button");
 
                 Thread.Sleep(3000);
 
@@ -87,7 +82,15 @@ namespace SAHL_Cancellations.Pages
                 NewSearchBtn.Click();
                 LogSuccess("Clicked New Search button");
 
-                LogSuccess("Successfully completed Deed Search PDF download process");
+				//Thread.Sleep(5000);
+
+				//LogInfo("Clicking Download PDF button");
+				//DownloadPdf.Click();
+				//LogSuccess("Clicked Download PDF button");
+
+				Thread.Sleep(10000);
+
+				LogSuccess("Successfully completed Deed Search PDF download process");
                 CaptureScreenshot($"{pageName}_DownloadPdf_Completed");
             }
             catch (Exception ex)

@@ -116,11 +116,11 @@ namespace SAHL_Cancellations.Utilities
 
         // Instruction Details
         public static readonly string TitleDeedNumber = "5489";
-        public static readonly string LegalBankDescription = "ABSA";
-        public static readonly string PANumber = "1011155";
-        public static readonly string Signatories = "Teboho Bodibe";
-        public static readonly string BondNumber = "544899448420";
-        public static readonly string BondAmount = "600000";
+        public static readonly string TypeOfReason = "ABSA";
+        public static readonly string DeedsOffice2 = "Durban";
+        public static readonly string Party = "Teboho Bodibe";
+        public static readonly string Property2 = "Erf";  
+        
 
         // Property
         public static readonly string DeedsOffice = "Durban";
@@ -133,7 +133,7 @@ namespace SAHL_Cancellations.Utilities
         public static readonly string Extent1 = "C200";
         public static readonly string Extent2 = "Square Metres";
         public static readonly string Address3 = "Unhlanga Rocks 2001";
-        public static readonly string LegalDescription = "New Development Apratments";
+        public static readonly string LegalBankDescription = "New Development Apratments";
         public static readonly string HeldBy = "Deed of Transfer T";
         public static readonly string PortionNumber = "100";
         public static readonly string SubDivisionalTypePortion = "Portion";
