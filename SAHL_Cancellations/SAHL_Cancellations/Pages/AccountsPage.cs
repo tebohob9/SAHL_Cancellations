@@ -36,8 +36,8 @@ namespace SAHL_Cancellations.Pages
         }
 
         // UI Elements - All elements on the Accounts page
-        public IWebElement AccountsTab => driver.FindElement(By.XPath("//div[contains(text(),'Accounts')]"));
-        public IWebElement ExportBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_btnExport']"));
+        public IWebElement AccountsTab => driver.FindElement(By.XPath("(//a[@id='div_menu_accounts'])[1]"));
+        public IWebElement ExportBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_FinalAccount1_lnkExport'])[1]"));
         public IWebElement PaymethodDrpDwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_C_C_dlSOA_ctl01_varPaymentMethod']"));
         public IWebElement PayDateTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_dlSOA_ctl01_txtPaymentDate']"));
         public IWebElement TodayBtn => driver.FindElement(By.XPath("//button[normalize-space()='Today']"));
@@ -47,23 +47,23 @@ namespace SAHL_Cancellations.Pages
         public IWebElement MoveDownBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_dlSOA_ctl01_ImageButton2']"));
         public IWebElement EditBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_dlSOA_ctl01_ImageButton3']"));
         public IWebElement RefreshBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_btnRefresh']"));
-        public IWebElement AddItemBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_btnAdditionalFees']"));
-        public IWebElement SaveBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_btnSave']"));
-        public IWebElement BankDrpDwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_C_C_ddlBanks']"));
-        public IWebElement CloseAddPopUp => driver.FindElement(By.XPath("//img[@id='ctl00_ctl00_C_C_mdlPopUp_close']"));
+        public IWebElement AddItemBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_FinalAccount1_btnAdditionalFees'])[1]"));
+        public IWebElement SaveBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_btnSave'])[1]"));
+        public IWebElement BankDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_ddlBanks'])[1]"));
+        public IWebElement DescriptionTxtBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_FinalAccount1_txtAdditionalCostDesc'])[1]"));
         public IWebElement ItemTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtAdditionalCostDesc']"));
-        public IWebElement ProFormaCheckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_chkProformaCost']"));
-        public IWebElement DebitTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtDebitFee_txtDebitFeeTextBox']"));
-        public IWebElement CreditTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtCreditFee_txtCreditFeeTextBox']"));
-        public IWebElement PaymentMethodDrpDwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_C_C_varPaymentMethod']"));
+        public IWebElement ProFormaCheckBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_FinalAccount1_chkProformaCost'])[1]"));
+        public IWebElement DebitTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_FinalAccount1_txtDebitFee_txtDebitFeeTextBox'])[1]"));
+        public IWebElement CreditTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_FinalAccount1_txtCreditFee_txtCreditFeeTextBox'])[1]"));
+        public IWebElement VatableBtn => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_FinalAccount1_chkIsAdditionalVatable'])[1]"));
         public IWebElement PaymentDateTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtPaymentDate']"));
-        public IWebElement TodayAddBtn => driver.FindElement(By.XPath("//button[normalize-space()='Today']"));
-        public IWebElement VatableCheckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_chkIsAdditionalVatable']"));
-        public IWebElement SaveAddBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_btnInsertGrid']"));
+        public IWebElement AddItemSaveBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_FinalAccount1_btnInsertGrid'])[1]"));
+        public IWebElement VatableCheckBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_FinalAccount1_chkIsAdditionalVatable'])[1]"));
+        public IWebElement SaveAddBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_btnSave'])[1]"));
         public IWebElement CancelBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_btnClose']"));
 
         // Complete the Add Item form with provided values
-        public void CompleteAddItemForm(string Item, string Debit, string Credit, string PaymentMethod)
+        public void CompleteAddItemForm(string Description, string Debit, string Credit, string PaymentMethod)
         {
             try
             {
@@ -75,38 +75,30 @@ namespace SAHL_Cancellations.Pages
                 AddItemBtn.Click();
                 LogSuccess($"Clicked on Add Item button");
 
-                LogInfo($"Entering item description: {Item}");
-                ItemTextBox.EnterText(Item);
-                LogSuccess($"Entered item description: {Item}");
+                LogInfo($"Entering item description: {Description}");
+                DescriptionTxtBox .EnterText(Description);
+                LogSuccess($"Entered item description: {Description}");
 
-                LogInfo($"Entering debit amount: {Debit}");
-                DebitTextBox.EnterText(Debit);
-                LogSuccess($"Entered debit amount: {Debit}");
+				LogInfo($"Clicking on ProForma check box");
+				ProFormaCheckBox.Click();
+				LogSuccess($"Clicked on ProForma check box");
 
-                LogInfo($"Entering credit amount: {Credit}");
+				LogInfo($"Entering debit amount: {Debit}");
+				DebitTextBox.EnterText(Debit);
+				LogSuccess($"Entered debit amount: {Debit}");
+
+				LogInfo($"Entering credit amount: {Credit}");
                 CreditTextBox.EnterText(Credit);
                 LogSuccess($"Entered credit amount: {Credit}");
 
-                LogInfo($"Selecting payment method: {PaymentMethod}");
-                PaymentMethodDrpDwn.SelectDropDownText(PaymentMethod);
-                LogSuccess($"Selected payment method: {PaymentMethod}");
-
-                LogInfo($"Clicking on Payment Date field");
-                PaymentDateTextBox.Click();
-                LogSuccess($"Clicked on Payment Date field");
-
-                LogInfo($"Clicking Today button");
-                TodayAddBtn.Click();
-                LogSuccess($"Clicked Today button");
-
-                LogInfo($"Clicking Vatable checkbox");
+                LogInfo($"Clicking on Vatable check box");
                 VatableCheckBox.Click();
-                LogSuccess($"Clicked Vatable checkbox");
+                LogSuccess($"Clicked on Vatable check box");
 
                 Thread.Sleep(2000);
 
                 LogInfo($"Clicking Save button");
-                SaveAddBtn.Click();
+                AddItemSaveBtn.Click();
                 LogSuccess($"Clicked Save button");
 
                 LogInfo($"Add Item form completed successfully");

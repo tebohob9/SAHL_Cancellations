@@ -42,11 +42,11 @@ namespace SAHL_Cancellations.Pages
         // UI Elements - All elements on the Instruction Details Page
         public IWebElement InstructionDetailsTab => driver.FindElement(By.XPath("(//a[@id='div_menu_instructiondetails'])[1]"));
         public IWebElement TitleDeedNumberTxtBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_txtDeedOfTransfer_txtDeedOfTransferTextBox'])[1]"));
-        public IWebElement DeedsOfficeDropdwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_C_C_ddlDeedsOffice']"));
-        public IWebElement SaveBtn => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_C_btnSave']"));
-        public IWebElement TypeOfReasonDrpDwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_C_C_ddlReasonType']"));
-        public IWebElement PartyTxtBox => driver.FindElement(By.XPath("//textarea[@id='ctl00_ctl00_C_C_txtParty']"));
-        public IWebElement PropertyTxtBox => driver.FindElement(By.XPath("//textarea[@id='ctl00_ctl00_C_C_txtProperty']"));
+        public IWebElement DeedsOfficeDropdwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_ddlDeedsOffice'])[1]"));
+        public IWebElement SaveBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_btnSave'])[1]"));
+        public IWebElement TypeOfReasonDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_ddlReasonType'])[1]"));
+        public IWebElement PartyTxtBox => driver.FindElement(By.XPath("(//textarea[@id='ctl00_ctl00_C_C_txtParty'])[1]"));
+        public IWebElement PropertyTxtBox => driver.FindElement(By.XPath("(//textarea[@id='ctl00_ctl00_C_C_txtProperty'])[1]"));
         public IWebElement LegalBankDescriptionTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtLegalBank_txtbox']"));
         public IWebElement PANumberTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtPaNumber_txtbox']"));
         public IWebElement SignatoriesTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_dtListSignatories_ctl00_txtFooterSignatoryName']"));
@@ -103,9 +103,9 @@ namespace SAHL_Cancellations.Pages
 
                 
 
-                LogInfo("Clicking Add Signatories button");
-                AddSignatoriesBtn.Click();
-                LogSuccess("Clicked Add Signatories button");
+                LogInfo("Clicking Save button");
+                SaveBtn.Click();
+                LogSuccess("Clicked Save button");
 
                 Thread.Sleep(2000);
 

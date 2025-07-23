@@ -42,7 +42,7 @@ namespace SAHL_Cancellations.Pages
         // UI Elements - All elements on the Refund Details page
         public IWebElement RefundDetailsTab => driver.FindElement(By.XPath("(//a[@id='div_menu_refunddetails'])[1]"));
 		public IWebElement BeneficiaryTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtBeneficiaryAccount']")); 
-        public IWebElement BankTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_TxtBank']"));
+        public IWebElement BankTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_txtBank'])[1]"));
         public IWebElement BranchNameTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtBranchName']"));
         public IWebElement BranchCodeTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtBranchCode']"));
 		public IWebElement TelephoneTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtTelephone']"));
@@ -50,7 +50,7 @@ namespace SAHL_Cancellations.Pages
         public IWebElement AccountNumberTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtAccountNumber']"));
         public IWebElement AccountTypeDrpDwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_C_C_ddlVAR_AccountType']"));
         public IWebElement EmailTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtEmail']"));
-        public IWebElement SaveBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_btnSave']"));
+        public IWebElement SaveBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_btnSaveRefundDetails'])[1]"));
 
         // Complete the refund details form with provided values
         public void CompleteRefundDetailsForm(string Beneficiary, string bank, string accountNumber, 
@@ -109,7 +109,9 @@ namespace SAHL_Cancellations.Pages
                 SaveBtn.Click();
                 LogSuccess("Clicked Save button");
 
-                LogSuccess("Successfully completed refund details form");
+				Thread.Sleep(10000);
+
+				LogSuccess("Successfully completed refund details form");
             }
             catch (Exception ex)
             {
