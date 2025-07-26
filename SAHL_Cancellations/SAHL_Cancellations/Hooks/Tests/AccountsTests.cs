@@ -119,9 +119,9 @@ namespace Cancellations_Tests.Tests
                 test.Log(Status.Info, $"[{testClassName}] Waiting before clicking Refresh button");
                 Thread.Sleep(2000);
 
-                test.Log(Status.Info, $"[{testClassName}] Clicking Refresh button");
-                AccountsPage.ClickRefreshBtn();
-                test.Log(Status.Pass, $"[{testClassName}] Refresh button clicked successfully");
+                test.Log(Status.Info, $"[{testClassName}] Clicking Reset button");
+                AccountsPage.ClickResetBtn();
+                test.Log(Status.Pass, $"[{testClassName}] Reset button clicked successfully");
 
                 // Capture final screenshot
                 CaptureScreenshot($"{testClassName}_RefreshAccounts_Success");

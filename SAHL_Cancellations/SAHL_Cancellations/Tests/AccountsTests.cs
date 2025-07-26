@@ -109,7 +109,7 @@ namespace Cancellations_Tests.Tests
         }
 
         [Test, Order(3), Category("Regression Test")]
-        public void RefreshAccounts()
+        public void ResetConsentToCancellation()
         {
             try
             {
@@ -120,7 +120,7 @@ namespace Cancellations_Tests.Tests
                 Thread.Sleep(2000);
 
                 test.Log(Status.Info, $"[{testClassName}] Clicking Refresh button");
-                AccountsPage.ClickRefreshBtn();
+                AccountsPage.ClickResetBtn();
                 test.Log(Status.Pass, $"[{testClassName}] Refresh button clicked successfully");
 
                 // Capture final screenshot

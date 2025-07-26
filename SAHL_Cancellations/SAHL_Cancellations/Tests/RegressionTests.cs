@@ -889,9 +889,9 @@ namespace SAHL_Cancellations.Tests
                 test.Log(Status.Info, $"[{testClassName}] Waiting for 2 seconds");
                 Thread.Sleep(2000);
 
-                test.Log(Status.Info, $"[{testClassName}] Clicking Refresh button");
-                AccountsPage.ClickRefreshBtn();
-                test.Log(Status.Pass, $"[{testClassName}] Successfully clicked Refresh button");
+                test.Log(Status.Info, $"[{testClassName}] Clicking Reset button");
+                AccountsPage.ClickResetBtn();
+                test.Log(Status.Pass, $"[{testClassName}] Successfully clicked Reset button");
 
                 // Capture screenshot after completing the actions
                 CaptureScreenshot($"{testClassName}_Accounts_CompleteAddItemForm_Success");

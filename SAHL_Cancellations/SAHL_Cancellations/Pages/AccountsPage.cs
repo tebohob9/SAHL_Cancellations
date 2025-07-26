@@ -46,7 +46,7 @@ namespace SAHL_Cancellations.Pages
         public IWebElement MoveUpBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_dlSOA_ctl01_ImageButton1']"));
         public IWebElement MoveDownBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_dlSOA_ctl01_ImageButton2']"));
         public IWebElement EditBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_dlSOA_ctl01_ImageButton3']"));
-        public IWebElement RefreshBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_btnRefresh']"));
+        public IWebElement ResetBtn => driver.FindElement(By.XPath("(//div[@id='ctl00_ctl00_C_upContent'])[1]"));
         public IWebElement AddItemBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_FinalAccount1_btnAdditionalFees'])[1]"));
         public IWebElement SaveBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_btnSave'])[1]"));
         public IWebElement BankDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_ddlBanks'])[1]"));
@@ -91,9 +91,9 @@ namespace SAHL_Cancellations.Pages
                 CreditTextBox.EnterText(Credit);
                 LogSuccess($"Entered credit amount: {Credit}");
 
-                LogInfo($"Clicking on Vatable check box");
-                VatableCheckBox.Click();
-                LogSuccess($"Clicked on Vatable check box");
+                //LogInfo($"Clicking on Vatable check box");
+                //VatableCheckBox.Click();
+                //LogSuccess($"Clicked on Vatable check box");
 
                 Thread.Sleep(2000);
 
@@ -112,12 +112,12 @@ namespace SAHL_Cancellations.Pages
             }
         }
 
-        public void ClickRefreshBtn()
+        public void ClickResetBtn()
         {
             try
             {
                 LogInfo($"Clicking Refresh button");
-                RefreshBtn.Click();
+                ResetBtn.Click();
                 LogSuccess($"Clicked Refresh button");
                 CaptureScreenshot($"{pageName}_RefreshButton_Clicked");
             }
@@ -146,8 +146,27 @@ namespace SAHL_Cancellations.Pages
             }
         }
 
-        // Helper methods for logging
-        private void LogInfo(string message)
+
+
+		public void SaveBankingDetails()
+		{
+			try
+			{
+				LogInfo($"Clicking Export button");
+				ExportBtn.Click();
+				LogSuccess($"Clicked Export button");
+				CaptureScreenshot($"{pageName}_ExportButton_Clicked");
+			}
+			catch (Exception ex)
+			{
+				LogFailure($"Failed to click Export button", ex);
+				CaptureScreenshot($"{pageName}_ExportButton_Failure");
+				throw;
+			}
+		}
+
+		// Helper methods for logging
+		private void LogInfo(string message)
         {
             string logMessage = $"[{pageName}] {message}";
             Console.WriteLine(logMessage);
