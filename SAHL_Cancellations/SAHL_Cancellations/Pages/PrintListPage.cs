@@ -40,29 +40,32 @@ namespace SAHL_Cancellations.Pages
         }
 
         // UI Elements - All elements on the Print List page
-        public IWebElement PrintListTab => driver.FindElement(By.XPath("//div[contains(text(),'Print List')]"));
+        public IWebElement PrintListTab => driver.FindElement(By.XPath("(//a[@id='div_menu_printlist'])[1]"));
         public IWebElement CancellationFiguresChckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_PrintListGroup2_rptGroup_ctl00_ckDoc']"));
-        public IWebElement ConsentToCancellationChckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_PrintListGroup2_rptGroup_ctl01_ckDoc']"));
-        public IWebElement Letter_InitialLetterCheckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_PrintListGroup2_rptGroup_ctl02_ckDoc']"));
-        public IWebElement Letter_InstructionToLodgeCheckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_PrintListGroup2_rptGroup_ctl03_ckDoc']"));
-        public IWebElement Account_ProFormaStatementChckBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_ctl00_C_C_C_PrintListGroup2_rptGroup_ctl04_ckDoc'])[1]"));
-        public IWebElement FormLLLChckBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_ctl00_C_C_C_PrintListGroup2_rptGroup_ctl05_ckDoc'])[1]"));
+        public IWebElement ConsentToCancellationChckBox => driver.FindElement(By.XPath("(//input[@id='Chk66039'])[1]"));
+        public IWebElement Letter_RequestCancellation_SAHomeloansClient_CheckBox => driver.FindElement(By.XPath("(//input[@id='Chk69424'])[1]"));
+        public IWebElement Letter_InstructionToLodgeCheckBox => driver.FindElement(By.XPath("(//input[@id='Chk68081'])[1]"));
+        public IWebElement Account_ProFormaStatementChckBox => driver.FindElement(By.XPath("(//input[@id='Chk66036'])[1]"));
+        public IWebElement FormLLLChckBox => driver.FindElement(By.XPath("(//input[@id='Chk68081'])[1]"));
         public IWebElement FormLLLLink => driver.FindElement(By.XPath("(//a[normalize-space()='Form LLL'])[1]"));
-        public IWebElement RefundInstruction_HomeLoanUnderCancellationChckBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_ctl00_C_C_C_PrintListGroup2_rptGroup_ctl06_ckDoc'])[1]"));
-        public IWebElement RefundInstruction_MortgageBondChckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_PrintListGroup2_rptGroup_ctl07_ckDoc']"));
-        public IWebElement AbsaHomeLoansChckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_PrintListGroup2_rptGroup_ctl08_ckDoc']"));
-        public IWebElement PopiConsentChckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_PrintListGroup2_rptGroup_ctl09_ckDoc']"));
-        public IWebElement ApplicationForCopyOfLostDeedChckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_PrintListGroup7_rptGroup_ctl00_ckDoc']"));
-        public IWebElement ConsentByBankChckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_PrintListGroup7_rptGroup_ctl01_ckDoc']"));
-        public IWebElement ApplicationForCancellationLostBondChckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_PrintListGroup7_rptGroup_ctl02_ckDoc']"));
-        public IWebElement NoticeOfApplicationChckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_PrintListGroup7_rptGroup_ctl03_ckDoc']"));
+        public IWebElement RefundInstruction_DiscoveryChckBox => driver.FindElement(By.XPath("(//input[@id='Chk66020'])[1]"));
+        public IWebElement Rmcp_Mortgagor_CancellationChckBox => driver.FindElement(By.XPath("(//input[@id='Chk69423'])[1]"));
+        public IWebElement LetterRequestGuaranteesChckBox => driver.FindElement(By.XPath("(//input[@id='Chk66040'])[1]"));
+		public IWebElement LetterRequestGuaranteesSAHomeloansChckBox => driver.FindElement(By.XPath("(//input[@id='Chk69425'])[1]")); 
+        public IWebElement PopiConsentChckBox => driver.FindElement(By.XPath("(//input[@id='Chk66042'])[1]"));
+        public IWebElement ApplicationForCopyOfLostDeedChckBox => driver.FindElement(By.XPath("(//input[@id='Chk66033'])[1]"));
+        public IWebElement ConsentByBankChckBox => driver.FindElement(By.XPath("(//input[@id='Chk66033'])[1]"));
+        public IWebElement ApplicationForCancellationLostBondChckBox => driver.FindElement(By.XPath("(//input[@id='Chk66035'])[1]"));
+        public IWebElement NoticeOfApplicationChckBox => driver.FindElement(By.XPath("(//input[@id='Chk66041'])[1]"));
         public IWebElement Account_ProFormaStatement => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_ctl00_C_C_C_PrintListGroup2_rptGroup_ctl04_ckDoc'])[1]"));
         public IWebElement UpploadAdditionalDocumentsBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_btnUploadAdditional']"));
-        public IWebElement GenerateSelectedBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_btnGenerateSelected']"));
+        public IWebElement GenerateSelectedBtn => driver.FindElement(By.XPath("(//i[@aria-hidden='true'])[25]"));
         public IWebElement MoveUpBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_dlSOA_ctl01_ImageButton1']"));
+		public IWebElement SelectAllBtn => driver.FindElement(By.XPath("(//input[@type='checkbox'])[22]"));
+		public IWebElement GenerateSelectedDocumentsBtn => driver.FindElement(By.XPath("(//button[@onclick='GenerateCheckedDocuments();return false;'])[1]"));
 
-        // Generate all selected documents
-        public void GenerateSelected()
+		// Generate all selected documents
+		public void GenerateSelected()
         {
             try
             {
@@ -75,112 +78,114 @@ namespace SAHL_Cancellations.Pages
                 
 
                 // Select all checkboxes for documents
-                LogInfo("Selecting Cancellation Figures checkbox");
-                if (!CancellationFiguresChckBox.Selected)
-                {
-                    CancellationFiguresChckBox.Click();
-                    LogSuccess("Selected Cancellation Figures checkbox");
-                }
+                //LogInfo("Selecting Cancellation Figures checkbox");
+                //if (!CancellationFiguresChckBox.Selected)
+                //{
+                //    CancellationFiguresChckBox.Click();
+                //    LogSuccess("Selected Cancellation Figures checkbox");
+                //}
 
                 LogInfo("Selecting Consent to Cancellation checkbox");
-                if (!ConsentToCancellationChckBox.Selected)
+                if (!SelectAllBtn.Selected)
                 {
-                    ConsentToCancellationChckBox.Click();
+                    SelectAllBtn.Click();
                     LogSuccess("Selected Consent to Cancellation checkbox");
                 }
-
-                LogInfo("Selecting Initial Letter checkbox");
-                if (!Letter_InitialLetterCheckBox.Selected)
+                Thread.Sleep(50000);
+				LogInfo("Selecting Initial Letter checkbox");
+                if (!GenerateSelectedDocumentsBtn.Selected)
                 {
-                    Letter_InitialLetterCheckBox.Click();
+					GenerateSelectedDocumentsBtn.Click();
                     LogSuccess("Selected Initial Letter checkbox");
                 }
 
-                LogInfo("Selecting Instruction to Lodge checkbox");
-                if (!Letter_InstructionToLodgeCheckBox.Selected)
-                {
-                    Letter_InstructionToLodgeCheckBox.Click();
-                    LogSuccess("Selected Instruction to Lodge checkbox");
-                }
+                Thread.Sleep(55555000);
 
-                LogInfo("Selecting Pro Forma Statement checkbox");
-                if (!Account_ProFormaStatementChckBox.Selected)
-                {
-                    Account_ProFormaStatementChckBox.Click();
-                    LogSuccess("Selected Pro Forma Statement checkbox");
-                }
+				//           LogInfo("Selecting Instruction to Lodge checkbox");
+				//           if (!FormLLLChckBox.Selected)
+				//           {
+				//FormLLLChckBox.Click();
+				//               LogSuccess("Selected Instruction to Lodge checkbox");
+				//           }
 
-                LogInfo("Selecting Form LLL checkbox");
-                if (!FormLLLChckBox.Selected)
-                {
-                    FormLLLChckBox.Click();
-                    LogSuccess("Selected Form LLL checkbox");
-                }
+				//           LogInfo("Selecting Pro Forma Statement checkbox");
+				//           if (!Letter_InstructionToLodgeCheckBox.Selected)
+				//           {
+				//               Letter_InstructionToLodgeCheckBox.Click();
+				//               LogSuccess("Selected Pro Forma Statement checkbox");
+				//           }
 
-                LogInfo("Selecting Refund Instruction - Home Loan Under Cancellation checkbox");
-                if (!RefundInstruction_HomeLoanUnderCancellationChckBox.Selected)
-                {
-                    RefundInstruction_HomeLoanUnderCancellationChckBox.Click();
-                    LogSuccess("Selected Refund Instruction - Home Loan Under Cancellation checkbox");
-                }
+				//           LogInfo("Selecting Form LLL checkbox");
+				//           if (!Letter_RequestCancellation_SAHomeloansClient_CheckBox.Selected)
+				//           {
+				//               Letter_RequestCancellation_SAHomeloansClient_CheckBox.Click();
+				//               LogSuccess("Selected Form LLL checkbox");
+				//           }
 
-                LogInfo("Selecting Refund Instruction - Mortgage Bond checkbox");
-                if (!RefundInstruction_MortgageBondChckBox.Selected)
-                {
-                    RefundInstruction_MortgageBondChckBox.Click();
-                    LogSuccess("Selected Refund Instruction - Mortgage Bond checkbox");
-                }
+				//           LogInfo("Selecting Refund Instruction - Home Loan Under Cancellation checkbox");
+				//           if (!LetterRequestGuaranteesChckBox.Selected)
+				//           {
+				//LetterRequestGuaranteesChckBox.Click();
+				//               LogSuccess("Selected Refund Instruction - Home Loan Under Cancellation checkbox");
+				//           }       
 
-                LogInfo("Selecting Absa Home Loans checkbox");
-                if (!AbsaHomeLoansChckBox.Selected)
-                {
-                    AbsaHomeLoansChckBox.Click();
-                    LogSuccess("Selected Absa Home Loans checkbox");
-                }
+				//           LogInfo("Selecting Refund Instruction - Mortgage Bond checkbox");
+				//           if (!LetterRequestGuaranteesSAHomeloansChckBox.Selected)
+				//           {
+				//               LetterRequestGuaranteesSAHomeloansChckBox.Click();
+				//               LogSuccess("Selected Refund Instruction - Mortgage Bond checkbox");
+				//           }
 
-                LogInfo("Selecting POPI Consent checkbox");
-                if (!PopiConsentChckBox.Selected)
-                {
-                    PopiConsentChckBox.Click();
-                    LogSuccess("Selected POPI Consent checkbox");
-                }
+				//           LogInfo("Selecting Absa Home Loans checkbox");
+				//           if (!PopiConsentChckBox.Selected)
+				//           {
+				//               PopiConsentChckBox.Click();
+				//               LogSuccess("Selected Absa Home Loans checkbox");
+				//           }
 
-                LogInfo("Selecting Application for Copy of Lost Deed checkbox");
-                if (!ApplicationForCopyOfLostDeedChckBox.Selected)
-                {
-                    ApplicationForCopyOfLostDeedChckBox.Click();
-                    LogSuccess("Selected Application for Copy of Lost Deed checkbox");
-                }
+				//           LogInfo("Selecting POPI Consent checkbox");
+				//           if (!RefundInstruction_DiscoveryChckBox.Selected)
+				//           {
+				//               RefundInstruction_DiscoveryChckBox.Click();
+				//               LogSuccess("Selected POPI Consent checkbox");
+				//           }
 
-                LogInfo("Selecting Consent by Bank checkbox");
-                if (!ConsentByBankChckBox.Selected)
-                {
-                    ConsentByBankChckBox.Click();
-                    LogSuccess("Selected Consent by Bank checkbox");
-                }
+				//           LogInfo("Selecting Application for Copy of Lost Deed checkbox");
+				//           if (!Rmcp_Mortgagor_CancellationChckBox.Selected)
+				//           {
+				//               Rmcp_Mortgagor_CancellationChckBox.Click();
+				//               LogSuccess("Selected Application for Copy of Lost Deed checkbox");
+				//           }
 
-                LogInfo("Selecting Application for Cancellation Lost Bond checkbox");
-                if (!ApplicationForCancellationLostBondChckBox.Selected)
-                {
-                    ApplicationForCancellationLostBondChckBox.Click();
-                    LogSuccess("Selected Application for Cancellation Lost Bond checkbox");
-                }
+				//           LogInfo("Selecting Consent by Bank checkbox");
+				//           if (!ConsentByBankChckBox.Selected)
+				//           {
+				//               ConsentByBankChckBox.Click();
+				//               LogSuccess("Selected Consent by Bank checkbox");
+				//           }
 
-                LogInfo("Selecting Notice of Application checkbox");
-                if (!NoticeOfApplicationChckBox.Selected)
-                {
-                    NoticeOfApplicationChckBox.Click();
-                    LogSuccess("Selected Notice of Application checkbox");
-                }
+				//           LogInfo("Selecting Application for Cancellation Lost Bond checkbox");
+				//           if (!ApplicationForCancellationLostBondChckBox.Selected)
+				//           {
+				//               ApplicationForCancellationLostBondChckBox.Click();
+				//               LogSuccess("Selected Application for Cancellation Lost Bond checkbox");
+				//           }
 
-                Thread.Sleep(2000); // Wait for UI to update
+				//           LogInfo("Selecting Notice of Application checkbox");
+				//           if (!NoticeOfApplicationChckBox.Selected)
+				//           {
+				//               NoticeOfApplicationChckBox.Click();
+				//               LogSuccess("Selected Notice of Application checkbox");
+				//           }
 
-                // Click the Generate Selected button
-                LogInfo("Clicking Generate Selected button");
-                GenerateSelectedBtn.Click();
-                LogSuccess("Clicked Generate Selected button");
+				//           Thread.Sleep(2000); // Wait for UI to update
 
-                Thread.Sleep(2000); // Wait for generation to complete
+				//           // Click the Generate Selected button
+				//           LogInfo("Clicking Generate Selected button");
+				//           GenerateSelectedBtn.Click();
+				//           LogSuccess("Clicked Generate Selected button");
+
+				Thread.Sleep(2000); // Wait for generation to complete
 
                 LogSuccess("Successfully generated all selected documents");
                 CaptureScreenshot($"{pageName}_GenerateSelected_Completed");
@@ -202,7 +207,7 @@ namespace SAHL_Cancellations.Pages
 
                 // Uncheck all checkboxes first to ensure only Pro Forma is selected
                 LogInfo("Unchecking all document checkboxes");
-                UncheckAllDocuments();
+                //UncheckAllDocuments();
                 LogSuccess("Unchecked all document checkboxes");
 
                 // Select only the Pro Forma Statement checkbox
@@ -234,36 +239,36 @@ namespace SAHL_Cancellations.Pages
         }
 
         // Helper method to uncheck all document checkboxes
-        private void UncheckAllDocuments()
-        {
-            try
-            {
-                LogInfo("Unchecking all document checkboxes");
+        //private void UncheckAllDocuments()
+        //{
+        //    try
+        //    {
+        //        LogInfo("Unchecking all document checkboxes");
 
-                // Uncheck all checkboxes if they are selected
-                if (CancellationFiguresChckBox.Selected) CancellationFiguresChckBox.Click();
-                if (ConsentToCancellationChckBox.Selected) ConsentToCancellationChckBox.Click();
-                if (Letter_InitialLetterCheckBox.Selected) Letter_InitialLetterCheckBox.Click();
-                if (Letter_InstructionToLodgeCheckBox.Selected) Letter_InstructionToLodgeCheckBox.Click();
-                if (Account_ProFormaStatementChckBox.Selected) Account_ProFormaStatementChckBox.Click();
-                if (FormLLLChckBox.Selected) FormLLLChckBox.Click();
-                if (RefundInstruction_HomeLoanUnderCancellationChckBox.Selected) RefundInstruction_HomeLoanUnderCancellationChckBox.Click();
-                if (RefundInstruction_MortgageBondChckBox.Selected) RefundInstruction_MortgageBondChckBox.Click();
-                if (AbsaHomeLoansChckBox.Selected) AbsaHomeLoansChckBox.Click();
-                if (PopiConsentChckBox.Selected) PopiConsentChckBox.Click();
-                if (ApplicationForCopyOfLostDeedChckBox.Selected) ApplicationForCopyOfLostDeedChckBox.Click();
-                if (ConsentByBankChckBox.Selected) ConsentByBankChckBox.Click();
-                if (ApplicationForCancellationLostBondChckBox.Selected) ApplicationForCancellationLostBondChckBox.Click();
-                if (NoticeOfApplicationChckBox.Selected) NoticeOfApplicationChckBox.Click();
+        //        // Uncheck all checkboxes if they are selected
+        //        if (CancellationFiguresChckBox.Selected) CancellationFiguresChckBox.Click();
+        //        if (ConsentToCancellationChckBox.Selected) ConsentToCancellationChckBox.Click();
+        //        if (Letter_InitialLetterCheckBox.Selected) Letter_InitialLetterCheckBox.Click();
+        //        if (Letter_InstructionToLodgeCheckBox.Selected) Letter_InstructionToLodgeCheckBox.Click();
+        //        if (Account_ProFormaStatementChckBox.Selected) Account_ProFormaStatementChckBox.Click();
+        //        if (FormLLLChckBox.Selected) FormLLLChckBox.Click();
+        //        if (RefundInstruction_HomeLoanUnderCancellationChckBox.Selected) RefundInstruction_HomeLoanUnderCancellationChckBox.Click();
+        //        if (RefundInstruction_MortgageBondChckBox.Selected) RefundInstruction_MortgageBondChckBox.Click();
+        //        if (AbsaHomeLoansChckBox.Selected) AbsaHomeLoansChckBox.Click();
+        //        if (PopiConsentChckBox.Selected) PopiConsentChckBox.Click();
+        //        if (ApplicationForCopyOfLostDeedChckBox.Selected) ApplicationForCopyOfLostDeedChckBox.Click();
+        //        if (ConsentByBankChckBox.Selected) ConsentByBankChckBox.Click();
+        //        if (ApplicationForCancellationLostBondChckBox.Selected) ApplicationForCancellationLostBondChckBox.Click();
+        //        if (NoticeOfApplicationChckBox.Selected) NoticeOfApplicationChckBox.Click();
 
-                LogSuccess("Successfully unchecked all document checkboxes");
-            }
-            catch (Exception ex)
-            {
-                LogFailure("Failed to uncheck all document checkboxes", ex);
-                throw;
-            }
-        }
+        //        LogSuccess("Successfully unchecked all document checkboxes");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        LogFailure("Failed to uncheck all document checkboxes", ex);
+        //        throw;
+        //    }
+        //}
 
         // Helper methods for logging
         private void LogInfo(string message)

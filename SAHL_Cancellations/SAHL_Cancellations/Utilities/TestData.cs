@@ -161,15 +161,17 @@ namespace SAHL_Cancellations.Utilities
         public static readonly string CorrespondentBranch = "Durban";
 
         // Parties
-        public static readonly string SelectPartyTypeNaturalPerson = "Natural Person";
+        public static readonly string SelectPartyTypeNaturalPerson = "Mortgagor";
         public static readonly string FirstName = "Teboho";
-        public static readonly string Surname = "Bodibe";
+		public static readonly string MiddleName = "Tebu";
+		public static readonly string Surname = "Bodibe";
         public static readonly string Gender = "Female";
         public static readonly string MethodOfIdentification = "Identity Document (correct)";
         public static readonly string IdentityNumber1 = "910565 6545 66 5";
-        public static readonly string MaritalStatus = "Unmarried"; 
+        public static readonly string MaritalStatus = "Unmarried";
+		public static readonly string Party2 = "Natural Person";
 
-        public static readonly string SelectPartyTypeEntity = "Entity";
+		public static readonly string SelectPartyTypeEntity = "Entity";
         public static readonly string CompanyType = "Public Company - LIMITED";
         public static readonly string NameOfCompany = "e4";
         public static readonly string RegistrationNumber1 = "1222";

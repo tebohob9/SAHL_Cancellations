@@ -41,18 +41,19 @@ namespace SAHL_Cancellations.Pages
         }
 
         // UI Elements - All elements on the Request Cancellation page
-        public IWebElement PartiesTab => driver.FindElement(By.XPath("//div[contains(text(),'Parties')]"));
-        public IWebElement SelectPartyTypeDprDwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_C_C_ddlEntityType']"));
-        public IWebElement AddPartyBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_btnSaveAdded']"));
+        public IWebElement PartiesTab => driver.FindElement(By.XPath("(//a[@id='div_menu_parties'])[1]"));
+        public IWebElement SelectMortgagorTypeDprDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_ddlEntity'])[1]"));
+		public IWebElement AddPartyBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_cmdAdd'])[1]")); 
+        public IWebElement SelectPartyDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_ddlParty'])[1]"));
         public IWebElement AgeCategoryDrpDwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_ctl00_C_C_details_varSupp']"));
-        public IWebElement FirstNamesTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_details_TFT_FirstNamesTextBox']"));
-        public IWebElement SurnamesTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_details_TFT_SurnameTextBox']"));
-        public IWebElement GenderDrpDwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_ctl00_C_C_details_ddlVarGender']"));
+        public IWebElement FirstNamesTxtBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_ctl00_C_C_details_TFT_FirstNamesTextBox'])[1]"));
+        public IWebElement SurnamesTxtBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_ctl00_C_C_details_TFT_SurnameTextBox'])[1]"));
+        public IWebElement GenderDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_ctl00_C_C_details_ddlVarGender'])[1]"));
         public IWebElement NameChangeChckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_details_chkTFT_Section93_1']"));
-        public IWebElement MethodOfIdentificationDrpDwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_ctl00_C_C_details_ddlVarMethodID']"));
+        public IWebElement MethodOfIdentificationDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_ctl00_C_C_details_ddlVarMethodID'])[1]"));
         public IWebElement IdentityNumberTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_ctl00_C_C_details_TFT_IdentityNumberTextBox'])[1]"));
-        public IWebElement MaritalStatusDrpDwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_ctl00_C_C_details_VARMaritalStatus']"));
-        public IWebElement SaveBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_details_btnSubmit1']"));
+        public IWebElement MaritalStatusDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_ctl00_C_C_details_VARMaritalStatus'])[1]"));
+        public IWebElement SaveBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_ctl00_C_C_save_btnSubmit1'])[1]"));
         public IWebElement SaveLegalDescriptions => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_btnSubmit1']"));
         public IWebElement BackBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_btnBack']"));
 
@@ -143,7 +144,8 @@ namespace SAHL_Cancellations.Pages
         }
 
         // Complete the cancellation form with provided values
-        public void CompleteNaturalPersonUnmariedForm(string SelectPartyType, string FirstName, string Surname, string Gender,
+        public void CompleteNaturalPersonUnmariedForm(string SelectMortgagorType, string SelectPartyType,
+            string FirstName, string Surname, string Gender,
             string MethodOfIdentifiaction, string IdentityNumber, string MartialStatus)
         {
             try
@@ -154,15 +156,23 @@ namespace SAHL_Cancellations.Pages
                 PartiesTab.Click();
                 LogSuccess("Clicked Parties Tab");
 
-                LogInfo($"Selecting Party Type: {SelectPartyType}");
-                SelectPartyTypeDprDwn.SelectDropDownText(SelectPartyType);
-                LogSuccess($"Selected Party Type: {SelectPartyType}");
+                LogInfo($"Selecting Party Type: {SelectMortgagorType}");
+                SelectMortgagorTypeDprDwn.SelectDropDownText(SelectMortgagorType);
+                LogSuccess($"Selected Party Type: {SelectMortgagorType}");
 
-                LogInfo("Clicking Add Party button");
+				LogInfo($"Selecting Party Type: {SelectPartyType}");
+				SelectPartyDrpDwn.SelectDropDownText(SelectPartyType);
+				LogSuccess($"Selected Party Type: {SelectPartyType}");
+
+				Thread.Sleep(5000);
+
+				LogInfo("Clicking Add Party button");
                 AddPartyBtn.Click();
                 LogSuccess("Clicked Add Party button");
 
-                LogInfo($"Entering First Name: {FirstName}");
+                Thread.Sleep(5000);
+
+				LogInfo($"Entering First Name: {FirstName}");
                 FirstNamesTxtBox.EnterText(FirstName);
                 LogSuccess($"Entered First Name: {FirstName}");
 
@@ -218,7 +228,7 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess("Clicked Parties Tab");
 
                 LogInfo($"Selecting Party Type: {SelectPartyType}");
-                SelectPartyTypeDprDwn.SelectDropDownText(SelectPartyType);
+				SelectMortgagorTypeDprDwn.SelectDropDownText(SelectPartyType);
                 LogSuccess($"Selected Party Type: {SelectPartyType}");
 
                 LogInfo("Clicking Add Party button");
@@ -274,7 +284,7 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess("Clicked Parties Tab");
 
                 LogInfo($"Selecting Party Type: {SelectPartyType}");
-                SelectPartyTypeDprDwn.SelectDropDownText(SelectPartyType);
+                SelectMortgagorTypeDprDwn.SelectDropDownText(SelectPartyType);
                 LogSuccess($"Selected Party Type: {SelectPartyType}");
 
                 LogInfo("Clicking Add Party button");
@@ -330,7 +340,7 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess("Clicked Parties Tab");
 
                 LogInfo($"Selecting Party Type: {SelectPartyType}");
-                SelectPartyTypeDprDwn.SelectDropDownText(SelectPartyType);
+                SelectMortgagorTypeDprDwn.SelectDropDownText(SelectPartyType);
                 LogSuccess($"Selected Party Type: {SelectPartyType}");
 
                 LogInfo("Clicking Add Party button");
@@ -382,7 +392,7 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess("Clicked Parties Tab");
 
                 LogInfo($"Selecting Party Type: {SelectPartyType}");
-                SelectPartyTypeDprDwn.SelectDropDownText(SelectPartyType);
+                SelectMortgagorTypeDprDwn.SelectDropDownText(SelectPartyType);
                 LogSuccess($"Selected Party Type: {SelectPartyType}");
 
                 LogInfo("Clicking Add Party button");
@@ -455,7 +465,7 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess("Clicked Parties Tab");
 
                 LogInfo($"Selecting Party Type: {SelectPartyType}");
-                SelectPartyTypeDprDwn.SelectDropDownText(SelectPartyType);
+                SelectMortgagorTypeDprDwn.SelectDropDownText(SelectPartyType);
                 LogSuccess($"Selected Party Type: {SelectPartyType}");
 
                 LogInfo("Clicking Add Party button");
@@ -530,7 +540,7 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess("Clicked Parties Tab");
 
                 LogInfo($"Selecting Party Type: {SelectPartyType}");
-                SelectPartyTypeDprDwn.SelectDropDownText(SelectPartyType);
+                SelectMortgagorTypeDprDwn.SelectDropDownText(SelectPartyType);
                 LogSuccess($"Selected Party Type: {SelectPartyType}");
 
                 LogInfo("Clicking Add Party button");
@@ -574,7 +584,7 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess("Clicked Parties Tab");
 
                 LogInfo($"Selecting Party Type: {SelectPartyType}");
-                SelectPartyTypeDprDwn.SelectDropDownText(SelectPartyType);
+                SelectMortgagorTypeDprDwn.SelectDropDownText(SelectPartyType);
                 LogSuccess($"Selected Party Type: {SelectPartyType}");
 
                 LogInfo("Clicking Add Party button");
@@ -622,7 +632,7 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess("Clicked Parties Tab");
 
                 LogInfo($"Selecting Party Type: {SelectPartyType}");
-                SelectPartyTypeDprDwn.SelectDropDownText(SelectPartyType);
+                SelectMortgagorTypeDprDwn.SelectDropDownText(SelectPartyType);
                 LogSuccess($"Selected Party Type: {SelectPartyType}");
 
                 LogInfo("Clicking Add Party button");
@@ -668,7 +678,7 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess("Clicked Parties Tab");
 
                 LogInfo($"Selecting Party Type: {SelectPartyType}");
-                SelectPartyTypeDprDwn.SelectDropDownText(SelectPartyType);
+                SelectMortgagorTypeDprDwn.SelectDropDownText(SelectPartyType);
                 LogSuccess($"Selected Party Type: {SelectPartyType}");
 
                 LogInfo("Clicking Add Party button");

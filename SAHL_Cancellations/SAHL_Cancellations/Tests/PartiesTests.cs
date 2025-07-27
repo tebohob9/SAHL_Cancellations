@@ -55,7 +55,8 @@ namespace SAHL_Cancellations.Tests
                 test.Log(Status.Info, $"[{testClassName}] Completing Natural Person form");
                 PartiesPage.CompleteNaturalPersonUnmariedForm(
                     TestData.SelectPartyTypeNaturalPerson,
-                    TestData.FirstName,
+					TestData.Party2,
+					TestData.FirstName,
                     TestData.Surname,
                     TestData.Gender,
                     TestData.MethodOfIdentification,
