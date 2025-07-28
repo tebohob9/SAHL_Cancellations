@@ -86,11 +86,11 @@ namespace SAHL_Cancellations.Tests
             // Start the test in ExtentReports with class name prefix
             test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
             ExtentReport._scenario = test; // Set the current test for page objects to use
-            
+
             try
             {
                 test.Log(Status.Info, $"[{testClassName}] Starting CompleteEntityCompanyForm test");
-                
+
                 // Complete the Entity Company form directly
                 // This assumes we're already on the Parties page from the previous test
                 test.Log(Status.Info, $"[{testClassName}] Completing Entity Company form");
@@ -102,7 +102,7 @@ namespace SAHL_Cancellations.Tests
                     TestData.RegistrationNumber2,
                     TestData.RegistrationNumber3);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully completed Entity Company form");
-                
+
                 // Capture final screenshot
                 CaptureScreenshot($"{testClassName}_CompleteEntityCompanyForm_Success");
             }
@@ -122,11 +122,11 @@ namespace SAHL_Cancellations.Tests
             // Start the test in ExtentReports with class name prefix
             test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
             ExtentReport._scenario = test; // Set the current test for page objects to use
-            
+
             try
             {
                 test.Log(Status.Info, $"[{testClassName}] Starting CompleteEntityCloseCorporationForm test");
-                
+
                 // Complete the Entity Close Corporation form directly
                 test.Log(Status.Info, $"[{testClassName}] Completing Entity Close Corporation form");
                 PartiesPage.CompleteEntityCloseCorporationForm(
@@ -137,7 +137,7 @@ namespace SAHL_Cancellations.Tests
                     TestData.RegistrationNumber2,
                     TestData.RegistrationNumber3);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully completed Entity Close Corporation form");
-                
+
                 // Capture final screenshot
                 CaptureScreenshot($"{testClassName}_CompleteEntityCloseCorporationForm_Success");
             }
@@ -157,21 +157,21 @@ namespace SAHL_Cancellations.Tests
             // Start the test in ExtentReports with class name prefix
             test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
             ExtentReport._scenario = test; // Set the current test for page objects to use
-            
+
             try
             {
                 test.Log(Status.Info, $"[{testClassName}] Starting CompleteEntityTrustForm test");
-                
+
                 // Complete the Entity Trust form directly
                 test.Log(Status.Info, $"[{testClassName}] Completing Entity Trust form");
                 PartiesPage.CompleteEntityTrustForm(
                     TestData.SelectPartyTypeEntity,
                     TestData.EntityTypeTrust,
-                    TestData.TrustType, 
+                    TestData.TrustType,
                     TestData.NameOfTrust,
                     TestData.AuthorityNumber);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully completed Entity Trust form");
-                
+
                 // Capture final screenshot
                 CaptureScreenshot($"{testClassName}_CompleteEntityTrustForm_Success");
             }
@@ -191,11 +191,11 @@ namespace SAHL_Cancellations.Tests
             // Start the test in ExtentReports with class name prefix
             test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
             ExtentReport._scenario = test; // Set the current test for page objects to use
-            
+
             try
             {
                 test.Log(Status.Info, $"[{testClassName}] Starting CompletePartnershipForm test");
-                
+
                 // Complete the Partnership form directly
                 test.Log(Status.Info, $"[{testClassName}] Completing Partnership form");
                 PartiesPage.CompletePartnershipForm(
@@ -208,7 +208,7 @@ namespace SAHL_Cancellations.Tests
                     TestData.IdentityNumber1,
                     TestData.MaritalStatus);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully completed Partnership form");
-                
+
                 // Capture final screenshot
                 CaptureScreenshot($"{testClassName}_CompletePartnershipForm_Success");
             }
@@ -228,11 +228,11 @@ namespace SAHL_Cancellations.Tests
             // Start the test in ExtentReports with class name prefix
             test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
             ExtentReport._scenario = test; // Set the current test for page objects to use
-            
+
             try
             {
                 test.Log(Status.Info, $"[{testClassName}] Starting CompleteNaturalPersonOutOfCommunityForm test");
-                
+
                 // Complete the Natural Person Out Of Community form directly
                 test.Log(Status.Info, $"[{testClassName}] Completing Natural Person Out Of Community form");
                 PartiesPage.CompleteNaturalPersonOutOfCommunityForm(
@@ -243,10 +243,10 @@ namespace SAHL_Cancellations.Tests
                     TestData.MethodOfIdentification,
                     TestData.IdentityNumber1,
                     TestData.MaritalStatus2,
-                    TestData.ReasonForExclusion, 
+                    TestData.ReasonForExclusion,
                     TestData.Duedate);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully completed Natural Person Out Of Community form");
-                
+
                 // Capture final screenshot
                 CaptureScreenshot($"{testClassName}_CompleteNaturalPersonOutOfCommunityForm_Success");
             }
@@ -266,11 +266,11 @@ namespace SAHL_Cancellations.Tests
             // Start the test in ExtentReports with class name prefix
             test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
             ExtentReport._scenario = test; // Set the current test for page objects to use
-            
+
             try
             {
                 test.Log(Status.Info, $"[{testClassName}] Starting CompleteInstitutionCouncilForm test");
-                
+
                 // Complete the Institution Council form directly
                 test.Log(Status.Info, $"[{testClassName}] Completing Institution Council form");
                 PartiesPage.CompleteInstitutionCouncilForm(
@@ -278,7 +278,7 @@ namespace SAHL_Cancellations.Tests
                     TestData.TypeCityTownCouncil,
                     TestData.Council);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully completed Institution Council form");
-                
+
                 // Capture final screenshot
                 CaptureScreenshot($"{testClassName}_CompleteInstitutionCouncilForm_Success");
             }
@@ -298,15 +298,15 @@ namespace SAHL_Cancellations.Tests
             // Start the test in ExtentReports with class name prefix
             test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
             ExtentReport._scenario = test; // Set the current test for page objects to use
-            
+
             try
             {
                 test.Log(Status.Info, $"[{testClassName}] Starting CompleteInstitutionStatutoryBodyForm test");
-                
+
                 // Wait for 2 seconds
                 test.Log(Status.Info, $"[{testClassName}] Waiting for 2 seconds");
                 Thread.Sleep(2000);
-                
+
                 // Complete the Institution Statutory Body form directly
                 test.Log(Status.Info, $"[{testClassName}] Completing Institution Statutory Body form");
                 PartiesPage.CompleteInstitutionStatutoryBodyForm(
@@ -315,7 +315,7 @@ namespace SAHL_Cancellations.Tests
                     TestData.NameOfStatutoryBody,
                     TestData.EstablishmentInTermsOf);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully completed Institution Statutory Body form");
-                
+
                 // Capture final screenshot
                 CaptureScreenshot($"{testClassName}_CompleteInstitutionStatutoryBodyForm_Success");
             }
@@ -335,11 +335,11 @@ namespace SAHL_Cancellations.Tests
             // Start the test in ExtentReports with class name prefix
             test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
             ExtentReport._scenario = test; // Set the current test for page objects to use
-            
+
             try
             {
                 test.Log(Status.Info, $"[{testClassName}] Starting CompleteInstitutionProvincialAdministrationForm test");
-                
+
                 // Complete the Institution Provincial Administration form directly
                 test.Log(Status.Info, $"[{testClassName}] Completing Institution Provincial Administration form");
                 PartiesPage.CompleteInstitutionProvincialAdministrationForm(
@@ -347,7 +347,7 @@ namespace SAHL_Cancellations.Tests
                     TestData.TypeProvincialAdministration,
                     TestData.Province4);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully completed Institution Provincial Administration form");
-                
+
                 // Capture final screenshot
                 CaptureScreenshot($"{testClassName}_CompleteInstitutionProvincialAdministrationForm_Success");
             }
@@ -367,19 +367,19 @@ namespace SAHL_Cancellations.Tests
             // Start the test in ExtentReports with class name prefix
             test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
             ExtentReport._scenario = test; // Set the current test for page objects to use
-            
+
             try
             {
                 test.Log(Status.Info, $"[{testClassName}] Starting CompleteInstitutionNationalGovernmentForm test");
-                
+
                 // Complete the Institution National Government form directly
                 test.Log(Status.Info, $"[{testClassName}] Completing Institution National Government form");
                 PartiesPage.CompleteInstitutionNationalGovernmentForm(
                     TestData.PartyTypeInstitution,
-                    TestData.TypeNationalGovernment, 
+                    TestData.TypeNationalGovernment,
                     TestData.NationalGovernmentLegalDescription);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully completed Institution National Government form");
-                
+
                 // Capture final screenshot
                 CaptureScreenshot($"{testClassName}_CompleteInstitutionNationalGovernmentForm_Success");
             }
@@ -403,20 +403,20 @@ namespace SAHL_Cancellations.Tests
             Console.WriteLine("Selecting product: " + TestData.SAHL_Cancellations);
             LandingPage.ClickProductDropDownAndSelectOption(TestData.SAHL_Cancellations);
             test.Log(Status.Pass, $"[{testClassName}] Successfully selected product");
-            
+
             // Wait for the page to load
             test.Log(Status.Info, $"[{testClassName}] Waiting for 2 seconds");
             Thread.Sleep(2000);
-            
+
             // Navigate to the "Main Cancellations" tab
             test.Log(Status.Info, $"[{testClassName}] Navigating to Main Cancellations tab");
             HomePage.SelectMainCancellationsTab();
             test.Log(Status.Pass, $"[{testClassName}] Successfully navigated to Main Cancellations tab");
-            
+
             // Wait for the page to load
             test.Log(Status.Info, $"[{testClassName}] Waiting for 2 seconds");
             Thread.Sleep(2000);
-            
+
             // Navigate to the "New Instruction" page
             test.Log(Status.Info, $"[{testClassName}] Redirecting to New Instruction Page");
             New_InstructionPage = HomePage.RedirectToNewInstructionPage();

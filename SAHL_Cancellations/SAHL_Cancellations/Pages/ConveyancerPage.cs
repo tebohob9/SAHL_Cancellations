@@ -37,20 +37,20 @@ namespace SAHL_Cancellations.Pages
         }
 
         // UI Elements - All elements on the Conveyancer page
-        public IWebElement ConveyancerTab => driver.FindElement(By.XPath("//div[contains(text(),'Conveyancer')]"));
-        public IWebElement DateOfSignature => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_PDI_DateOfSignatureTextBox']"));
-        public IWebElement TodayBtn => driver.FindElement(By.XPath("//button[normalize-space()='Today']"));
-        public IWebElement PlaceOfSignatureTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_PDI_PlaceOfSignTextBox']"));
-        public IWebElement LogingFirmMyBranchRadioBtn => driver.FindElement(By.XPath("//input[@id='Branch']"));
-        public IWebElement LodgingFirmCorrespondentRadioBtn => driver.FindElement(By.XPath("//input[@id='Correspondent']"));
+        public IWebElement ConveyancerTab => driver.FindElement(By.XPath("(//a[@id='div_menu_conveyancer'])[1]"));
+        public IWebElement DateOfSignature => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_txtDateOfSignature'])[1]"));
+        public IWebElement TodayBtn => driver.FindElement(By.XPath("//button[@onclick='TodayClicked();']"));
+        public IWebElement PlaceOfSignatureTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_txtPlaceOfSign'])[1]"));
+        public IWebElement LogingFirmMyBranchRadioBtn => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_rdBranchLodgingFirm'])[1]"));
+        public IWebElement LodgingFirmCorrespondentRadioBtn => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_rdCorrespondentLodgingFirm'])[1]"));
         public IWebElement IncludeLodgmentStampChkBox => driver.FindElement(By.XPath("//input[@id='chklodgementstamp']"));
         public IWebElement LodgementNumberTextBox => driver.FindElement(By.XPath("//input[@id='txtLodgementNumber']"));
         public IWebElement PreparerDrpDwn => driver.FindElement(By.XPath("//select[@id='ddlPreparer']"));
         public IWebElement CommisonerOfOathsDrpDwn => driver.FindElement(By.XPath("//select[@id='ddlCommissioner']"));
         public IWebElement SaveBtn => driver.FindElement(By.XPath("//input[@id='btnSave']"));
-        public IWebElement CorrespondentNameTextBox => driver.FindElement(By.XPath("//input[@id='txtCorrespondentFirm']"));
+        public IWebElement CorrespondentNameTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_txtCorrespondentFirm_txtbox'])[1]"));
         public IWebElement CorrespondentNameRadioBtn => driver.FindElement(By.XPath("//input[@id='Correspondent']"));
-        public IWebElement CorrespondentBranchDrpDwn => driver.FindElement(By.XPath("//select[@id='ddlCorrespondentBranch']"));
+        public IWebElement CorrespondentBranchDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_ddlCorrespondentBranch'])[1]"));
 
         // Complete the My Branch details form with provided values
         public void SaveMyBranchDetails(string DateOf_Signature, string PlaceOfSignature, string LodgementNumber,
@@ -78,9 +78,9 @@ namespace SAHL_Cancellations.Pages
 
                 Thread.Sleep(2000);
 
-                LogInfo("Clicking Include Lodgment Stamp checkbox");
-                IncludeLodgmentStampChkBox.Click();
-                LogSuccess("Clicked Include Lodgment Stamp checkbox");
+                //LogInfo("Clicking Include Lodgment Stamp checkbox");
+                //IncludeLodgmentStampChkBox.Click();
+                //LogSuccess("Clicked Include Lodgment Stamp checkbox");
 
                 Thread.Sleep(2000);
 
