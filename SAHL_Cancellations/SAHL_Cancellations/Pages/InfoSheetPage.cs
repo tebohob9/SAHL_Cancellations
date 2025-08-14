@@ -46,9 +46,10 @@ namespace SAHL_Cancellations.Pages
         public IWebElement EditFileRefBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_btnEditCaFileRef']"));
         public IWebElement CloseResignMatter => driver.FindElement(By.XPath("//img[@id='ctl00_ctl00_ctl00_C_C_C_PopupPanel_close']"));
         public IWebElement ReassignMatterToDrpdwn => driver.FindElement(By.XPath("//select[@id='ctl00_ctl00_ctl00_C_C_C_ddlDestination']"));
-        public IWebElement ReassignBtn => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_C_lnkReassign']"));
-        public IWebElement AllMattersRadioBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_rbOption_1']"));
-        public IWebElement SaveBtn => driver.FindElement(By.XPath("//a[@id='ctl00_ctl00_C_C_lnkBtnCancelling']"));
+        public IWebElement ReassignBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_lnkReassign'])[1]"));
+		public IWebElement RedirectMatterToDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_ddlDestination'])[1]"));
+		public IWebElement ChangeOwnerBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_btnChangeOnwer'])[1]"));
+        public IWebElement SaveBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_lnkBtnCancelling'])[1]"));
         public IWebElement CancelBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_btnCancel']"));
         public IWebElement EditFileRefTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_TextBoxFileRef']"));
         public IWebElement CloseEditFileRef => driver.FindElement(By.XPath("//img[@id='ctl00_ctl00_ctl00_C_C_C_PanelBoxFileRef_close']"));
@@ -67,8 +68,10 @@ namespace SAHL_Cancellations.Pages
                 InfoSheetTab.Click();
                 LogSuccess("Clicked Info Sheet tab");
 
+                Thread.Sleep(2000);
+
 				LogInfo($"Entering file reference: {FileRefTextBox}");
-				wait.Until(driver => EditFileRefTxtBox.Displayed);
+				//wait.Until(driver => EditFileRefTxtBox.Displayed);
 				FileRefTextBox.Clear();
 				FileRefTextBox.SendKeys(FileRef);
 				LogSuccess($"Entered file reference: {FileRefTextBox}");
@@ -90,27 +93,26 @@ namespace SAHL_Cancellations.Pages
         }
 
         // Method to edit file reference
-        public void ReassignSecretary(string editFileRef)
+        public void ReassignSecretary(string RedirectMatterTo)
         {
             try
             {
-                LogInfo($"Starting to edit file reference with value: {editFileRef}");
+                LogInfo($"Starting to edit file reference with value: {RedirectMatterTo}");
 
-                LogInfo("Clicking Edit File Reference button");
-                wait.Until(driver => EditFileRefBtn.Displayed);
+                Thread.Sleep(2000);
+				LogInfo("Clicking Edit File Reference button");
+                //wait.Until(driver => EditFileRefBtn.Displayed);
                 ReassignBtn.Click();
                 LogSuccess("Clicked Edit File Reference button");
 
-                LogInfo($"Entering file reference: {editFileRef}");
-                wait.Until(driver => EditFileRefTxtBox.Displayed);
-                EditFileRefTxtBox.Clear();
-                EditFileRefTxtBox.SendKeys(editFileRef);
-                LogSuccess($"Entered file reference: {editFileRef}");
+				LogInfo($"Selecting Type of Reason: {RedirectMatterTo}");
+				RedirectMatterToDrpDwn.SelectDropDownText(RedirectMatterTo);
+				LogSuccess($"Selected Type of Reason: {RedirectMatterTo}");
 
-                Thread.Sleep(2000);
+				Thread.Sleep(2000);
 
                 LogInfo("Clicking Save button for file reference");
-                EditRefFileSaveBtn.Click();
+				ChangeOwnerBtn.Click();
                 LogSuccess("Clicked Save button for file reference");
 
                 Thread.Sleep(2000);
@@ -119,7 +121,7 @@ namespace SAHL_Cancellations.Pages
             }
             catch (Exception ex)
             {
-                LogFailure($"Failed to edit file reference with value: {editFileRef}", ex);
+                LogFailure($"Failed to edit file reference with value: {RedirectMatterTo}", ex);
                 CaptureScreenshot($"{pageName}_EditFileRef_Failure");
                 throw;
             }

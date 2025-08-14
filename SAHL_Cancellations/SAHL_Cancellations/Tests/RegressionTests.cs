@@ -304,7 +304,7 @@ namespace SAHL_Cancellations.Tests
                 test.Log(Status.Pass, $"[{testClassName}] Successfully saved without compulsory fields");
 
                 test.Log(Status.Info, $"[{testClassName}] Editing diary");
-                DiaryPage.EditDiary(TestData.DescriptionEdit, dueDate, TestData.DiaryNotes);
+                DiaryPage.EditDiary(TestData.DescriptionEdit);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully edited diary");
 
                 test.Log(Status.Info, $"[{testClassName}] Downloading diary");

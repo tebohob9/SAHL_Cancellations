@@ -702,6 +702,8 @@ namespace SAHL_Cancellations.Pages
 			try
 			{
 				LogInfo("Clicking on account to redirect to New Instruction page");
+				CompanyTab.Click();
+				Thread.Sleep(2000);
 				SelectAccount.Click();
 				LogSuccess("Clicked on account");
 				//LogInfo("Waiting for URL to contain 'NewInstruction'");

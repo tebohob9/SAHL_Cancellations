@@ -78,17 +78,17 @@ namespace SAHL_Cancellations.Pages
 
                 Thread.Sleep(3000);
 
-                LogInfo("Clicking New Search button");
-                NewSearchBtn.Click();
-                LogSuccess("Clicked New Search button");
+                //LogInfo("Clicking New Search button");
+                //NewSearchBtn.Click();
+                //LogSuccess("Clicked New Search button");
 
-				//Thread.Sleep(5000);
+                Thread.Sleep(5000);
 
-				//LogInfo("Clicking Download PDF button");
-				//DownloadPdf.Click();
-				//LogSuccess("Clicked Download PDF button");
+                LogInfo("Clicking Download PDF button");
+                DownloadPdf.Click();
+                LogSuccess("Clicked Download PDF button");
 
-				Thread.Sleep(10000);
+                Thread.Sleep(20000);
 
 				LogSuccess("Successfully completed Deed Search PDF download process");
                 CaptureScreenshot($"{pageName}_DownloadPdf_Completed");

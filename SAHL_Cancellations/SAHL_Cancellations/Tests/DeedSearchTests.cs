@@ -61,11 +61,6 @@ namespace SAHL_Cancellations.Tests
                 deedSearchPage.DownlaodPdf(TestData.DeedSearch);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully performed Deed Search and downloaded PDF");
 
-                // Step 5: Initiate a new search (optional continuation)
-                test.Log(Status.Info, $"[{testClassName}] Initiating a new search");
-                deedSearchPage.ClickNewSearch();
-                test.Log(Status.Pass, $"[{testClassName}] Successfully initiated a new search");
-
                 // Capture final screenshot
                 CaptureScreenshot($"{testClassName}_DownloadPdf_DeedSearchTest_Success");
 

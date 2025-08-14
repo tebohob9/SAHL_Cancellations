@@ -69,7 +69,7 @@ namespace SAHL_Cancellations.Pages
 		public IWebElement Type2CheckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_ctl00_C_C_C_GridView1_ctl03_chkSelected']"));
 		public IWebElement Email2Btn => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_ctl00_C_C_C_btnEmailSelected'])[1]"));
 		public IWebElement Sms2Btn => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_ctl00_C_C_C_btnSMSSelected'])[1]"));
-		public IWebElement SubjectTextBox => driver.FindElement(By.XPath("(//input[@id='subject'])[1]"));
+		public IWebElement SubjectTextBox => driver.FindElement(By.XPath("//input[@id='subject']"));
 		public IWebElement LettersTab => driver.FindElement(By.XPath("(//a[contains(text(),'Letters')])[1]"));
 		public IWebElement BondCancellationLink => driver.FindElement(By.XPath("//a[normalize-space()='Bond Cancellation']"));
 		public IWebElement ParagraphsLink => driver.FindElement(By.XPath("//div[contains(text(),'Paragraphs')]"));

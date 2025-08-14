@@ -37,7 +37,7 @@ namespace SAHL_Cancellations.Pages
         }
 
         // UI Elements - All elements on the Audit Trail page
-        public IWebElement AuditTrailTab => driver.FindElement(By.XPath("//div[contains(text(),'Audit Trail')]"));
+        public IWebElement AuditTrailTab => driver.FindElement(By.XPath("(//a[@id='div_menu_audittrail'])[1]"));
         public IWebElement CommentTextBox => driver.FindElement(By.XPath("//textarea[@id='ctl00_ctl00_C_C_txtComment']"));
         public IWebElement AddCommentBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_btnAddComment']"));
         public IWebElement SearchTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtSearch']"));

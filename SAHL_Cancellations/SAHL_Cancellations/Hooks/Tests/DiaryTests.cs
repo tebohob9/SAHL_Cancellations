@@ -125,7 +125,7 @@ namespace SAHL_Cancellations.Tests
 
                 // Call the EditDiary method with dynamic due date
                 test.Log(Status.Info, $"[{testClassName}] Editing diary item");
-                DiaryPage.EditDiary(TestData.DescriptionEdit, dueDate, TestData.DiaryNotes);
+                DiaryPage.EditDiary(TestData.DescriptionEdit);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully edited diary item");
 
                 // Capture final screenshot

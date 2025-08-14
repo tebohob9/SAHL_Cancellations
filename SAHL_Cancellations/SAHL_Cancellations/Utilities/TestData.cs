@@ -110,9 +110,10 @@ namespace SAHL_Cancellations.Utilities
 
         // InfoSheet
         public static readonly string FileRef = "Deed Search - ABSA";
+		public static readonly string RedirectMatterTo = "SAHL Attorney";
 
-        // Deed Search
-        public static readonly string DeedSearch = "ERF";
+		// Deed Search
+		public static readonly string DeedSearch = "ERF";
 
         // Instruction Details
         public static readonly string TitleDeedNumber = "T1280/2010";
