@@ -630,7 +630,7 @@ namespace SAHL_Cancellations.Tests
                 test.Log(Status.Info, $"[{testClassName}] Completing ERF Portion Subdivional Type");
                 PropertyPage.CompleteERFPortionSubDivisionalType(
                     TestData.DeedsOffice,
-                    TestData.PropertyType,
+                    
                     TestData.SubDivisionalTypePortion,
                     TestData.PortionNumber,
                     TestData.ErfNumber,

@@ -48,14 +48,18 @@ namespace SAHL_Cancellations.Pages
         public IWebElement PropertyTypeDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_PropertyControl1_ddlPropertyType'])[1]"));
         public IWebElement SubDivisionalTypeDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_PropertyControl1_ddlSubDivisionalType'])[1]"));
         public IWebElement ErfNumberTxtBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_PropertyControl1_txtPRP_PropertyNumber_txtPRP_PropertyNumberTextBox'])[1]"));
-        public IWebElement TownshipTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_PropertyControl1_txtPRP_TownshipName'])[1]"));
-        public IWebElement RegistrationDivisionTxtBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_PropertyControl1_txtPRP_RegistrationDivision'])[1]"));
+		public IWebElement ErfNumber2TxtBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_PropertyControl1_txtPRP_PropertyNumber_txtPRP_PropertyNumberTextBox'])[1]"));
+
+		public IWebElement RegistrationDivisionTxtBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_PropertyControl1_txtPRP_RegistrationDivision'])[1]"));
         public IWebElement ProvinceDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_PropertyControl1_txtVAR_Province'])[1]"));
         public IWebElement ExtentTxtBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_PropertyControl1_txtPRP_ExtentOfProperty'])[1]"));
         public IWebElement ExtentDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_PropertyControl1_txtVAR_MeasurmentUnit'])[1]"));
+		public IWebElement TownshipTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_PropertyControl1_txtPRP_TownshipName'])[1]")); 
         public IWebElement AddressTxtBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_txtStreetAddress']"));
         public IWebElement RefreshBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_btnRefresh']"));
         public IWebElement LegalDescriptionTxtBox => driver.FindElement(By.XPath("(//textarea[@id='ctl00_ctl00_C_C_PropertyControl1_txtPRP_LegalDescription'])[1]"));
+		public IWebElement LegalDescriptionRefreshBtn=> driver.FindElement(By.XPath("(//i[@class='fa fa fa-refresh fa-lg pointer TheamDarkGrey'])[1]"));
+		public IWebElement LegalDescription2RefreshBtn => driver.FindElement(By.XPath("(//i[@class='fa fa fa-refresh fa-lg pointer TheamDarkGrey'])[1]")); 
         public IWebElement SaveBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_btnSave1'])[1]"));
         public IWebElement ExtendingClauseChckBox => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_cbExtendingClauseDiffers']"));
         public IWebElement CancelBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_btnCancel']"));
@@ -77,9 +81,9 @@ namespace SAHL_Cancellations.Pages
 		public IWebElement NewTabBtn => driver.FindElement(By.XPath("//ul[@id='ctl00_ctl00_C_C_dtcProperties']//li[@title='New property']//a[1]"));
 
 		// Complete the property form with ERF No SubDivisional Type
-		public void CompleteERFNoSubDivisionalType(string Deeds_office, string Property_Type, string SubDivisional_Type, string Erf_Number,
+		public void CompleteERFNoSubDivisionalType(string Deeds_office, string SubDivisional_Type, string Erf_Number,
             string Township, string Registration_Division, string Province, string Extent_Text, string Extent_DrpDwn,
-            string Address, string Legal_Description, string HeldBy)
+            string Address, string HeldBy)
         {
             try
             {
@@ -89,17 +93,23 @@ namespace SAHL_Cancellations.Pages
                 PropertyTab.Click();
                 LogSuccess("Clicked Property tab");
 
-                //LogInfo($"Selecting Deeds Office: {Deeds_office}");
-                //DeedsOfficeDrpDwn.SelectDropDownText(Deeds_office);
-                //LogSuccess($"Selected Deeds Office: {Deeds_office}");
+                Thread.Sleep(1000);
 
-                //LogInfo("Clicking Add Property button");
-                //AddPropertyBtn.Click();
-                //LogSuccess("Clicked Add Property button");
+				LogInfo("Clicking New Property tab");
+				NewTabBtn.Click();
+				LogSuccess("Clicked New Property tab");
 
-                LogInfo($"Selecting Property Type: {Property_Type}");
-                PropertyTypeDrpDwn.SelectDropDownText(Property_Type);
-                LogSuccess($"Selected Property Type: {Property_Type}");
+				//LogInfo($"Selecting Deeds Office: {Deeds_office}");
+				//DeedsOfficeDrpDwn.SelectDropDownText(Deeds_office);
+				//LogSuccess($"Selected Deeds Office: {Deeds_office}");
+
+				//LogInfo("Clicking Add Property button");
+				//AddPropertyBtn.Click();
+				//LogSuccess("Clicked Add Property button");
+
+				//LogInfo($"Selecting Property Type: {Property_Type}");
+    //            PropertyTypeDrpDwn.SelectDropDownText(Property_Type);
+    //            LogSuccess($"Selected Property Type: {Property_Type}");
 
                 LogInfo($"Selecting SubDivisional Type: {SubDivisional_Type}");
                 SubDivisionalTypeDrpDwn.SelectDropDownText(SubDivisional_Type);
@@ -137,9 +147,9 @@ namespace SAHL_Cancellations.Pages
                 //AddressTxtBox.EnterText(Address);
                 //LogSuccess($"Entered Address: {Address}");
 
-                LogInfo($"Entering Legal Description: {Legal_Description}");
-                LegalDescriptionTxtBox.EnterText(Legal_Description);
-                LogSuccess($"Entered Legal Description: {Legal_Description}");
+                LogInfo("Clicking Property tab");
+				LegalDescriptionRefreshBtn.Click();
+                LogSuccess("Clicked Property tab");
 
                 Thread.Sleep(2000);
 
@@ -177,7 +187,7 @@ namespace SAHL_Cancellations.Pages
         }
 
         // Complete the property form with ERF Portion SubDivisional Type
-        public void CompleteERFPortionSubDivisionalType(string Deeds_office, string Property_Type, string SubDivisional_Type, string Erf_Number,
+        public void CompleteERFPortionSubDivisionalType(string Deeds_office, string SubDivisional_Type, string Erf_Number,
             string PortionNumber, string Township, string Registration_Division, string Province, string Extent_Text, string Extent_DrpDwn,
             string Address, string Legal_Description, string HeldBy)
         {
@@ -185,9 +195,9 @@ namespace SAHL_Cancellations.Pages
             {
                 //LogInfo("Starting to complete ERF Portion SubDivisional Type form");
 
-                LogInfo("Clicking Property tab");
-                PropertyTab.Click();
-                LogSuccess("Clicked Property tab");
+                //LogInfo("Clicking Property tab");
+                //PropertyTab.Click();
+                //LogSuccess("Clicked Property tab");
 
                 Thread.Sleep(5000);
 
@@ -197,9 +207,9 @@ namespace SAHL_Cancellations.Pages
 
 				Thread.Sleep(5000); 
 
-				LogInfo($"Selecting Property Type: {Property_Type}");
-                PropertyTypeDrpDwn.SelectDropDownText(Property_Type);
-                LogSuccess($"Selected Property Type: {Property_Type}");
+				//LogInfo($"Selecting Property Type: {Property_Type}");
+    //            PropertyTypeDrpDwn.SelectDropDownText(Property_Type);
+    //            LogSuccess($"Selected Property Type: {Property_Type}");
 
                 LogInfo($"Selecting SubDivisional Type: {SubDivisional_Type}");
                 SubDivisionalTypeDrpDwn.SelectDropDownText(SubDivisional_Type);
@@ -233,29 +243,29 @@ namespace SAHL_Cancellations.Pages
                 ExtentTxtBox.EnterText(Extent_Text);
                 LogSuccess($"Entered Extent: {Extent_Text}");
 
-                LogInfo($"Selecting Extent Type: {Extent_DrpDwn}");
-                ExtentDrpDwn.SelectDropDownText(Extent_DrpDwn);
-                LogSuccess($"Selected Extent Type: {Extent_DrpDwn}");
+                //LogInfo($"Selecting Extent Type: {Extent_DrpDwn}");
+                //ExtentDrpDwn.SelectDropDownText(Extent_DrpDwn);
+                //LogSuccess($"Selected Extent Type: {Extent_DrpDwn}");
 
-                LogInfo($"Entering Address: {Address}");
-                AddressTxtBox.EnterText(Address);
-                LogSuccess($"Entered Address: {Address}");
+                //LogInfo($"Entering Address: {Address}");
+                //AddressTxtBox.EnterText(Address);
+                //LogSuccess($"Entered Address: {Address}");
 
-                LogInfo($"Entering Legal Description: {Legal_Description}");
-                LegalDescriptionTxtBox.EnterText(Legal_Description);
-                LogSuccess($"Entered Legal Description: {Legal_Description}");
+				LogInfo("Clicking Property tab");
+				LegalDescription2RefreshBtn.Click();
+				LogSuccess("Clicked Property tab");
 
-                Thread.Sleep(2000);
+				Thread.Sleep(2000);
 
-                LogInfo("Clicking Refresh button");
-                RefreshBtn.Click();
-                LogSuccess("Clicked Refresh button");
+                //LogInfo("Clicking Refresh button");
+                //RefreshBtn.Click();
+                //LogSuccess("Clicked Refresh button");
 
-                Thread.Sleep(2000);
+                //Thread.Sleep(2000);
 
-                LogInfo("Clicking Extending Clause checkbox");
-                ExtendingClauseChckBox.Click();
-                LogSuccess("Clicked Extending Clause checkbox");
+                //LogInfo("Clicking Extending Clause checkbox");
+                //ExtendingClauseChckBox.Click();
+                //LogSuccess("Clicked Extending Clause checkbox");
 
                 Thread.Sleep(2000);
 

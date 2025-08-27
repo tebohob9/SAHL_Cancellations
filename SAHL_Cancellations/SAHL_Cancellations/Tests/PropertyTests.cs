@@ -66,7 +66,6 @@ namespace SAHL_Cancellations.Tests
                 test.Log(Status.Info, $"[{testClassName}] Completing ERF No SubDivisional Type form");
                 PropertyPage.CompleteERFNoSubDivisionalType(
                     TestData.DeedsOffice,
-                    TestData.PropertyType,
                     TestData.SubDivisionalTypeNA,
                     TestData.ErfNumber,
                     TestData.Township,
@@ -75,7 +74,6 @@ namespace SAHL_Cancellations.Tests
                     TestData.Extent1,
                     TestData.Extent2,
                     TestData.Address3,
-                    TestData.LegalBankDescription,
                     TestData.HeldBy
                 );
                 test.Log(Status.Pass, $"[{testClassName}] Successfully completed ERF No SubDivisional Type form");
@@ -108,7 +106,6 @@ namespace SAHL_Cancellations.Tests
                 test.Log(Status.Info, $"[{testClassName}] Completing ERF Portion SubDivisional Type form");
                 PropertyPage.CompleteERFPortionSubDivisionalType(
                     TestData.DeedsOffice,
-                    TestData.PropertyType,
                     TestData.SubDivisionalTypePortion,
                     TestData.PortionNumber,
                     TestData.ErfNumber,
