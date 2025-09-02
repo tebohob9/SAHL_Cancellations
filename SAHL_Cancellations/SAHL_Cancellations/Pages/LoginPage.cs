@@ -24,9 +24,10 @@ namespace SAHL_Cancellations.Pages
         // Locate the elements on the Login page
         public IWebElement TxtLUN => wait.Until(d => d.FindElement(By.XPath("//input[@id='LUN']")));
         public IWebElement BtnLogin => wait.Until(d => d.FindElement(By.XPath("//input[@value='LOGIN']")));
+		public IWebElement RemindMeTomorrowBtn => wait.Until(d => d.FindElement(By.XPath("//input[@id='RE']")));
 
-        // Method to perform login
-        public void Login(string LUN)
+		// Method to perform login
+		public void Login(string LUN)
         {
             try
             {
@@ -43,7 +44,10 @@ namespace SAHL_Cancellations.Pages
                 BtnLogin.Click();  // Click the Login button
 
                 LogSuccess("Login attempt completed");
-            }
+
+                Thread.Sleep(5000);
+                RemindMeTomorrowBtn.Click();
+			}
             catch (Exception ex)
             {
                 LogError($"Login failed: {ex.Message}");

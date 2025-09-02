@@ -160,9 +160,10 @@ namespace SAHL_Cancellations.Utilities
         public static readonly string LodgementNumber = "00000001";
         public static readonly string CorrespondentName = "Couzyns Inc";
         public static readonly string CorrespondentBranch = "Durban";
+		public static readonly string Conveyancer = "Teboho";
 
-        // Parties
-        public static readonly string SelectPartyTypeNaturalPerson = "Mortgagor";
+		// Parties
+		public static readonly string SelectPartyTypeNaturalPerson = "Mortgagor";
         public static readonly string FirstName = "Teboho";
 		public static readonly string MiddleName = "Tebu";
 		public static readonly string Surname = "Bodibe";

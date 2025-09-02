@@ -64,7 +64,8 @@ namespace SAHL_Cancellations.Tests
                     TestData.DateOfSignature,
                     TestData.PlaceOfSignature,
                     TestData.LodgementNumber,
-                    TestData.CommisionerOfOaths
+                    TestData.Conveyancer,
+					TestData.CommisionerOfOaths
                 );
                 test.Log(Status.Pass, $"[{testClassName}] Successfully saved branch details");
 

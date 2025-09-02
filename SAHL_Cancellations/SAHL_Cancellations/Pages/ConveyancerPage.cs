@@ -42,19 +42,20 @@ namespace SAHL_Cancellations.Pages
         public IWebElement TodayBtn => driver.FindElement(By.XPath("//button[@onclick='TodayClicked();']"));
         public IWebElement PlaceOfSignatureTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_txtPlaceOfSign'])[1]"));
         public IWebElement LogingFirmMyBranchRadioBtn => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_rdBranchLodgingFirm'])[1]"));
-        public IWebElement LodgingFirmCorrespondentRadioBtn => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_rdCorrespondentLodgingFirm'])[1]"));
-        public IWebElement IncludeLodgmentStampChkBox => driver.FindElement(By.XPath("//input[@id='chklodgementstamp']"));
-        public IWebElement LodgementNumberTextBox => driver.FindElement(By.XPath("//input[@id='txtLodgementNumber']"));
-        public IWebElement PreparerDrpDwn => driver.FindElement(By.XPath("//select[@id='ddlPreparer']"));
-        public IWebElement CommisonerOfOathsDrpDwn => driver.FindElement(By.XPath("//select[@id='ddlCommissioner']"));
-        public IWebElement SaveBtn => driver.FindElement(By.XPath("//input[@id='btnSave']"));
+        public IWebElement LodgingFirmCorrespondentRadioBtn => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_chklodgementstamp'])[1]"));
+        public IWebElement LodgmentStampChkBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_chklodgementstamp'])[1]"));
+        public IWebElement LodgementNumberTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_txtLodgementNumber'])[1]"));
+		public IWebElement ExternalConveyancerChkBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_chkExternalConveyancer'])[1]"));
+		public IWebElement PreparingAttorneyDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_ddlPreparer'])[1]"));
+        public IWebElement CommisonerOfOathsDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_ddlCommissioner'])[1]"));
+        public IWebElement SaveBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_btnSave'])[1]"));
         public IWebElement CorrespondentNameTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_txtCorrespondentFirm_txtbox'])[1]"));
         public IWebElement CorrespondentNameRadioBtn => driver.FindElement(By.XPath("//input[@id='Correspondent']"));
         public IWebElement CorrespondentBranchDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_ddlCorrespondentBranch'])[1]"));
 
         // Complete the My Branch details form with provided values
         public void SaveMyBranchDetails(string DateOf_Signature, string PlaceOfSignature, string LodgementNumber,
-            string CommisionerOfOaths)
+			string Preparer, string CommisionerOfOaths)
         {
             try
             {
@@ -78,9 +79,9 @@ namespace SAHL_Cancellations.Pages
 
                 Thread.Sleep(2000);
 
-                //LogInfo("Clicking Include Lodgment Stamp checkbox");
-                //IncludeLodgmentStampChkBox.Click();
-                //LogSuccess("Clicked Include Lodgment Stamp checkbox");
+                LogInfo("Clicking Include Lodgment Stamp checkbox");
+                LodgmentStampChkBox.Click();
+                LogSuccess("Clicked Include Lodgment Stamp checkbox");
 
                 Thread.Sleep(2000);
 
@@ -88,15 +89,20 @@ namespace SAHL_Cancellations.Pages
                 LodgementNumberTextBox.EnterText(LodgementNumber);
                 LogSuccess($"Entered Lodgement Number: {LodgementNumber}");
 
-                // Preparer dropdown is commented out in the original code
-                // LogInfo($"Selecting Preparer: {Preparer}");
-                // PreparerDrpDwn.SelectDropDownText(Preparer);
-                // LogSuccess($"Selected Preparer: {Preparer}");
+				
+				LogInfo("Clicking Include External Conveyancer checkbox");
+				ExternalConveyancerChkBox.Click();
+				LogSuccess("Clicked Include External Conveyancer checkbox");
 
-                // Commissioner of Oaths dropdown is commented out in the original code
-                // LogInfo($"Selecting Commissioner of Oaths: {CommisionerOfOaths}");
-                // CommisonerOfOathsDrpDwn.SelectDropDownText(CommisionerOfOaths);
-                // LogSuccess($"Selected Commissioner of Oaths: {CommisionerOfOaths}");
+				//Commissioner of Oaths dropdown is commented out in the original code
+				LogInfo($"Selecting Commissioner of Oaths: {CommisionerOfOaths}");
+				PreparingConveyancerDrpDwn.SelectDropDownText(CommisionerOfOaths);
+				LogSuccess($"Selected Commissioner of Oaths: {CommisionerOfOaths}");
+
+				//Commissioner of Oaths dropdown is commented out in the original code
+				LogInfo($"Selecting Commissioner of Oaths: {CommisionerOfOaths}");
+                CommisonerOfOathsDrpDwn.SelectDropDownText(CommisionerOfOaths);
+                LogSuccess($"Selected Commissioner of Oaths: {CommisionerOfOaths}");
 
                 Thread.Sleep(2000);
 
@@ -162,12 +168,12 @@ namespace SAHL_Cancellations.Pages
                 LogSuccess($"Selected Correspondent Branch: {CorrespondentBranch}");
 
                 LogInfo("Clicking Include Lodgment Stamp checkbox");
-                IncludeLodgmentStampChkBox.Click();
+                LodgmentStampChkBox.Click();
                 LogSuccess("Clicked Include Lodgment Stamp checkbox");
 
-                LogInfo("Clicking Include Lodgment Stamp checkbox");
-                IncludeLodgmentStampChkBox.Click();
-                LogSuccess("Clicked Include Lodgment Stamp checkbox");
+                //LogInfo("Clicking Include Lodgment Stamp checkbox");
+                //LodgmentStampChkBox.Click();
+                //LogSuccess("Clicked Include Lodgment Stamp checkbox");
 
                 Thread.Sleep(2000);
 
