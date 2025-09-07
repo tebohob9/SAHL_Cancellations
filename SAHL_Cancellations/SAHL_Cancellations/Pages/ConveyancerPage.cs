@@ -46,16 +46,16 @@ namespace SAHL_Cancellations.Pages
         public IWebElement LodgmentStampChkBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_chklodgementstamp'])[1]"));
         public IWebElement LodgementNumberTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_txtLodgementNumber'])[1]"));
 		public IWebElement ExternalConveyancerChkBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_chkExternalConveyancer'])[1]"));
-		public IWebElement PreparingAttorneyDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_ddlPreparer'])[1]"));
+		public IWebElement PreparingConveyancerDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_ddlPreparer'])[1]"));
         public IWebElement CommisonerOfOathsDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_ddlCommissioner'])[1]"));
         public IWebElement SaveBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_btnSave'])[1]"));
         public IWebElement CorrespondentNameTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_txtCorrespondentFirm_txtbox'])[1]"));
-        public IWebElement CorrespondentNameRadioBtn => driver.FindElement(By.XPath("//input[@id='Correspondent']"));
+        public IWebElement CorrespondentNameRadioBtn => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_rdCorrespondentLodgingFirm'])[1]"));
         public IWebElement CorrespondentBranchDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_ddlCorrespondentBranch'])[1]"));
-
-        // Complete the My Branch details form with provided values
-        public void SaveMyBranchDetails(string DateOf_Signature, string PlaceOfSignature, string LodgementNumber,
-			string Preparer, string CommisionerOfOaths)
+		public IWebElement ConveyencerTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_ctl00_C_C_txtSurnameInitial'])[1]"));
+		// Complete the My Branch details form with provided values
+		public void SaveMyBranchDetails(string DateOf_Signature, string PlaceOfSignature, string LodgementNumber,
+			string ConveyencerName)
         {
             try
             {
@@ -94,17 +94,11 @@ namespace SAHL_Cancellations.Pages
 				ExternalConveyancerChkBox.Click();
 				LogSuccess("Clicked Include External Conveyancer checkbox");
 
-				//Commissioner of Oaths dropdown is commented out in the original code
-				LogInfo($"Selecting Commissioner of Oaths: {CommisionerOfOaths}");
-				PreparingConveyancerDrpDwn.SelectDropDownText(CommisionerOfOaths);
-				LogSuccess($"Selected Commissioner of Oaths: {CommisionerOfOaths}");
+				LogInfo($"Entering Correspondent Name: {ConveyencerName}");
+				ConveyencerTextBox.EnterText(ConveyencerName);
+				LogSuccess($"Entered Correspondent Name: {ConveyencerName}");
 
-				//Commissioner of Oaths dropdown is commented out in the original code
-				LogInfo($"Selecting Commissioner of Oaths: {CommisionerOfOaths}");
-                CommisonerOfOathsDrpDwn.SelectDropDownText(CommisionerOfOaths);
-                LogSuccess($"Selected Commissioner of Oaths: {CommisionerOfOaths}");
-
-                Thread.Sleep(2000);
+				Thread.Sleep(2000);
 
                 LogInfo("Clicking Save button");
                 SaveBtn.Click();
@@ -147,25 +141,27 @@ namespace SAHL_Cancellations.Pages
                 PlaceOfSignatureTextBox.EnterText(PlaceOfSignature);
                 LogSuccess($"Entered Place of Signature: {PlaceOfSignature}");
 
-                LogInfo("Clicking Correspondent Name radio button");
+				Thread.Sleep(2000);
+
+				LogInfo("Clicking Correspondent Name radio button");
                 CorrespondentNameRadioBtn.Click();
                 LogSuccess("Clicked Correspondent Name radio button");
 
-                Thread.Sleep(2000);
+                Thread.Sleep(5000);
 
-                LogInfo($"Entering Correspondent Name: {CorrespondentName}");
-                CorrespondentNameTextBox.EnterText(CorrespondentName);
-                LogSuccess($"Entered Correspondent Name: {CorrespondentName}");
+    //            LogInfo($"Entering Correspondent Name: {CorrespondentName}");
+    //            CorrespondentNameTextBox.EnterText(CorrespondentName);
+    //            LogSuccess($"Entered Correspondent Name: {CorrespondentName}");
 
-                Thread.Sleep(2000);
+    //            Thread.Sleep(5000);
 
-                LogInfo("Pressing Enter key in Correspondent Name field");
-                CorrespondentNameTextBox.SendKeys(Keys.Enter);
-                LogSuccess("Pressed Enter key in Correspondent Name field");
+    //            LogInfo("Pressing Enter key in Correspondent Branch field");
+				//CorrespondentBranchDrpDwn.SelectDropDownText(CorrespondentBranch);
+    //            LogSuccess("Pressed Enter key in Correspondent Branch field");
 
-                LogInfo($"Selecting Correspondent Branch: {CorrespondentBranch}");
-                CorrespondentBranchDrpDwn.SelectDropDownText(CorrespondentBranch);
-                LogSuccess($"Selected Correspondent Branch: {CorrespondentBranch}");
+                //LogInfo($"Selecting Correspondent Branch: {CorrespondentBranch}");
+                //CorrespondentBranchDrpDwn.SelectDropDownText(CorrespondentBranch);
+                //LogSuccess($"Selected Correspondent Branch: {CorrespondentBranch}");
 
                 LogInfo("Clicking Include Lodgment Stamp checkbox");
                 LodgmentStampChkBox.Click();

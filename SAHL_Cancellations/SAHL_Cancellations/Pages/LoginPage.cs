@@ -45,7 +45,7 @@ namespace SAHL_Cancellations.Pages
 
                 LogSuccess("Login attempt completed");
 
-                Thread.Sleep(5000);
+                
                 RemindMeTomorrowBtn.Click();
 			}
             catch (Exception ex)
