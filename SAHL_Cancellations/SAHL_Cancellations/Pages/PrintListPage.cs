@@ -62,7 +62,7 @@ namespace SAHL_Cancellations.Pages
         public IWebElement GenerateSelectedBtn => driver.FindElement(By.XPath("(//i[@aria-hidden='true'])[25]"));
         public IWebElement MoveUpBtn => driver.FindElement(By.XPath("//input[@id='ctl00_ctl00_C_C_dlSOA_ctl01_ImageButton1']"));
 		public IWebElement SelectAllBtn => driver.FindElement(By.XPath("(//input[@type='checkbox'])[22]"));
-		public IWebElement GenerateSelectedDocumentsBtn => driver.FindElement(By.XPath("(//button[@onclick='GenerateCheckedDocuments();return false;'])[1]"));
+		public IWebElement GenerateSelectedDocumentsBtn => driver.FindElement(By.XPath("(//button[@onclick='GenerateCheckedDocuments()])[2]"));
 
 		// Generate all selected documents
 		public void GenerateSelected()
@@ -99,7 +99,7 @@ namespace SAHL_Cancellations.Pages
                     LogSuccess("Selected Initial Letter checkbox");
                 }
 
-                Thread.Sleep(55555000);
+                Thread.Sleep(55000);
 
 				//           LogInfo("Selecting Instruction to Lodge checkbox");
 				//           if (!FormLLLChckBox.Selected)
