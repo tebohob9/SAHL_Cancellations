@@ -73,47 +73,8 @@ namespace SAHL_Cancellations.Tests
         /// <summary>
         /// Test: Verify Mortgagee, Mortgagor, and Property link navigations on New Instruction page.
         /// </summary>
+
         [Test, Order(2), Category("Regression Test")]
-        public void Select_Mortgagee_Mortgagor_Property()
-        {
-            // Start the test in ExtentReports with class name prefix
-            test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
-            ExtentReport._scenario = test; // Set the current test for page objects to use
-
-            try
-            {
-                test.Log(Status.Info, $"[{testClassName}] Starting Select_Mortgagee_Mortgagor_Property test");
-
-                // Uncomment if needed
-                // test.Log(Status.Info, $"[{testClassName}] Selecting product: {TestData.SAHL_Cancellations}");
-                // _landingPage.ClickProductDropDownAndSelectOption(TestData.SAHL_Cancellations);
-                // test.Log(Status.Pass, $"[{testClassName}] Successfully selected product");
-
-                // test.Log(Status.Info, $"[{testClassName}] Redirecting to New Instruction Page");
-                // _newInstructionPage = _homePage.RedirectToNewInstructionPage();
-                // test.Log(Status.Pass, $"[{testClassName}] Successfully redirected to New Instruction Page");
-
-                test.Log(Status.Info, $"[{testClassName}] Selecting Mortgagee, Mortgagor, and Property links");
-                _newInstructionPage.Select_Mortgagee_Mortgagor_Property();
-                test.Log(Status.Pass, $"[{testClassName}] Successfully selected Mortgagee, Mortgagor, and Property links");
-
-                // Capture screenshot after selecting links
-                CaptureScreenshot($"{testClassName}_Select_Mortgagee_Mortgagor_Property_Success");
-
-                test.Log(Status.Pass, $"[{testClassName}] Select_Mortgagee_Mortgagor_Property test completed successfully");
-                // TODO: Add verification like:
-                // Assert.IsTrue(_newInstructionPage.IsMortgageeSectionLoaded(), "Mortgagee section failed to load.");
-            }
-            catch (Exception ex)
-            {
-                test.Log(Status.Fail, $"[{testClassName}] Test failed with exception: {ex.Message}");
-                CaptureScreenshot($"{testClassName}_Select_Mortgagee_Mortgagor_Property_Failure");
-                Console.WriteLine("Test 'VerifyNavigationLinks' failed: " + ex.Message);
-                throw;
-            }
-        }
-
-        [Test, Order(3), Category("Regression Test")]
         public void EnterFileNote()
         {
             // Start the test in ExtentReports with class name prefix

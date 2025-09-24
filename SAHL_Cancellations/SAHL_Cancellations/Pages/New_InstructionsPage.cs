@@ -40,6 +40,9 @@ namespace SAHL_Cancellations.Pages
 		private IWebElement FileNoteComment => wait.Until(d => d.FindElement(By.XPath("(//div[@id='generalCommentSpan'])[1]")));
 		private IWebElement FileNoteSaveBtn => wait.Until(d => d.FindElement(By.XPath("//button[@id='saveGeneralComment']")));
 		private IWebElement FileNoteCancelBtn => wait.Until(d => d.FindElement(By.XPath("//button[@id='reloadDataBttn']")));
+		private IWebElement SelectDepartmentDrpDwn => wait.Until(d => d.FindElement(By.XPath("(//select[@id='ctl00_ctl00_C_C_txtSubject'])[1]")));
+		private IWebElement FreeFormatMessageTextBox => wait.Until(d => d.FindElement(By.XPath("(//textarea[@id='ctl00_ctl00_C_C_txtMessage'])[1]")));
+		private IWebElement FreeFormatMessageSendBtn => wait.Until(d => d.FindElement(By.XPath("(//a[@id='ctl00_ctl00_C_C_btnSendFreeFormat'])[1]")));
 		#endregion
 
 		#region Tab Elements

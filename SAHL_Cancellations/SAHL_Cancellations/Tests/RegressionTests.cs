@@ -157,39 +157,79 @@ namespace SAHL_Cancellations.Tests
             }
         }
 
-        // Test 4: Perform search from "My Branch" page
-        [Test, Order(4), Category("Regression Test")]
-        public void MyBranchSearch()
-        {
-            // Start the test in ExtentReports with class name prefix
-            test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
-            ExtentReport._scenario = test; // Set the current test for page objects to use
 
-            try
-            {
-                test.Log(Status.Info, $"[{testClassName}] Starting MyBranchSearch test");
+		[Test, Order(4), Category("Regression Test")]
+		public void SelectCompanyTabsInOrder()
+		{
+			// Start the test in ExtentReports with class name prefix
+			test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
 
-                test.Log(Status.Info, $"[{testClassName}] Performing My Branch search with criteria");
-                HomePage.ComapnySearch(TestData.Search_ID, TestData.Account, TestData.Property,
-                    TestData.Parties, TestData.Blank);
-                test.Log(Status.Pass, $"[{testClassName}] Successfully performed My Branch search");
+			try
+			{
+				test.Log(Status.Info, $"[{testClassName}] Starting SelectMyBranchTabsInOrder test");
 
-                // Capture screenshot after completing the search
-                CaptureScreenshot($"{testClassName}_MyBranchSearch_Success");
+				// Navigate through My Branch tabs
+				test.Log(Status.Info, $"[{testClassName}] Navigating through My Branch tabs in order");
+				HomePage.SelectCompanyTabsInOrder();
+				test.Log(Status.Pass, $"[{testClassName}] Successfully navigated through My Branch tabs");
 
-                test.Log(Status.Pass, $"[{testClassName}] MyBranchSearch test completed successfully");
-            }
-            catch (Exception ex)
-            {
-                test.Log(Status.Fail, $"[{testClassName}] Test failed with exception: {ex.Message}");
-                CaptureScreenshot($"{testClassName}_MyBranchSearch_Failure");
-                Console.WriteLine($"Test failed with exception: {ex.Message}");
-                throw;
-            }
-        }
+				Thread.Sleep(2000);
 
-        // Test 5: Complete request cancellation form with provided data
-        [Test, Order(5), Category("Regression Test")]
+				// Capture final screenshot
+				CaptureScreenshot($"{testClassName}_SelectMyBranchTabsInOrder_Success");
+
+				test.Log(Status.Pass, $"[{testClassName}] SelectMyBranchTabsInOrder test completed successfully");
+			}
+			catch (Exception ex)
+			{
+				// Log the exception
+				test.Log(Status.Fail, $"[{testClassName}] Test failed with exception: {ex.Message}");
+				CaptureScreenshot($"{testClassName}_SelectMyBranchTabsInOrder_Failure");
+				throw;
+			}
+		}
+
+		// Test 4: Perform search from "My Branch" page
+		[Test, Order(5), Category("Regression Test")]
+		public void MyBranch_Search()
+		{
+			// Start the test in ExtentReports with class name prefix
+			test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
+
+			try
+			{
+				test.Log(Status.Info, $"[{testClassName}] Starting MyBranch_Search test");
+
+				// Perform search operations
+				test.Log(Status.Info, $"[{testClassName}] Performing search operations with multiple criteria");
+				test.Log(Status.Info, $"[{testClassName}] Search criteria - ID: {TestData.Search_ID}, Account: {TestData.Account}, Property: {TestData.Property}, Mortgagor: {TestData.Parties}");
+
+				HomePage.ComapnySearch(
+					TestData.Search_ID,
+					TestData.Account,
+					TestData.Property,
+					TestData.Parties,
+					TestData.Blank
+				);
+
+				test.Log(Status.Pass, $"[{testClassName}] Successfully performed all search operations");
+
+				// Capture final screenshot
+				CaptureScreenshot($"{testClassName}_MyBranch_Search_Success");
+
+				test.Log(Status.Pass, $"[{testClassName}] MyBranch_Search test completed successfully");
+			}
+			catch (Exception ex)
+			{
+				// Log the exception
+				test.Log(Status.Fail, $"[{testClassName}] Test failed with exception: {ex.Message}");
+				CaptureScreenshot($"{testClassName}_MyBranch_Search_Failure");
+				throw;
+			}
+		}
+
+		// Test 5: Complete request cancellation form with provided data
+		[Test, Order(5), Category("Regression Test")]
         public void CompleteRequestCancellationsForm()
         {
             // Start the test in ExtentReports with class name prefix
