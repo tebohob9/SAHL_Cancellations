@@ -25,16 +25,16 @@ namespace SAHL_Cancellations.Utilities
         public static readonly string Blank = "";
 
 
-        // Request Cancellation
+		// Request Cancellation
+		public static readonly string Institution = "SA Home Loans Guarantee Trust"; 
         public static readonly string Account_Number = "46548237907";
-        public static readonly string Cancellation_Type_Switch = "Switch";
-        public static readonly string Cancellation_Type_Transfer = "Transfer";
-        public static readonly string Cancellation_Type_Endorsement = "Endorsement";
-        public static readonly string Title_Mr = "Mr";
-        public static readonly string Initials = "T";
-        public static readonly string Full_Name = "Teboho Bodibe";
-        public static readonly string Region_Free_State = "Free State";
-        public static readonly string Cancellation_Reason_EarlySettlementOfBond = "Early Settlement of Bond";
+        public static readonly string TypeOfTransaction = "Switch";
+		public static readonly string SwitchingTo = "SA Home Loans";
+		public static readonly string Party = "Cancellations Test";
+        public static readonly string Property2 = "Apartment 10 Sandton";
+        public static readonly string TransferEmail = "tbodibe@e4.co.za";
+        public static readonly string TransferMobile = "0726063879";
+        
 
         // Setup Branch Details
         public static readonly string Branch = "Durban_1";
@@ -119,8 +119,8 @@ namespace SAHL_Cancellations.Utilities
         public static readonly string TitleDeedNumber = "T1280/2010";
         public static readonly string TypeOfReason = "Paid Up";
         public static readonly string DeedsOffice2 = "Johannesburg";
-        public static readonly string Party = "Mr Arno du Toit";
-        public static readonly string Property2 = "Unit 2, Ss Amcrest 1590, Gauteng";  
+        public static readonly string Party3 = "Mr Arno du Toit";
+        public static readonly string Property3 = "Unit 2, Ss Amcrest 1590, Gauteng";  
         
 
         // Property

@@ -9,14 +9,14 @@ using Cancellations_Tests.Utilities;
 
 namespace SAHL_Cancellations.Pages
 {
-    public class RequestCancellationPage
+    public class RequestFiguresPage
     {
         public readonly IWebDriver driver;  // WebDriver to interact with the browser
         private ExtentTest test; // ExtentTest instance for reporting
         private readonly string pageName = "Request Cancellation Page"; // Page name for reporting
 
         // Constructor to initialize the WebDriver
-        public RequestCancellationPage(IWebDriver driver)
+        public RequestFiguresPage(IWebDriver driver)
         {
             this.driver = driver;  // Assigning the driver to the class variable
 
@@ -37,24 +37,29 @@ namespace SAHL_Cancellations.Pages
         }
 
         // UI Elements - All elements on the Request Cancellation page
-        public IWebElement RequestCancellationButton => driver.FindElement(By.XPath("//a[normalize-space()='Request Cancellation']"));
-        public IWebElement CancellationsTab => driver.FindElement(By.XPath("//div[normalize-space()='Cancellations']"));
-        public IWebElement AccountNumberTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_C_txtAccountNumber']"));
-        public IWebElement CancellationsTypeDrpDwn => driver.FindElement(By.XPath("//select[@id='ctl00_C_ddlCancellationType']"));
+        public IWebElement RequestFigureslink => driver.FindElement(By.XPath("//a[normalize-space()='Request Figures']"));
+        public IWebElement MattersTab => driver.FindElement(By.XPath("//ul[@class='nav nav-tabs nav-tabs-collapse hidden-xs']//li[1]//a[1]"));
+		public IWebElement InstitutionDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_C_ddlInstitution'])[1]"));
+		public IWebElement AccountNumberTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_C_txtAccountNo'])[1]"));
+        public IWebElement TypeOfTransactionTypeDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_C_ddlCancellationType'])[1]"));
+		public IWebElement SwitchingToDrpDwn => driver.FindElement(By.XPath("(//select[@id='ctl00_C_ddlSwitchingBank'])[1]")); 
         public IWebElement TitleDrpdwn => driver.FindElement(By.XPath("//select[@id='ctl00_C_ddlTitle']"));
-        public IWebElement InitialsTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_C_txtInitials']"));
-        public IWebElement FullNameTextBox => driver.FindElement(By.XPath("//input[@id='ctl00_C_txtFullName']"));
-        public IWebElement RegionDrpDwn => driver.FindElement(By.XPath("//select[@id='ctl00_C_ddlRegion']"));
-        public IWebElement CancellationReasonDrpDwn => driver.FindElement(By.XPath("//select[@id='ctl00_C_ddlReason']"));
-        public IWebElement SubmitButton => driver.FindElement(By.XPath("//input[@id='ctl00_C_btnSubmit']"));
+        public IWebElement PartyTextBox => driver.FindElement(By.XPath("(//textarea[@id='ctl00_C_txtParty'])[1]"));
+        public IWebElement PropertyTextBox => driver.FindElement(By.XPath("(//textarea[@id='ctl00_C_txtProperty'])[1]"));
+        public IWebElement TransferAttorney => driver.FindElement(By.XPath("(//input[@id='ctl00_C_transferAttorneySelection_txtbox'])[1]"));
+        public IWebElement TransferEmailTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_C_txtTransferEmail'])[1]"));
+        public IWebElement TransferMobileTextBox => driver.FindElement(By.XPath("(//input[@id='ctl00_C_txtTransferMobile'])[1]"));
+		public IWebElement RequestBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_C_btnSendRequest'])[1]"));
+		public IWebElement CancelBtn => driver.FindElement(By.XPath("(//a[@id='ctl00_C_btnCancel'])[1]"));
 
-        // Click on the "Cancellations" tab
-        public void ClickCancellationsTab()
+
+		// Click on the "Cancellations" tab
+		public void ClickCancellationsTab()
         {
             try
             {
                 LogInfo("Clicking on Request Cancellation button");
-                RequestCancellationButton.Click();
+                RequestFigureslink.Click();
                 LogSuccess("Clicked on Request Cancellation button");
             }
             catch (Exception ex)
@@ -65,52 +70,73 @@ namespace SAHL_Cancellations.Pages
         }
 
         // Complete the cancellation form with provided values
-        public void CompleteForm(string account_number, string cancellation_type, string title, string initials,
-            string full_name, string region, string cancellation_reason)
+        public void CompleteForm(string Institution,
+            string account_number, string TypeOfTransaction, string SwitchingTo,
+            string party, string property,
+            string TransferEmail, string TransferMobile)
         {
             try
             {
-                LogInfo($"Completing form with Account: {account_number}, Type: {cancellation_type}");
-
-                LogInfo($"Entering account number: {account_number}");
-                AccountNumberTextBox.EnterText(account_number);
-                LogSuccess($"Entered account number: {account_number}");
-
-                LogInfo($"Selecting cancellation type: {cancellation_type}");
-                CancellationsTypeDrpDwn.SelectDropDownText(cancellation_type);
-                LogSuccess($"Selected cancellation type: {cancellation_type}");
-
-                LogInfo($"Selecting title: {title}");
-                TitleDrpdwn.SelectDropDownText(title);
-                LogSuccess($"Selected title: {title}");
-
-                LogInfo($"Entering initials: {initials}");
-                InitialsTextBox.EnterText(initials);
-                LogSuccess($"Entered initials: {initials}");
-
-                LogInfo($"Entering full name: {full_name}");
-                FullNameTextBox.EnterText(full_name);
-                LogSuccess($"Entered full name: {full_name}");
-
-                LogInfo($"Selecting region: {region}");
-                RegionDrpDwn.SelectDropDownText(region);
-                LogSuccess($"Selected region: {region}");
+				LogInfo("Clicking on Request Cancellation button");
+				RequestFigureslink.Click();
+				LogSuccess("Clicked on Request Cancellation button");
 
                 Thread.Sleep(2000);
 
-                LogInfo($"Selecting cancellation reason: {cancellation_reason}");
-                CancellationReasonDrpDwn.SelectDropDownText(cancellation_reason);
-                LogSuccess($"Selected cancellation reason: {cancellation_reason}");
+				LogInfo($"Selecting cancellation type: {Institution}");
+				InstitutionDrpDwn.SelectDropDownText(Institution);
+				LogSuccess($"Selected cancellation type: {Institution}");
 
-                LogInfo("Clicking Submit button");
-                SubmitButton.Click();
+				Thread.Sleep(2000);
+
+				LogInfo($"Entering account number: {account_number}");
+                AccountNumberTextBox.EnterText(account_number);
+                LogSuccess($"Entered account number: {account_number}");
+
+				Thread.Sleep(2000);
+
+				LogInfo($"Selecting cancellation type: {TypeOfTransaction}");
+                TypeOfTransactionTypeDrpDwn.SelectDropDownText(TypeOfTransaction);
+                LogSuccess($"Selected cancellation type: {TypeOfTransaction}");
+
+				Thread.Sleep(2000);
+
+				LogInfo($"Selecting cancellation type: {SwitchingTo}");
+				SwitchingToDrpDwn.SelectDropDownText(SwitchingTo);
+				LogSuccess($"Selected cancellation type: {SwitchingTo}");
+
+				Thread.Sleep(2000);
+
+				LogInfo($"Entering initials: {party}");
+                PartyTextBox.EnterText(party);
+                LogSuccess($"Entered initials: {party}");
+
+				Thread.Sleep(2000);
+
+				LogInfo($"Entering full name: {property}");
+                PropertyTextBox.EnterText(property);
+                LogSuccess($"Entered full name: {property}");
+
+				Thread.Sleep(5000);
+
+				LogInfo($"Entering full name: {TransferEmail}");
+				TransferEmailTextBox.EnterText(TransferEmail);
+				LogSuccess($"Entered full name: {TransferEmail}");
+
+				Thread.Sleep(2000);
+
+				LogInfo($"Entering full name: {TransferMobile}");
+				TransferMobileTextBox.EnterText(TransferMobile);
+				LogSuccess($"Entered full name: {TransferMobile}");
+
+				Thread.Sleep(2000);
+
+
+				LogInfo("Clicking Submit button");
+                RequestBtn.Click();
                 LogSuccess("Clicked Submit button");
 
                 Thread.Sleep(1000);
-
-                LogInfo("Clicking Cancellations tab");
-                CancellationsTab.Click();
-                LogSuccess("Clicked Cancellations tab");
 
                 LogSuccess("Form completed successfully");
                 CaptureScreenshot($"{pageName}_FormCompleted");
@@ -123,23 +149,7 @@ namespace SAHL_Cancellations.Pages
             }
         }
 
-        // Click the Submit button
-        public void ClickSubmitButton()
-        {
-            try
-            {
-                LogInfo("Clicking Submit button");
-                SubmitButton.Click();
-                LogSuccess("Clicked Submit button");
-                CaptureScreenshot($"{pageName}_SubmitButton_Clicked");
-            }
-            catch (Exception ex)
-            {
-                LogFailure("Failed to click Submit button", ex);
-                CaptureScreenshot($"{pageName}_SubmitButton_Failure");
-                throw;
-            }
-        }
+        
 
         // Helper methods for logging
         private void LogInfo(string message)

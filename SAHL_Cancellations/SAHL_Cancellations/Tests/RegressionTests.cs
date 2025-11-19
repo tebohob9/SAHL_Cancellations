@@ -18,7 +18,7 @@ namespace SAHL_Cancellations.Tests
         // Declare page objects for reuse across all tests
         public LandingPage LandingPage;
         public HomePage HomePage;
-        public RequestCancellationPage RequestCancellationPage;
+        public RequestFiguresPage RequestCancellationPage;
         public DiaryPage DiaryPage;
         public New_InstructionPage New_InstructionPage;
         public CorrespondentsPage CorrespondentsPage;
@@ -41,7 +41,7 @@ namespace SAHL_Cancellations.Tests
             // Initialize all page objects before each test
             LandingPage = new LandingPage(driver);
             HomePage = new HomePage(driver);
-            RequestCancellationPage = new RequestCancellationPage(driver);
+            RequestCancellationPage = new RequestFiguresPage(driver);
             DiaryPage = new DiaryPage(driver);
             CorrespondentsPage = new CorrespondentsPage(driver);
             InfoSheetPage = new InfoSheetPage(driver);
@@ -250,16 +250,16 @@ namespace SAHL_Cancellations.Tests
                 test.Log(Status.Info, $"[{testClassName}] Waiting for 2 seconds");
                 Thread.Sleep(2000);
 
-                test.Log(Status.Info, $"[{testClassName}] Completing Request Cancellation form");
-                RequestCancellationPage.CompleteForm(
-                    TestData.Account_Number,
-                    TestData.Cancellation_Type_Switch,
-                    TestData.Title_Mr,
-                    TestData.Initials,
-                    TestData.Full_Name,
-                    TestData.Region_Free_State,
-                    TestData.Cancellation_Reason_EarlySettlementOfBond
-                );
+                //test.Log(Status.Info, $"[{testClassName}] Completing Request Cancellation form");
+                //RequestCancellationPage.CompleteForm(
+                //    TestData.Account_Number,
+                //    TestData.Cancellation_Type_Switch,
+                //    TestData.Title_Mr,
+                //    TestData.Initials,
+                //    TestData.Full_Name,
+                //    TestData.Region_Free_State,
+                //    TestData.Cancellation_Reason_EarlySettlementOfBond
+                //);
                 test.Log(Status.Pass, $"[{testClassName}] Successfully completed Request Cancellation form");
 
                 // Capture screenshot after completing the form

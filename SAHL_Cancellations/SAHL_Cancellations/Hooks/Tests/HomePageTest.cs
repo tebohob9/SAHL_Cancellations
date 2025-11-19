@@ -21,7 +21,7 @@ namespace SAHL_Cancellations.Tests
         // Page object instances
         private LandingPage landingPage;
         private HomePage homePage;
-        private RequestCancellationPage requestCancellationPage;
+        private RequestFiguresPage requestCancellationPage;
         private readonly string testClassName = "Home Page Tests"; // Class name for reporting
 
         /// <summary>
