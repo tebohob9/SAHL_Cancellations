@@ -10,152 +10,145 @@ using SAHL_Cancellations.Utilities;
 
 namespace Cancellations_Tests.BasePage
 {
-    public class BaseClass
-    {
-        protected IWebDriver driver;
-        protected LoginManager loginManager;
-        protected static ExtentReports extent;
-        protected ExtentTest test;
+	public class BaseClass
+	{
+		protected IWebDriver driver;
+		protected LoginManager loginManager;
+		protected static ExtentReports extent;
+		protected ExtentTest test;
+		protected Reporting Reporter;
+		protected string currentTestName;
 
-        [OneTimeSetUp]
-        public void Init()
-        {
-            // Initialize the WebDriver
-            driver = InitializeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+		[OneTimeSetUp]
+		public void Init()
+		{
+			// Initialize the WebDriver
+			driver = InitializeDriver();
+			driver.Manage().Window.Maximize();
+			driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
 
-            // Initialize ExtentReports if not already initialized
-            if (extent == null)
-            {
-                ExtentReport.ExtentReportInit();
-                extent = ExtentReport._extentReports;
-            }
+			// Initialize our new Reporting framework
+			Reporter = new Reporting(driver);
 
-            // Initialize LoginManager and perform login
-            loginManager = new LoginManager(driver);
-            try
-            {
-                loginManager.Login();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Login failed: {ex.Message}");
-                if (test != null)
-                {
-                    test.Log(Status.Error, $"Login failed: {ex.Message}");
-                }
-            }
-        }
+			// For backward compatibility, set the static extent reference
+			extent = Reporter.Report;
+			ExtentReport._extentReports = extent;
 
-        private IWebDriver InitializeDriver()
-        {
-            ChromeOptions options = new ChromeOptions();
-            options.AddArgument("--start-maximized");
+			// Initialize LoginManager and perform login
+			loginManager = new LoginManager(driver);
+			try
+			{
+				loginManager.Login();
 
-            // Add additional options to help with stability
-            options.AddArgument("--disable-extensions");
-            options.AddArgument("--disable-popup-blocking");
-            options.AddArgument("--disable-infobars");
-            options.AddArgument("--no-sandbox");
-            options.AddArgument("--disable-gpu");
+				// Log successful login with screenshot
+				if (Reporter.Test != null)
+				{
+					Reporter.LogStepWithScreenshot(Status.Pass, "Successfully logged in");
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Login failed: {ex.Message}");
 
-            // Set page load strategy
-            options.PageLoadStrategy = OpenQA.Selenium.PageLoadStrategy.Normal;
+				// Log failed login with screenshot
+				if (Reporter.Test != null)
+				{
+					Reporter.LogStepWithScreenshot(Status.Error, $"Login failed: {ex.Message}");
+				}
+			}
+		}
 
-            return new ChromeDriver(options);
-        }
+		private IWebDriver InitializeDriver()
+		{
+			ChromeOptions options = new ChromeOptions();
+			options.AddArgument("--start-maximized");
+			// Add additional options to help with stability
+			options.AddArgument("--disable-extensions");
+			options.AddArgument("--disable-popup-blocking");
+			options.AddArgument("--disable-infobars");
+			options.AddArgument("--no-sandbox");
+			options.AddArgument("--disable-gpu");
+			// Set page load strategy
+			options.PageLoadStrategy = OpenQA.Selenium.PageLoadStrategy.Normal;
+			return new ChromeDriver(options);
+		}
 
-        // For backward compatibility
-        public void StartTest(string testName)
-        {
-            test = extent.CreateTest(testName);
-        }
+		[SetUp]
+		public void BeforeTest()
+		{
+			// Get the current test name and store it for use throughout the test
+			currentTestName = TestContext.CurrentContext.Test.Name;
 
-        // For backward compatibility
-        public void LogTestStatus(Status status, string message)
-        {
-            test.Log(status, message);
-            if (status == Status.Fail)
-            {
-                CaptureScreenshot(TestContext.CurrentContext.Test.Name + "_Failure");
-            }
-        }
+			// Get the test class name
+			string testClassName = TestContext.CurrentContext.Test.ClassName.Split('.').Last();
 
-        [SetUp]
-        public void BeforeTest()
-        {
-            if (test == null)
-            {
-                StartTest(TestContext.CurrentContext.Test.Name);
-            }
-        }
+			// Create a new test for each test method with a descriptive name that includes both class and method
+			string fullTestName = $"{testClassName}_{currentTestName}";
+			test = Reporter.CreateReport(fullTestName);
 
-        [TearDown]
-        public void AfterTest()
-        {
-            // Capture screenshot after each test execution
-            CaptureScreenshot(TestContext.CurrentContext.Test.Name);
-            var status = TestContext.CurrentContext.Result.Outcome.Status;
-            var message = TestContext.CurrentContext.Result.Message ?? string.Empty;
-            Status logStatus;
-            switch (status)
-            {
-                case NUnit.Framework.Interfaces.TestStatus.Failed:
-                    logStatus = Status.Fail;
-                    break;
-                case NUnit.Framework.Interfaces.TestStatus.Passed:
-                    logStatus = Status.Pass;
-                    break;
-                case NUnit.Framework.Interfaces.TestStatus.Skipped:
-                    logStatus = Status.Skip;
-                    break;
-                default:
-                    logStatus = Status.Warning;
-                    break;
-            }
-            LogTestStatus(logStatus, message);
-        }
+			// Set the current test for page objects to use (for backward compatibility)
+			ExtentReport._scenario = test;
 
-        [OneTimeTearDown]
-        public void TearDown()
-        {
-            driver?.Dispose();
-            // Flush the report
-            ExtentReport.ExtentReportTearDown();
+			// Log test start with screenshot
+			Reporter.LogStepWithScreenshot(Status.Info, $"Starting test: {fullTestName}");
+		}
 
-            // Close and quit the driver
-            //if (driver != null)
-            //{
-            //    driver.Quit();
-            //    driver.Dispose();
-            //}
-        }
+		[TearDown]
+		public void AfterTest()
+		{
+			// Log test result status
+			var status = TestContext.CurrentContext.Result.Outcome.Status;
+			var errorMessage = TestContext.CurrentContext.Result.Message;
 
-        // Capture screenshot after the test execution
-        public void CaptureScreenshot(string screenshotName)
-        {
-            try
-            {
-                if (driver != null)
-                {
-                    ITakesScreenshot takesScreenshot = (ITakesScreenshot)driver;
-                    Screenshot screenshot = takesScreenshot.GetScreenshot();
-                    string screenshotPath = Path.Combine(ExtentReport.testResultPath, screenshotName + ".png");
-                    screenshot.SaveAsFile(screenshotPath);
+			if (status == NUnit.Framework.Interfaces.TestStatus.Failed)
+			{
+				Reporter.LogStepWithScreenshot(Status.Fail, $"Test failed with message: {errorMessage}");
+			}
+			else if (status == NUnit.Framework.Interfaces.TestStatus.Passed)
+			{
+				Reporter.LogStepWithScreenshot(Status.Pass, "Test passed successfully");
+			}
+		}
 
-                    // Attach screenshot to the test
-                    test.AddScreenCaptureFromPath(screenshotPath);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Failed to capture screenshot: {ex.Message}");
-            }
-        }
-    }
+		[OneTimeTearDown]
+		public void TearDown()
+		{
+			try
+			{
+				// Flush the report
+				Reporter.Flush();
+				Console.WriteLine($"Report generated at: {Reporter.FullExtentReportPath()}");
+
+				// Close and quit the driver
+				if (driver != null)
+				{
+					driver.Quit();
+					driver.Dispose();
+					driver = null;
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error during teardown: {ex.Message}");
+			}
+		}
+
+		// Capture screenshot method for backward compatibility
+		public void CaptureScreenshot(string screenshotName)
+		{
+			try
+			{
+				if (driver != null)
+				{
+					// Include the current test name in the screenshot name for better organization
+					string fullScreenshotName = $"{currentTestName}_{screenshotName}";
+					Reporter.TakeScreenshot(driver, test, Status.Info, fullScreenshotName);
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Failed to capture screenshot: {ex.Message}");
+			}
+		}
+	}
 }
-
-
-
-

@@ -229,55 +229,44 @@ namespace SAHL_Cancellations.Tests
 		}
 
 		// Test 5: Complete request cancellation form with provided data
-		[Test, Order(5), Category("Regression Test")]
-        public void CompleteRequestCancellationsForm()
-        {
-            // Start the test in ExtentReports with class name prefix
-            test = extent.CreateTest($"{testClassName}: {TestContext.CurrentContext.Test.Name}");
-            ExtentReport._scenario = test; // Set the current test for page objects to use
+		[Test, Order(6), Category("Regression Test")]
+		public void CompleteRefundDetailsForm()
+		{
+			try
+			{
+				test.Log(Status.Info, $"[{testClassName}] Starting MyBranch_Search test");
 
-            try
-            {
-                test.Log(Status.Info, $"[{testClassName}] Starting CompleteRequestCancellationsForm test");
+				// Perform search operations
+				test.Log(Status.Info, $"[{testClassName}] Performing search operations with multiple criteria");
+				test.Log(Status.Info, $"[{testClassName}] Search criteria - ID: {TestData.Search_ID}, Account: {TestData.Account}, Property: {TestData.Property}, Mortgagor: {TestData.Parties}");
 
-                test.Log(Status.Info, $"[{testClassName}] Waiting for 2 seconds");
-                Thread.Sleep(2000);
+				RefundDetailsPage.CompleteRefundDetailsForm(
+					TestData.BeneficiaryName,
+					TestData.Bank,
+					TestData.AccountNumber,
+					TestData.BranchName,
+					TestData.BranchCode,
+					TestData.Telephone,
+					TestData.Email);
 
-                test.Log(Status.Info, $"[{testClassName}] Clicking Request Cancellation button");
-                //HomePage.ClickRequestCancellation();
-                test.Log(Status.Pass, $"[{testClassName}] Successfully clicked Request Cancellation button");
+				test.Log(Status.Pass, $"[{testClassName}] Successfully completed refund details form");
 
-                test.Log(Status.Info, $"[{testClassName}] Waiting for 2 seconds");
-                Thread.Sleep(2000);
+				// Capture final screenshot
+				CaptureScreenshot($"{testClassName}_CompleteRefundDetailsForm_Success");
 
-                //test.Log(Status.Info, $"[{testClassName}] Completing Request Cancellation form");
-                //RequestCancellationPage.CompleteForm(
-                //    TestData.Account_Number,
-                //    TestData.Cancellation_Type_Switch,
-                //    TestData.Title_Mr,
-                //    TestData.Initials,
-                //    TestData.Full_Name,
-                //    TestData.Region_Free_State,
-                //    TestData.Cancellation_Reason_EarlySettlementOfBond
-                //);
-                test.Log(Status.Pass, $"[{testClassName}] Successfully completed Request Cancellation form");
+				test.Log(Status.Pass, $"[{testClassName}] CompleteRefundDetailsForm test completed successfully");
+			}
+			catch (Exception ex)
+			{
+				// Log the exception
+				test.Log(Status.Fail, $"[{testClassName}] Test failed with exception: {ex.Message}");
+				CaptureScreenshot($"{testClassName}_CompleteRefundDetailsForm_Failure");
+				throw;
+			}
+		}
 
-                // Capture screenshot after completing the form
-                CaptureScreenshot($"{testClassName}_CompleteRequestCancellationsForm_Success");
-
-                test.Log(Status.Pass, $"[{testClassName}] CompleteRequestCancellationsForm test completed successfully");
-            }
-            catch (Exception ex)
-            {
-                test.Log(Status.Fail, $"[{testClassName}] Test failed with exception: {ex.Message}");
-                CaptureScreenshot($"{testClassName}_CompleteRequestCancellationsForm_Failure");
-                Console.WriteLine("Test failed with exception: " + ex.Message);
-                throw;
-            }
-        }
-
-        // Test 6: Select links (Mortgagee, Mortgagor, Property) on New Instruction page
-        [Test, Order(6), Category("Regression Test")]
+		// Test 6: Select links (Mortgagee, Mortgagor, Property) on New Instruction page
+		[Test, Order(6), Category("Regression Test")]
         public void SelectLinks()
         {
             // Start the test in ExtentReports with class name prefix
